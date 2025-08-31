@@ -85,7 +85,7 @@
             
             // Late / Sick Path
             { id: 21, text: "You scramble around, a whirlwind of panicked energy.", choices: [{ text: "Throw on random clothes quickly", nextId: 31 }, { text: "Leave house in pajamas", nextId: 32 }] },
-            { id: 22, text: "You grab your phone and call in sick, putting on your best 'dying frog' voice. The day is yours.", choices: [{ text: "Actually stay home all day", nextId: 33 }, { text: "Decide to explore the city instead", nextId: 34 }, { text: "Smoke weed and see where the day goes", nextId: 70 }, { text: "Check your texts", nextId: 300 }, { text: "Just wait for something to happen", nextId: 1100 }] },
+            { id: 22, text: "You grab your phone and call in sick, putting on your best 'dying frog' voice. The day is yours.", choices: [{ text: "Actually stay home all day", nextId: 33 }, { text: "Decide to explore the city instead", nextId: 34 }, { text: "Smoke weed and see where the day goes", nextId: 70 }, { text: "Go get a proper diner breakfast.", nextId: 10000 }, { text: "Finally fix that wobbly bookshelf.", nextId: 10010 }, { text: "Finally return that overdue library book.", nextId: 9000 }] },
 
             // Shower Path
             { id: 23, text: "The hot water is a blessing, melting away the last of your sleepiness. You feel refreshed and relaxed.", choices: [{ text: "Get dressed", nextId: 89 }] },
@@ -107,7 +107,11 @@
             
             // Homebody / City Paths
             { id: 33, text: "You spend the day on the couch, binging shows and ordering delivery. You feel a bit like a slob, but a comfortable, happy slob. As evening approaches, your phone buzzes.", choices: [{ text: "Check your phone.", nextId: 300 }] },
-            { id: 34, text: "You wander the city, a tourist in your own town. You visit a cafe, a park, and a mall, feeling a sense of freedom you haven't felt in years. As the sun begins to set, you feel your phone buzz in your pocket.", choices: [{ text: "Check your phone.", nextId: 300 }] },
+            { id: 34, text: "You wander the city, a tourist in your own town. What should you do?", choices: [{ text: "Visit a cafe.", nextId: 341 }, { text: "Go to the park.", nextId: 342 }, { text: "Go to the mall.", nextId: 341 }] },
+            { id: 341, text: "You spend a few hours at a cafe/mall, just people watching and enjoying the freedom. As the sun begins to set, your phone buzzes.", choices: [{ text: "Check your phone.", nextId: 300 }] },
+            { id: 342, text: "You head to the local park. It's peaceful. You see a friendly-looking orange tabby cat sitting on a bench.", choices: [{ text: "Try to pet the cat.", nextId: 343 }, { text: "Leave it be and enjoy the quiet.", nextId: 341 }] },
+            { id: 343, text: "You approach slowly and offer your hand. The cat purrs loudly and rubs against you before hopping off the bench. As it leaves, it nudges something shiny on the ground with its nose, looks back at you, and darts away. It's an old, heavy silver dollar.", setState: { silverDollar: true }, choices: [{ text: "What a strange cat. What a cool coin.", nextId: 341 }] },
+
             
             // Commute Path
             { id: 41, text: "You quickly whip up some eggs and toast. A solid breakfast.", choices: [{ text: "Commute (Drive)", nextId: 51 }, { text: "Commute (Bus)", nextId: 52 }, { text: "Smoke a bowl before you go", nextId: 80 }, { text: "Skip Work Last Minute", nextId: 54 }] },
@@ -219,24 +223,25 @@
                 id: 131, 
                 text: "A moment later, your phone buzzes. She's sent back a 😘. You smile and put your phone away, feeling a little warmer.",
                 textFemale: "A moment later, your phone buzzes. He's sent back a 😘. You smile and put your phone away, feeling a little warmer.",
-                choices: [{ text: "Time to get to work.", nextId: 150 }]
+                choices: [{ text: "Time to get to work.", nextId: 134 }]
             },
             { 
                 id: 132, 
                 text: "Your phone buzzes almost instantly with a reply: 'ILY'. You feel a rush of affection and quickly put your phone away as the first customer approaches.",
-                choices: [{ text: "Time to get to work.", nextId: 150 }]
+                choices: [{ text: "Time to get to work.", nextId: 134 }]
             },
             { 
                 id: 133, 
                 text: "You decide against it. Better to stay focused. Unbeknownst to you, at that very moment, you were on your partner's mind all day. You put your phone away and get ready for the day.",
-                choices: [{ text: "Time to get to work.", nextId: 150 }]
+                choices: [{ text: "Time to get to work.", nextId: 134 }]
             },
-            {
-                id: 140,
-                text: "The rest of the workday is surprisingly calm. As you're packing up to leave, your phone buzzes. It's your partner: 'Hey! Since you had to work, wanna do dinner tonight? I am so ready to tell you about the tea at work.'",
-                textFemale: "The rest of the workday is surprisingly calm. As you're packing up to leave, your phone buzzes. It's your partner: 'Hey! Since you had to work, wanna do dinner tonight? I am so ready to tell you about the tea at work.'",
-                choices: [{ text: "Awesome! Time to head home and get ready.", nextId: 7000 }]
-            },
+            { id: 134, text: "You put your phone away, feeling good. Barry from HR wanders over.", choices: [{ text: "Great. It's Barry.", nextId: 135 }] },
+            { id: 135, text: "'Hey,' Barry says, leaning conspiratorially. 'Did you hear about what happened in the parking lot this morning? Classic Mr. Johns.'", choices: [{ text: "No, what happened?", nextId: 136 }, { text: "Sorry Barry, I've got to get to work.", nextId: 137 }] },
+            { id: 136, text: "Barry launches into a juicy, probably exaggerated story about Mr. Johns getting into a screaming match with the parking garage gate. You try to stifle a laugh.", setState: { heardGossip: true }, choices: [{ text: "File that away for later.", nextId: 138 }] },
+            { id: 137, text: "You politely excuse yourself. Barry seems annoyed at being brushed off, but you've got work to do.", choices: [{ text: "Probably the right call.", nextId: 150 }] },
+            { id: 138, text: "Later that day, you head to the breakroom for a coffee. Mr. Johns is in there, looking grumpy as usual.", choices: [{ text: "Get your coffee and leave.", nextId: 140 }] },
+            { id: 139, text: "You can't resist. 'Rough morning with the parking gate, huh?' you ask casually. Mr. Johns' eyes widen, then he lets out an unexpected chuckle. 'Don't you start. It's a menace.' You might have just earned a shred of his respect.", choices: [{ text: "The day flies by after that.", nextId: 140 }] },
+            { id: 140, text: "The rest of the workday is surprisingly calm. As you're packing up to leave, your phone buzzes. It's your partner: 'Hey! Since you had to work, wanna do dinner tonight? I am so ready to tell you about the tea at work.'", textFemale: "The rest of the workday is surprisingly calm. As you're packing up to leave, your phone buzzes. It's your partner: 'Hey! Since you had to work, wanna do dinner tonight? I am so ready to tell you about the tea at work.'", choices: [{ text: "Awesome! Time to head home and get ready.", nextId: 7000 }] },
             
             // --- NEW MUNDANE WORK PATH ---
             { id: 150, text: "The morning rush is over, leaving a quiet lull. What should you tackle next?", choices: [ { text: "Process last week's deposit slips.", nextId: 151 }, { text: "Do it later. Stretch your legs for a bit.", nextId: 160 } ] },
@@ -244,8 +249,10 @@
             { id: 152, text: "You finish filing and start an export. Do you want to CC Mr. Johns on the confirmation email?", choices: [{ text: "Yes, keep the boss in the loop.", nextId: 154 }, { text: "No, no need to bother him.", nextId: 154 }] },
             { id: 153, text: "You efficiently file away the slips. The task takes up a good chunk of your afternoon.", choices: [{ text: "Alright, that's done.", nextId: 140 }] },
             { id: 154, text: "You send the email. It's good to have a digital paper trail. That task takes a while, and before you know it, the day is winding down.", choices: [{ text: "Time flew by.", nextId: 140 }] },
-            { id: 160, text: "You decide to put off the paperwork and wander into the back offices. You pass an empty cubicle with a sad-looking plant. On the desk sits a chipped mug that reads 'World's Best Boss'.", choices: [{ text: "Take the mug as a souvenir.", nextId: 168 }, { text: "Leave it and keep walking.", nextId: 161 }] },
-            { id: 168, text: "You grab the mug. It feels appropriately cynical. You tuck it under your arm and continue your stroll.", setState: { bossMug: true }, choices: [{ text: "You see Steve, the maintenance guy.", nextId: 161 }] },
+            { id: 160, text: "You decide to put off the paperwork and wander into the back offices. You pass an empty cubicle with a sad-looking plant. On the desk sits a chipped mug that reads 'World's Best Boss'.", choices: [{ text: "Take the mug as a souvenir.", nextId: 168 }, { text: "Leave it and keep walking.", nextId: 169 }] },
+            { id: 168, text: "You grab the mug. It feels appropriately cynical. You tuck it under your arm and continue your stroll.", setState: { bossMug: true }, choices: [{ text: "Let's see what else is back here.", nextId: 169 }] },
+            { id: 169, text: "You notice the door to the old records room is slightly ajar.", choices: [{text: "Peek inside.", nextId: 170}, {text: "Probably shouldn't. Keep walking.", nextId: 161}] },
+            { id: 170, text: "You slip into the dusty room. It's filled with old file cabinets. On a table sits a long-forgotten deposit box. Inside, under some papers, you find a single, heavy clay poker chip from 'The River Palace,' a casino that closed down decades ago.", setState: { oldCasinoChip: true }, choices: [{text: "What a cool find.", nextId: 161}] },
             { id: 161, text: "You see Steve, the maintenance guy, working on a flickering light.", choices: [{ text: "Say hi to Steve.", nextId: 162 }] },
             { id: 162, text: "'Hey Steve, how's it going?' you ask. He looks up, wiping his brow. 'Same old, same old. Hey, you like classic cars?'", choices: [{ text: "Always wanted one. Why?", nextId: 163 }] },
             { id: 163, text: "'My brother-in-law's selling his '88 Corvette. Red. You've always wanted one of those, right?'", choices: [{ text: "Yeah! What's the condition like?", nextId: 164 }] },
@@ -493,9 +500,24 @@
             },
             {
                 id: 2011,
-                text: "The rest of the date is wonderful. You head to the parking lot, feeling closer than ever, your mind still reeling from the ridiculous office drama.",
+                text: "After the story, you pass a vintage movie theater with a brightly lit marquee. They're playing a one-night-only screening of a classic romantic movie.",
+                choices: [ { text: "Want to go see it?", nextId: 2013 }, { text: "Nah, let's stick to the plan.", nextId: 3000 } ]
+            },
+             {
+                id: 2013,
+                text: "You both go inside. The theater is old and beautiful. You share a large popcorn, whispering jokes to each other during the previews and holding hands through the whole film. It's perfect.",
+                choices: [{ text: "This was a great idea.", nextId: 2014 }]
+            },
+            {
+                id: 2014,
+                text: "Leaving the theater, your partner squeezes your hand. 'That was the most romantic, spontaneous thing we've done in ages,' they say. The mood is set for the rest of the night.",
                 choices: [{ text: "Time to head home.", nextId: 3000 }]
             },
+            { id: 2020, text: "'That's not even the weirdest thing that happened today,' you say, pulling out the silver dollar. 'I met this weirdly smart cat...' You tell the story. Your partner is captivated. 'So you're saying a cat gave you a lucky coin? That's amazing.'", setState: { silverDollar: false }, choices: [{ text: "Now tell me about the work tea.", nextId: 2000 }] },
+            { id: 2022, text: "You pull out the old casino chip. 'Look what I found in a dusty old room at the bank.' Your partner's eyes light up. 'No way! The River Palace? My grandpa used to tell stories about that place.' It sparks a long conversation about what your town used to be like.", setState: { oldCasinoChip: false }, choices: [{ text: "Anyway, you mentioned some drama...", nextId: 2000 }] },
+            { id: 2024, text: "You show them the worn guitar pick. 'Found this today. I was thinking maybe I should start playing again.' Your partner smiles. 'You totally should! I loved hearing you play.' It's a sweet, supportive moment.", setState: { guitarPick: false }, choices: [{ text: "So, about this work tea...", nextId: 2000 }] },
+            { id: 2026, text: "'You're not going to believe the weird day I had,' you begin, pulling out the silver locket. 'I met this strange old man in a diner...' You recount the story. Your partner is enthralled. 'A hidden treasure? That's incredible! What do you think the story is behind it?'", setState: { silverLocket: false }, choices: [{ text: "Anyway, you were saying about work?", nextId: 2000 }] },
+
 
             // --- FLAT TIRE & SEDUCTION PATH ---
             {
@@ -821,18 +843,24 @@
                 { text: "Send a GIF of Tim Robinson squinting.", nextId: 7102 },
                 { text: "I figured you boys would be in the sub 6's like me in no time.", nextId: 7103 }
             ]},
-            { id: 7101, text: "Aaron replies instantly: 'lol for real'. You chuckle and put your phone away.", choices: [{ text: "Time to go.", nextId: 7005 }] },
-            { id: 7102, text: "Ian replies with a GIF of a guy furiously typing on a tiny keyboard. Aaron sends one of a cat looking shocked. You reply with a GIF of a spinning hot dog. Ian sends a trophy GIF. The war is won. You laugh.", choices: [{ text: "Okay, for real this time.", nextId: 7005 }] },
-            { id: 7103, text: "Ian replies: 'lol you've never shot under par in your life'. He's right, but it's funny. You put your phone away.", choices: [{ text: "Time to go.", nextId: 7005 }] },
+            { id: 7101, text: "Aaron replies instantly: 'lol for real'. You chuckle and put your phone away.", choices: [{ text: "Time to go.", nextId: 7200 }] },
+            { id: 7102, text: "Ian replies with a GIF of a guy furiously typing on a tiny keyboard. Aaron sends one of a cat looking shocked. You reply with a GIF of a spinning hot dog. Ian sends a trophy GIF. The war is won. You laugh.", choices: [{ text: "Okay, for real this time.", nextId: 7200 }] },
+            { id: 7103, text: "Ian replies: 'lol you've never shot under par in your life'. He's right, but it's funny. You put your phone away.", choices: [{ text: "Time to go.", nextId: 7200 }] },
             // FEMALE
             { id: 7110, text: "You look amazing. As you're grabbing your purse, your phone buzzes. It's a text from your friend Tammy in the group chat: 'omg you will never beleive what tyler got me, a great dane puppy!'", choices: [
                 { text: "oh wow how cute, girl or boy whats the name?", nextId: 7111 },
                 { text: "those dogs get huge, you live in a studio apartment", nextId: 7112 },
                 { text: "thats great haha", nextId: 7113 }
             ]},
-            { id: 7111, text: "She replies a minute later: 'i know right? his name is goose'. You smile.", choices: [{ text: "Time to go.", nextId: 7013 }] },
-            { id: 7112, text: "Tammy replies almost instantly: 'OMG you are so negative, your gonna love him.' You roll your eyes, but smile.", choices: [{ text: "Okay, time to focus.", nextId: 7013 }] },
-            { id: 7113, text: "She sends back a bunch of heart emojis and 'his name is goose'.", choices: [{ text: "Time to go.", nextId: 7013 }] },
+            { id: 7111, text: "She replies a minute later: 'i know right? his name is goose'. You smile.", choices: [{ text: "Time to go.", nextId: 7200 }] },
+            { id: 7112, text: "Tammy replies almost instantly: 'OMG you are so negative, your gonna love him.' You roll your eyes, but smile.", choices: [{ text: "Okay, time to focus.", nextId: 7200 }] },
+            { id: 7113, text: "She sends back a bunch of heart emojis and 'his name is goose'.", choices: [{ text: "Time to go.", nextId: 7200 }] },
+             // Getting Ready Pt. 2
+            { id: 7200, text: "You're almost ready to go. Just need to grab your keys and wallet.", choices: [{ text: "Where did I leave them...", nextId: 7201 }] },
+            { id: 7201, text: "You check the usual spots. The kitchen counter, the coffee table... nothing.", choices: [{ text: "Check the junk drawer.", nextId: 7202 }, { text: "Look in your old coat.", nextId: 7203 }] },
+            { id: 7202, text: "You rifle through the junk drawer. Amongst old batteries and takeout menus, you find them. You also find a faded, worn-out guitar pick. You remember you used to play a little.", setState: { guitarPick: true }, choices: [{ text: "A memory from another life.", nextId: 7005, textFemale: "A memory from another life.", nextId: 7013 }] },
+            { id: 7203, text: "You check the pockets of the old coat hanging by the door. There they are. Phew.", choices: [{ text: "Time to go.", nextId: 7005, textFemale: "Time to go.", nextId: 7013 }] },
+
             
             // --- NEW TIRE FIXING SEQUENCE ---
             { id: 8000, text: "You order her an Uber. While you wait, you carry her bag out for her. 'I love you, and I had a wonderful time,' you say. 'I'm gonna go fix that tire. I'll text you when I'm done and I'll drop the car off, then we can go get my truck.'", choices: [{ text: "Wait for her reply.", nextId: 8001 }] },
@@ -844,7 +872,8 @@
             { id: 8006, text: "You get to the restaurant parking lot. It's mostly empty now. You pull up next to her car and assess the situation.", choices: [{ text: "Time to jack up the car.", nextId: 8007 }] },
             { id: 8007, text: "Which jack are you going to use?", choices: [{ text: "The heavy floor jack from your truck.", nextId: 8008 }, { text: "The scissor jack in her car's trunk.", nextId: 8009 }] },
             { id: 8008, text: "You haul the heavy floor jack out of your truck. It's a beast to maneuver, but it's reliable. You get it in position under the car frame.", choices: [{ text: "Jack it up.", nextId: 8010 }] },
-            { id: 8009, text: "You pop her trunk. As you're wrestling the flimsy scissor jack out from its compartment, your hand slips and you bust your knuckles against the metal trunk latch. A little bit of blood wells up, and you wipe it on your pants. Annoying, but not serious.", choices: [{ text: "Okay, ow. Jack up the car.", nextId: 8010 }] },
+            { id: 8009, text: "You pop her trunk. It's held down by a stubborn zip tie. You spend a few frustrating minutes trying to wrestle it free, busting your knuckles against the trunk latch in the process. A little blood wells up.", choices: [{ text: "Okay, ow. Jack up the car.", nextId: 8010 }] },
+            { id: 80091, text: "You pop her trunk. It's held down by a stubborn zip tie. No problem. You pull out your pocket knife and cleanly slice it open. Easy. You get the jack out without any trouble.", choices: [{ text: "Time to jack up the car.", nextId: 8010 }] },
             { id: 8010, text: "With the car safely jacked up, you get the lugs off and pull the wheel off. You quickly find the culprit: a small, sharp nail. You pull it out with your pliers. Now, to find the tire patch kit in your truck...", choices: [
                 { text: "Check the glovebox.", nextId: 8011 },
                 { text: "Check the center console.", nextId: 8012 },
@@ -875,7 +904,33 @@
             ]},
             { id: 8023, text: "You pop the board, flick your ankle, and land it cleanly. The kids give you a nod of respect. 'Sick.'", choices: [{ text: "Give the board back.", nextId: 8025 }] },
             { id: 8024, text: "You decide to show off a little. You pop the board and it spins a perfect 360 degrees under your feet before you land bolts. The kids lose their minds. 'WHOA! THAT WAS INSANE!'", choices: [{ text: "Give the board back, legend.", nextId: 8025 }] },
-            { id: 8025, text: "You hand the board back with a smile. You feel pretty cool. You shoot your girlfriend a text: 'Car is all set. On my way to drop it off!' What a day.", choices: [{ text: "Time to go home. (Play Again)", nextId: 1 }] }
+            { id: 8025, text: "You hand the board back with a smile. You feel pretty cool. You shoot your girlfriend a text: 'Car is all set. On my way to drop it off!' What a day.", choices: [{ text: "Time to go home. (Play Again)", nextId: 1 }] },
+            
+            // --- NEW LIBRARY ARC ---
+            { id: 9000, text: "You decide to be a responsible adult and finally return that library book that's been sitting on your shelf for weeks. First, you have to find it.", choices: [{ text: "Search the apartment.", nextId: 9001 }] },
+            { id: 9001, text: "Your apartment is a bit of a mess. Where do you start looking for 'A Brief History of Time'?", choices: [ {text: "Look under the couch.", nextId: 9002}, {text: "Check the kitchen.", nextId: 9003}, {text: "Rummage through the closet.", nextId: 9004} ] },
+            { id: 9002, text: "You reach under the couch cushions and feel the familiar hardcover. Success! You also pull out $5 in loose change. A productive search.", setState: { fiveDollars: true }, choices: [{ text: "Time to head to the library.", nextId: 9005 }] },
+            { id: 9003, text: "You find the book on the kitchen counter, but it's got a sticky coffee ring on the cover. You wipe it off as best you can.", choices: [{ text: "Time to head to the library.", nextId: 9005 }] },
+            { id: 9004, text: "You don't find the book, but you do find an old, incredibly embarrassing photo of yourself from your high school goth phase. You cringe, but pocket it for the memories.", setState: { embarrassingPhoto: true }, choices: [{ text: "Okay, the book must be somewhere else.", nextId: 9001 }] },
+            { id: 9005, text: "You get to the library. The librarian is an eccentric old man with a long, white beard. He scans your book. 'Ah, a bit overdue, I see. That'll be a $12 late fee.'", choices: [ {text: "Just pay the fee.", nextId: 9006}, {text: "Try to flirt your way out of it.", nextId: 9007}, {text: "Ask if there's any other way.", nextId: 9008} ] },
+            { id: 9006, text: "You sigh and pay the fee. Your conscience is clear. You head home, your errand complete. Later that evening, your phone buzzes.", choices: [{ text: "Check your phone.", nextId: 300 }] },
+            { id: 9007, text: "You give him your best smile. 'Is there any way we can... negotiate?' The librarian just chuckles. 'Nice try. I'll knock it down to $6 for the effort.' You pay the reduced fee and head home.", choices: [{ text: "Check your phone later.", nextId: 300 }] },
+            { id: 9008, text: "He strokes his beard. 'I'll tell you what. I am the light that cannot be seen, the story that cannot be told. What am I?'", choices: [ {text: "A secret.", nextId: 9009}, {text: "The future.", nextId: 9010} ] },
+            { id: 9009, text: "'Precisely!' the librarian exclaims. 'The fee is waived!' You feel a surge of pride. You head home, victorious. That evening, your phone buzzes.", choices: [{ text: "Check your phone.", nextId: 300 }] },
+            { id: 9010, text: "The librarian shakes his head sadly. 'Incorrect. The answer was a secret.' You pay the fee, slightly embarrassed. Later that evening, your phone buzzes.", choices: [{ text: "Check your phone.", nextId: 300 }] },
+
+             // --- NEW DINER & DIY ARCS ---
+            { id: 10000, text: "You decide to treat yourself to a proper meal. You head to 'The Silver Skillet,' a classic local diner that smells like coffee and bacon.", choices: [{ text: "Order the 'Lumberjack Special'.", nextId: 10001 }] },
+            { id: 10001, text: "As you're halfway through a mountain of pancakes, a friendly but rambling old man sits down in your booth uninvited. 'Mind if I join you?' he asks, already settled.", choices: [{ text: "Be polite and listen.", nextId: 10002 }, { text: "Tell him you'd rather eat alone.", nextId: 10003 }] },
+            { id: 10002, text: "You listen as he tells you a long story about the diner's 'glory days.' Before he leaves, he winks. 'The original owner, he was a sneaky one. Always said he left a piece of his heart under booth seven.' He points at your booth and then shuffles away.", choices: [{ text: "Check under the booth.", nextId: 10004 }, { text: "He was just a crazy old man.", nextId: 10005 }] },
+            { id: 10003, text: "The old man looks a little hurt, but he gets up and leaves you to your meal. The rest of your breakfast is peaceful. As evening sets in, your phone buzzes.", choices: [{ text: "Check your phone.", nextId: 300 }] },
+            { id: 10004, text: "When no one's looking, you feel under the seat. Your fingers close around a loose tile. You pry it up and find a small, velvet pouch. Inside is an old but beautiful silver locket.", setState: { silverLocket: true }, choices: [{ text: "What a story. You head home.", nextId: 10005 }] },
+            { id: 10005, text: "You finish your breakfast and head home, the weird encounter making for a memorable morning. Later that evening, your phone buzzes.", choices: [{ text: "Check your phone.", nextId: 300 }] },
+            { id: 10010, text: "You decide to be productive and finally tackle the wobbly bookshelf that's been annoying you for months. You grab your toolbox but realize you're missing the right size Allen key.", choices: [{ text: "Jury-rig it with a screwdriver.", nextId: 10011 }, { text: "Go to the hardware store.", nextId: 10012 }] },
+            { id: 10011, text: "You spend an hour trying to tighten the bolt with the wrong tool, stripping the screw and making the wobble even worse. Frustrated, you give up. The bookshelf will have to wait. Later, your phone buzzes.", choices: [{ text: "Check your phone.", nextId: 300 }] },
+            { id: 10012, text: "You head to Middletown Hardware. While looking for the Allen key set, you see a display of vintage-style pocket knives. One with a simple wooden handle catches your eye.", choices: [{ text: "Buy the classic pocket knife.", nextId: 10013 }, { text: "Just get the Allen keys.", nextId: 10014 }] },
+            { id: 10013, text: "You buy the knife. It feels solid and well-made in your hand. You also grab the Allen keys.", setState: { pocketKnife: true }, choices: [{ text: "Head home to finish the job.", nextId: 10014 }] },
+            { id: 10014, text: "You get home, and with the proper tool, you fix the bookshelf in under five minutes. It's perfectly stable. You feel a surge of accomplishment. Later that evening, your phone buzzes.", choices: [{ text: "Check your phone.", nextId: 300 }] }
 
         ];
 
@@ -901,7 +956,8 @@
         const defaultPlayerState = { 
             hasKey: false, hasCoins: false, wearsHawaiianShirt: false, hasGlock: false, hasCarInfo: false,
             giftCard: false, tirePlugs: false, gum: false, cones: false, bluntWrap: false, candy: false,
-            lotteryTicket: false, bossMug: false, stevesCard: false
+            lotteryTicket: false, bossMug: false, stevesCard: false, embarrassingPhoto: false, heardGossip: false,
+            fiveDollars: false, silverDollar: false, oldCasinoChip: false, guitarPick: false, silverLocket: false, pocketKnife: false
         };
 
         const themes = {
@@ -989,6 +1045,13 @@
             if (playerState.cones) items.push("Raw Cones");
             if (playerState.bluntWrap) items.push("Blunt Wrap");
             if (playerState.candy) items.push("Partner's Favorite Candy");
+            if (playerState.embarrassingPhoto) items.push("Embarrassing High School Photo");
+            if (playerState.fiveDollars) items.push("$5 Bill");
+            if (playerState.silverDollar) items.push("Old Silver Dollar");
+            if (playerState.oldCasinoChip) items.push("Old Casino Chip");
+            if (playerState.guitarPick) items.push("Worn Guitar Pick");
+            if (playerState.silverLocket) items.push("Silver Locket");
+            if (playerState.pocketKnife) items.push("Classic Pocket Knife");
 
             if (items.length > 0) {
                 inventoryContainer.classList.remove('hidden');
@@ -1100,11 +1163,17 @@
                     return showStoryNode(7010);
                 }
             }
+             if (storyNodeId === 7100 || storyNodeId === 7110) {
+                 return showStoryNode(7200);
+            }
             if (storyNodeId === 6004 && playerGender === 'female') {
                 return showStoryNode(6007);
             }
             if (storyNodeId === 2011 && playerState.hasCoins) {
                 return showStoryNode(1201);
+            }
+            if (storyNodeId === 8009 && playerState.pocketKnife) {
+                storyNodeId = 80091; // Reroute to special node if player has knife
             }
 
             const storyNode = story.find(node => node.id === storyNodeId);
@@ -1135,8 +1204,18 @@
             let choices = [...storyNode.choices];
 
             // --- CONDITIONAL CHOICES LOGIC ---
+            if (storyNode.id === 138 && playerState.heardGossip) {
+                choices.unshift({ text: "Make a joke about the parking gate.", nextId: 139 });
+            }
+
             if ((storyNode.id === 900 || storyNode.id === 322 || storyNode.id === 312) && playerState.lotteryTicket) {
                 choices.unshift({ text: "Use your $100 lottery ticket to make the night special.", nextId: 1999 });
+            }
+             if (storyNode.id === 2000) {
+                if(playerState.silverDollar) choices.unshift({text: "Tell her about the cat and the silver dollar.", nextId: 2020});
+                if(playerState.oldCasinoChip) choices.unshift({text: "Show her the old casino chip you found.", nextId: 2022});
+                if(playerState.guitarPick) choices.unshift({text: "Tell her you found your old guitar pick.", nextId: 2024});
+                if(playerState.silverLocket) choices.unshift({text: "Tell her about the old man in the diner.", nextId: 2026});
             }
 
             if (storyNode.id === 6003 && playerGender === 'female' && playerState.stevesCard) {
@@ -1147,7 +1226,7 @@
             }
 
             if (storyNodeId === 6003 && playerGender === 'female') {
-                choices = choices.filter(choice => choice.nextId !== 6005);
+                choices = choices.filter(choice => choice.nextId !== 6005 && choice.nextId !== 6006);
             }
             if (storyNode.id === 89 && playerGender === 'female') {
                 choices = [
@@ -1160,6 +1239,17 @@
             if (storyNode.id === 3115 && playerState.hasKey) {
                 choices.push({ text: "Use the key from your pocket on the box", nextId: 3116 });
             }
+             if (storyNode.id === 33 && playerGender === 'female') {
+                choices.unshift({ text: "Call your friend Tammy.", nextId: 10020 });
+            }
+            if (storyNode.id === 34 && playerGender === 'female') {
+                choices.unshift({ text: "Go to the drive-through for lunch.", nextId: 10025 });
+                choices.push({ text: "Visit the pet store at the mall.", nextId: 10030 });
+            }
+             if (storyNode.id === 7012 && playerGender === 'female') {
+                choices.push({ text: "Do a quick DIY nail art project.", nextId: 10035 });
+            }
+
 
             // --- END CONDITIONAL LOGIC ---
             updateInventoryDisplay();
@@ -1168,7 +1258,13 @@
                 const button = document.createElement('button');
                 
                 let choiceText = choice.text;
-                if (playerGender === 'female' && choice.textFemale) {
+                // Special randomizer for one choice
+                if (storyNodeId === 2011 && choice.nextId === 2013) {
+                    const synonyms = ["spontaneously", "on a whim", "out of the blue"];
+                    const randomWord = synonyms[Math.floor(Math.random() * synonyms.length)];
+                    choiceText = `Want to ${randomWord} go see it?`;
+                }
+                else if (playerGender === 'female' && choice.textFemale) {
                     choiceText = choice.textFemale;
                 }
                 
@@ -1209,6 +1305,4 @@
     </script>
 </body>
 </html>
-
-
 

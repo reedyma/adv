@@ -517,6 +517,9 @@
             { id: 2022, text: "You pull out the old casino chip. 'Look what I found in a dusty old room at the bank.' Your partner's eyes light up. 'No way! The River Palace? My grandpa used to tell stories about that place.' It sparks a long conversation about what your town used to be like.", setState: { oldCasinoChip: false }, choices: [{ text: "Anyway, you mentioned some drama...", nextId: 2000 }] },
             { id: 2024, text: "You show them the worn guitar pick. 'Found this today. I was thinking maybe I should start playing again.' Your partner smiles. 'You totally should! I loved hearing you play.' It's a sweet, supportive moment.", setState: { guitarPick: false }, choices: [{ text: "So, about this work tea...", nextId: 2000 }] },
             { id: 2026, text: "'You're not going to believe the weird day I had,' you begin, pulling out the silver locket. 'I met this strange old man in a diner...' You recount the story. Your partner is enthralled. 'A hidden treasure? That's incredible! What do you think the story is behind it?'", setState: { silverLocket: false }, choices: [{ text: "Anyway, you were saying about work?", nextId: 2000 }] },
+            { id: 2027, text: "You pull out the torn magazine page with a laugh. 'By the way, I was *this close* to wearing this tonight.' He looks at the absurd outfit and bursts out laughing. 'You would have shut the whole place down. I love your sense of humor.'", setState: { magazinePage: false }, choices: [{ text: "Alright, for real, what's the tea?", nextId: 2000 }] },
+            { id: 2028, text: "You pull out the small silver locket you found. 'I have something for you.' Her eyes go wide. 'Oh my gosh, it's beautiful. Where did you get this?' You tell her the story of the old man and the diner. She's completely enchanted. 'It's a story and a gift all in one,' she says, her eyes shining. 'Thank you.'", setState: { silverLocket: false }, choices: [{ text: "Now, what was this about work tea?", nextId: 2000 }] },
+
 
 
             // --- FLAT TIRE & SEDUCTION PATH ---
@@ -567,7 +570,6 @@
                 text: "The mood in the truck is thick with unspoken energy. The city lights blur past.",
                 textFemale: "The mood in the truck is thick with unspoken energy. The city lights blur past.",
                 choices: [
-                    { text: "'You know, numerous dudes were checking you out tonight.'", textFemale: "'You know, a lot of girls were checking you out tonight.'", nextId: 3007 },
                     { text: "Just enjoy the silence and the music.", nextId: 3200 }
                 ]
             },
@@ -576,6 +578,27 @@
                 text: "'Oh, please,' she says, but you can tell she's pleased. 'It's awesome having such a gorgeous girlfriend, isn't it?' She winks.",
                 textFemale: "'Oh, please,' he says, but you can tell he's pleased. 'It's awesome having such a handsome boyfriend, isn't it?' He winks.",
                 choices: [{ text: "Almost home...", nextId: 3200 }]
+            },
+            {
+                id: 3008,
+                text: "'Want a piece of gum?' you ask, holding out the pack. She takes one with a smile. 'Thanks, babe.'",
+                textFemale: "'Want a piece of gum?' he asks, holding out the pack. You take one with a smile. 'Thanks, babe.'",
+                setState: { gum: false },
+                choices: [{ text: "Continue the drive...", nextId: 3006 }]
+            },
+            {
+                id: 3009,
+                text: "'I got you these,' you say, handing her her favorite candy. Her face lights up. 'You remembered!'",
+                textFemale: "'I got you these,' he says, handing you your favorite candy. Your face lights up. 'You remembered!'",
+                setState: { candy: false },
+                choices: [{ text: "Continue the drive...", nextId: 3006 }]
+            },
+            {
+                id: 3010,
+                text: "You slide the old CD into the player. After a moment of whirring, the speakers boom with the iconic beat of a classic 2000s gangster rap song. She looks surprised, then breaks into a huge grin. 'No way! I LOVE this song!' She starts rapping along, and you both spend the rest of the drive laughing and enjoying the hits.",
+                textFemale: "He slides the old CD into the player. After a moment of whirring, the speakers boom with the iconic beat of a classic 2000s gangster rap song. You look surprised, then break into a huge grin. 'No way! I LOVE this song!' You start rapping along, and you both spend the rest of the drive laughing and enjoying the hits.",
+                setState: { mixCD: false },
+                choices: [{ text: "Continue the drive...", nextId: 3006 }]
             },
             {
                 id: 3100,
@@ -797,6 +820,8 @@
                 choices: [{ text: "A perfect end to a wild 24 hours. (Play Again)", nextId: 1 }]
             },
              { id: 6009, text: "You remember Steve's business card. You give him a call. 'Hey Steve, it's me from the bank. Funny story...' He laughs and says he'll send his brother-in-law over. The tow and repair costs the same as AAA, a hefty $430, but you feel good giving the business to a friend-of-a-friend. 'Thanks for the hookup!' you text your boyfriend.", choices: [{ text: "A perfect end to a wild 24 hours. (Play Again)", nextId: 1 }] },
+            { id: 6010, text: "'Want me to pack a few cones for the road?' you ask, pulling out the package you bought last night. 'I got these at the gas station.'", choices: [ { text: "Yeah, that sounds perfect.", nextId: 6011 }, { text: "No thanks, I'm good for now.", nextId: 6003 } ] },
+            { id: 6011, text: "You pack a couple of cones for her to take with her. She smiles. 'You're the best.'", setState: { cones: false }, choices: [{ text: "Now, about that car...", nextId: 6003 }] },
 
             // --- NEW "GETTING READY" SEQUENCE ---
             { id: 7000, text: "Routing to your getting ready sequence...", choices: [] }, // This is a router node, handled by JS.
@@ -1204,6 +1229,20 @@
             let choices = [...storyNode.choices];
 
             // --- CONDITIONAL CHOICES LOGIC ---
+            if (storyNode.id === 6002 && playerState.cones && playerGender === 'male') {
+                choices.unshift({ text: "Offer to pack a few cones.", nextId: 6010 });
+            }
+            if (storyNode.id === 3006) {
+                if (playerState.mixCD) {
+                    choices.unshift({ text: "Play the old mix CD.", nextId: 3010 });
+                }
+                if (playerState.gum) {
+                    choices.unshift({ text: "Offer her a piece of gum.", textFemale: "He offers you a piece of gum.", nextId: 3008 });
+                }
+                if (playerState.candy) {
+                    choices.unshift({ text: "Offer her the candy.", textFemale: "He offers you the candy.", nextId: 3009 });
+                }
+            }
             if (storyNode.id === 138 && playerState.heardGossip) {
                 choices.unshift({ text: "Make a joke about the parking gate.", nextId: 139 });
             }
@@ -1215,7 +1254,8 @@
                 if(playerState.silverDollar) choices.unshift({text: "Tell her about the cat and the silver dollar.", nextId: 2020});
                 if(playerState.oldCasinoChip) choices.unshift({text: "Show her the old casino chip you found.", nextId: 2022});
                 if(playerState.guitarPick) choices.unshift({text: "Tell her you found your old guitar pick.", nextId: 2024});
-                if(playerState.silverLocket) choices.unshift({text: "Tell her about the old man in the diner.", nextId: 2026});
+                if(playerState.silverLocket) choices.unshift({text: "I have something for you.", nextId: 2028});
+                if(playerState.magazinePage) choices.unshift({text: "You know, I almost wore something else tonight...", nextId: 2027});
             }
 
             if (storyNode.id === 6003 && playerGender === 'female' && playerState.stevesCard) {
@@ -1305,4 +1345,3 @@
     </script>
 </body>
 </html>
-

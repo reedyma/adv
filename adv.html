@@ -31,7 +31,7 @@
             <button data-theme="green" class="theme-btn bg-green-600 text-white p-4 rounded-lg font-semibold">Green</button>
             <button data-theme="blue" class="theme-btn bg-sky-600 text-white p-4 rounded-lg font-semibold">Blue</button>
             <button data-theme="purple" class="theme-btn bg-purple-600 text-white p-4 rounded-lg font-semibold">Purple</button>
-            <button data-theme="pink" class="theme-btn bg-rose-500 text-white p-4 rounded-lg font-semibold">Pink</button>
+            <button data-theme="pink" class="theme-btn bg-pink-500 text-white p-4 rounded-lg font-semibold">Pink</button>
             <button data-theme="gray" class="theme-btn bg-gray-500 text-white p-4 rounded-lg font-semibold">Gray</button>
         </div>
     </div>
@@ -47,7 +47,7 @@
             <p class="mb-4 themed-subtle-text">Select your gender.</p>
             <div class="flex gap-4">
                 <button id="male-button" class="w-full bg-sky-600 hover:bg-sky-700 text-white font-bold py-3 px-4 rounded-lg shadow-md transition-all duration-300">Male</button>
-                <button id="female-button" class="w-full bg-pink-600 hover:bg-pink-700 text-white font-bold py-3 px-4 rounded-lg shadow-md transition-all duration-300">Female</button>
+                <button id="female-button" class="w-full bg-pink-500 hover:bg-pink-600 text-white font-bold py-3 px-4 rounded-lg shadow-md transition-all duration-300">Female</button>
             </div>
         </div>
     </div>
@@ -1007,9 +1007,9 @@
                 input: 'bg-purple-700', border: 'border-purple-700'
             },
             pink: {
-                bg: 'bg-pink-100', container: 'bg-white', text: 'text-gray-800', subtleText: 'text-gray-500',
-                primaryBtn: 'bg-rose-500 hover:bg-rose-600', secondaryBtn: 'bg-rose-50 hover:bg-rose-100 text-rose-800',
-                input: 'bg-pink-50 text-gray-800', border: 'border-pink-200'
+                bg: 'bg-pink-100', container: 'bg-white', text: 'text-pink-800', subtleText: 'text-pink-500',
+                primaryBtn: 'bg-pink-500 hover:bg-pink-600', secondaryBtn: 'bg-pink-100 hover:bg-pink-200 text-pink-700',
+                input: 'bg-pink-50 text-pink-900', border: 'border-pink-300'
             },
             gray: {
                 bg: 'bg-gray-200', container: 'bg-white', text: 'text-gray-900', subtleText: 'text-gray-600',
@@ -1200,6 +1200,10 @@
             if (storyNodeId === 8009 && playerState.pocketKnife) {
                 storyNodeId = 80091; // Reroute to special node if player has knife
             }
+            if (storyNodeId === 300) { // Central hub to start the date sequence
+                return showStoryNode(7000);
+            }
+
 
             const storyNode = story.find(node => node.id === storyNodeId);
 

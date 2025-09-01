@@ -106,9 +106,9 @@
             { id: 38, text: "Why bother changing? You're already comfortable. You decide to embrace the pajama lifestyle.", setState: { wearsHawaiianShirt: false }, choices: [{ text: "Finish getting ready", nextId: 90 }] },
             
             // Homebody / City Paths
-            { id: 33, text: "You spend the day on the couch, binging shows and ordering delivery. You feel a bit like a slob, but a comfortable, happy slob. As evening approaches, your phone buzzes.", choices: [{ text: "Check your phone.", nextId: 300 }] },
+            { id: 33, text: "You spend the day on the couch, binging shows and ordering delivery. You feel a bit like a slob, but a comfortable, happy slob. As evening approaches, your phone buzzes.", choices: [{ text: "Check your phone.", nextId: 299 }] },
             { id: 34, text: "You wander the city, a tourist in your own town. What should you do?", choices: [{ text: "Visit a cafe.", nextId: 341 }, { text: "Go to the park.", nextId: 342 }, { text: "Go to the mall.", nextId: 341 }] },
-            { id: 341, text: "You spend a few hours at a cafe/mall, just people watching and enjoying the freedom. As the sun begins to set, your phone buzzes.", choices: [{ text: "Check your phone.", nextId: 300 }] },
+            { id: 341, text: "You spend a few hours at a cafe/mall, just people watching and enjoying the freedom. As the sun begins to set, your phone buzzes.", choices: [{ text: "Check your phone.", nextId: 299 }] },
             { id: 342, text: "You head to the local park. It's peaceful. You see a friendly-looking orange tabby cat sitting on a bench.", choices: [{ text: "Try to pet the cat.", nextId: 343 }, { text: "Leave it be and enjoy the quiet.", nextId: 341 }] },
             { id: 343, text: "You approach slowly and offer your hand. The cat purrs loudly and rubs against you before hopping off the bench. As it leaves, it nudges something shiny on the ground with its nose, looks back at you, and darts away. It's an old, heavy silver dollar.", setState: { silverDollar: true }, choices: [{ text: "What a strange cat. What a cool coin.", nextId: 341 }] },
 
@@ -144,7 +144,7 @@
             { id: 712, text: "You get sucked into hours of petty disputes and questionable rulings. You yell at the TV a lot. It's surprisingly cathartic.", choices: [{ text: "A surprisingly cathartic day.", nextId: 79 }] },
             { id: 72, text: "You embark on a perilous journey to the kitchen. You construct a magnificent sandwich out of leftovers and eat it over the sink like an animal. It's the best thing you've ever tasted.", choices: [{ text: "A truly magnificent sandwich.", nextId: 79 }] },
             { id: 73, text: "You open Facebook Marketplace. Amidst the broken furniture and MLM scams, something beautiful catches your eye: a 1995 Z28 Camaro, T-tops, cherry red. The price is... suspiciously low.", choices: [{ text: "Message the seller: 'is this still available?'", nextId: 201 }, { text: "Assume it's a scam and look for weird taxidermy instead", nextId: 70 }] },
-            { id: 79, text: "You spend the rest of the day in a blissful haze. As evening sets in, your phone buzzes, pulling you back to reality.", choices: [{ text: "See who it is.", nextId: 300 }] },
+            { id: 79, text: "You spend the rest of the day in a blissful haze. As evening sets in, your phone buzzes, pulling you back to reality.", choices: [{ text: "See who it is.", nextId: 299 }] },
             { id: 80, text: "You take a quick rip from your bong to 'prepare' for the day. You feel calm, maybe too calm. Time to head to work, hopefully no one notices your eyes are as red as the devil's... well, you know.", choices: [{ text: "Commute (Drive, probably a bad idea)", nextId: 511 }, { text: "Commute (Bus, the safer choice)", nextId: 52 }] },
             
             { id: 89, text: "Time to pick an outfit for the day.", choices: [{ text: "Pick outfit (Jeans/Hoodie)", nextId: 35 }, { text: "Pick outfit (Slacks/Business)", nextId: 36 }, { text: "Pick outfit (Hawaiian Shirt)", nextId: 37 }, { text: "Stay in Pajamas", nextId: 38 }] },
@@ -161,7 +161,7 @@
                 id: 1011, 
                 text: "You stumble into the bank. Matt waves at you. 'Whoa, man, you look... relaxed.' Mr. Johns just squints at you from his office. 'Are you high on my clock? Go home. Now. We'll talk about this tomorrow.' You're sent home in disgrace. A few hours later, your phone buzzes.",
                 textFemale: "You stumble into the bank. Karen waves at you. 'Whoa, sunshine, you look... relaxed.' Mr. Johns just squints at you from his office. 'Are you high on my clock? Go home. Now. We'll talk about this tomorrow.' You're sent home in disgrace. A few hours later, your phone buzzes.",
-                choices: [{ text: "Check your phone.", nextId: 300 }]
+                choices: [{ text: "Check your phone.", nextId: 299 }]
             },
 
             // --- BANK TELLER PATH (ROBBERY REMOVED) ---
@@ -241,7 +241,7 @@
             { id: 137, text: "You politely excuse yourself. Barry seems annoyed at being brushed off, but you've got work to do.", choices: [{ text: "Probably the right call.", nextId: 150 }] },
             { id: 138, text: "Later that day, you head to the breakroom for a coffee. Mr. Johns is in there, looking grumpy as usual.", choices: [{ text: "Get your coffee and leave.", nextId: 140 }] },
             { id: 139, text: "You can't resist. 'Rough morning with the parking gate, huh?' you ask casually. Mr. Johns' eyes widen, then he lets out an unexpected chuckle. 'Don't you start. It's a menace.' You might have just earned a shred of his respect.", choices: [{ text: "The day flies by after that.", nextId: 140 }] },
-            { id: 140, text: "The rest of the workday is surprisingly calm. As you're packing up to leave, your phone buzzes. It's your partner: 'Hey! Since you had to work, wanna do dinner tonight? I am so ready to tell you about the tea at work.'", textFemale: "The rest of the workday is surprisingly calm. As you're packing up to leave, your phone buzzes. It's your partner: 'Hey! Since you had to work, wanna do dinner tonight? I am so ready to tell you about the tea at work.'", choices: [{ text: "Awesome! Time to head home and get ready.", nextId: 7000 }] },
+            { id: 140, text: "The rest of the workday is surprisingly calm. As you're packing up to leave, your phone buzzes.", choices: [{ text: "Check the text from your partner.", nextId: 299 }] },
             
             // --- NEW MUNDANE WORK PATH ---
             { id: 150, text: "The morning rush is over, leaving a quiet lull. What should you tackle next?", choices: [ { text: "Process last week's deposit slips.", nextId: 151 }, { text: "Do it later. Stretch your legs for a bit.", nextId: 160 } ] },
@@ -265,9 +265,10 @@
 
             // Camaro Quest
             { id: 201, text: "A reply comes back almost instantly: 'yo it is. cash only no test drives i know what i got. u want it or not? address is 123 sketchy lane out by the old factory.'", choices: [{ text: "Agree to go check it out", nextId: 202 }, { text: "'No test drive? No thanks.'", nextId: 203 }] },
-            { id: 202, text: "You decide to risk it. You end up in a tense cash exchange and drive off in a rumbling beast that smells like cigarettes and freedom. It breaks down two miles later, but what a story.", choices: [{ text: "Well, that was an adventure.", nextId: 209 }] },
-            { id: 203, text: "You're not an idiot. You block the seller and go back to watching TV. You may not have a Camaro, but you also didn't get robbed.", choices: [{ text: "A wise choice.", nextId: 209 }] },
-            { id: 209, text: "Well, that was an adventure. You head home, shaking your head at the weirdness of Facebook Marketplace. Later that evening, your phone buzzes.", choices: [{ text: "Check the text.", nextId: 300 }] },
+            { id: 202, text: "You decide to risk it. You end up in a tense cash exchange and drive off in a rumbling beast that smells like cigarettes and freedom. It breaks down two miles later, but what a story.", choices: [{ text: "Well, that was an adventure.", nextId: 299 }] },
+            { id: 203, text: "You're not an idiot. You block the seller and go back to watching TV. You may not have a Camaro, but you also didn't get robbed.", choices: [{ text: "A wise choice.", nextId: 299 }] },
+            { id: 209, text: "Well, that was an adventure. You head home, shaking your head at the weirdness of Facebook Marketplace. Later that evening, your phone buzzes.", choices: [{ text: "Check the text.", nextId: 299 }] },
+            { id: 299, text: "As evening approaches, your phone buzzes with a text.", choices: [{ text: "Check your phone.", nextId: 300 }] },
 
             // --- DATE PATH ENTRY ---
             { 
@@ -369,7 +370,7 @@
             // --- NEW MYSTERY PHONE CALL PATH ---
             { id: 1100, text: "You're sitting on the couch when your phone rings. The caller ID just says 'UNKNOWN'.", choices: [{ text: "Answer it.", nextId: 1101 }, { text: "Ignore it.", nextId: 1102 }] },
             { id: 1101, text: "You answer. 'Hello?' you say cautiously. A distorted voice on the other end says, 'Hey, what's up?'", choices: [{ text: "'Who is this?'", nextId: 1103 }, { text: "'Nothing much, who's this?'", nextId: 1103 }, { text: "'Wrong number.' Hang up.", nextId: 1102 }] },
-            { id: 1102, text: "You let it go to voicemail. They don't leave a message. The rest of your day is quiet until you get a much more welcome text in the evening.", choices: [{ text: "Check your phone.", nextId: 300 }] },
+            { id: 1102, text: "You let it go to voicemail. They don't leave a message. The rest of your day is quiet until you get a much more welcome text in the evening.", choices: [{ text: "Check your phone.", nextId: 299 }] },
             { id: 1103, text: "The voice chuckles. 'I don't know, who is this?'", choices: [{ text: "'You called me! Who is this?'", nextId: 1104 }, { text: "'Look, I don't have time for games.'", nextId: 1104 }] },
             { id: 1104, text: "'Alright, alright, relax,' the voice says. 'So you're not at the bank today, huh? Taking a little mental health day?'", choices: [{ text: "'How did you know that?'", nextId: 1105 }] },
             { id: 1105, text: "The caller ignores your question. 'So, how's the weather over there? Looks a little cloudy from here.'", choices: [{ text: "Ask where 'here' is.", nextId: 1106 }, { text: "'It's fine. Why are you asking?'", nextId: 1107 }] },
@@ -377,7 +378,7 @@
             { id: 1107, text: "'Just making conversation,' the voice says. 'So... what are you wearing?' This is getting weird.", choices: [{ text: "Hang up.", nextId: 1110 }, { text: "Ask them a math question back.", nextId: 1106 }] },
             { id: 1108, text: "'Correct!' the voice exclaims. 'You're smarter than you look. Listen, I have to go, but... try to stay out of trouble. And don't trust the gnomes.' The line goes dead.", choices: [{ text: "Stare at your phone in confusion.", nextId: 1110 }] },
             { id: 1109, text: "'Wrong!' the voice buzzes. 'I expected better from you. Listen, I have to go. Think about what you've done.' The line goes dead.", choices: [{ text: "Stare at your phone in confusion.", nextId: 1110 }] },
-            { id: 1110, text: "You're left in silence, thoroughly confused by the strangest phone call of your life. Was it a prank? Or something else? You shake your head and try to forget about it. That evening, your phone buzzes with a much more welcome text.", choices: [{ text: "Check your phone.", nextId: 300 }] },
+            { id: 1110, text: "You're left in silence, thoroughly confused by the strangest phone call of your life. Was it a prank? Or something else? You shake your head and try to forget about it. That evening, your phone buzzes with a much more welcome text.", choices: [{ text: "Check your phone.", nextId: 299 }] },
             
             // --- NEW GOLD COIN CONVERSATION PATH ---
             { id: 1201, text: "You open your laptop and start researching the coins. Your eyes go wide. They're not just gold; they're rare 19th-century sovereigns. Based on recent auction prices, the eight coins are worth... over $100,000. You both stare at the screen in stunned silence.", choices: [{ text: "Discuss what to do with the money.", nextId: 1202 }] },
@@ -807,7 +808,7 @@
                 id: 6006,
                 text: "You order her an Uber to get her home safely. While you wait, you reminisce about the incredible date. 'Don't worry about the car, I'll take care of it,' you promise. She gives you a long, passionate kiss. 'Thank you for everything. Last night was incredible.'",
                 textFemale: "He orders you an Uber to get you home safely. While you wait, you reminisce about the incredible date. 'Don't worry about the car, I'll take care of it,' he promises. He gives you a long, passionate kiss. 'Thank you for everything. Last night was incredible.'",
-                choices: [{ text: "Send her off, then get to work.", nextId: 8000 }]
+                choices: [{ text: "Send him off, and relax for the day.", textFemale: "Head home and relax for the day.", nextId: 11000 }]
             },
             {
                 id: 6007,
@@ -938,24 +939,24 @@
             { id: 9003, text: "You find the book on the kitchen counter, but it's got a sticky coffee ring on the cover. You wipe it off as best you can.", choices: [{ text: "Time to head to the library.", nextId: 9005 }] },
             { id: 9004, text: "You don't find the book, but you do find an old, incredibly embarrassing photo of yourself from your high school goth phase. You cringe, but pocket it for the memories.", setState: { embarrassingPhoto: true }, choices: [{ text: "Okay, the book must be somewhere else.", nextId: 9001 }] },
             { id: 9005, text: "You get to the library. The librarian is an eccentric old man with a long, white beard. He scans your book. 'Ah, a bit overdue, I see. That'll be a $12 late fee.'", choices: [ {text: "Just pay the fee.", nextId: 9006}, {text: "Try to flirt your way out of it.", nextId: 9007}, {text: "Ask if there's any other way.", nextId: 9008} ] },
-            { id: 9006, text: "You sigh and pay the fee. Your conscience is clear. You head home, your errand complete. Later that evening, your phone buzzes.", choices: [{ text: "Check your phone.", nextId: 300 }] },
-            { id: 9007, text: "You give him your best smile. 'Is there any way we can... negotiate?' The librarian just chuckles. 'Nice try. I'll knock it down to $6 for the effort.' You pay the reduced fee and head home.", choices: [{ text: "Check your phone later.", nextId: 300 }] },
+            { id: 9006, text: "You sigh and pay the fee. Your conscience is clear. You head home, your errand complete. Later that evening, your phone buzzes.", choices: [{ text: "Check your phone.", nextId: 299 }] },
+            { id: 9007, text: "You give him your best smile. 'Is there any way we can... negotiate?' The librarian just chuckles. 'Nice try. I'll knock it down to $6 for the effort.' You pay the reduced fee and head home.", choices: [{ text: "Check your phone later.", nextId: 299 }] },
             { id: 9008, text: "He strokes his beard. 'I'll tell you what. I am the light that cannot be seen, the story that cannot be told. What am I?'", choices: [ {text: "A secret.", nextId: 9009}, {text: "The future.", nextId: 9010} ] },
-            { id: 9009, text: "'Precisely!' the librarian exclaims. 'The fee is waived!' You feel a surge of pride. You head home, victorious. That evening, your phone buzzes.", choices: [{ text: "Check your phone.", nextId: 300 }] },
-            { id: 9010, text: "The librarian shakes his head sadly. 'Incorrect. The answer was a secret.' You pay the fee, slightly embarrassed. Later that evening, your phone buzzes.", choices: [{ text: "Check your phone.", nextId: 300 }] },
+            { id: 9009, text: "'Precisely!' the librarian exclaims. 'The fee is waived!' You feel a surge of pride. You head home, victorious. That evening, your phone buzzes.", choices: [{ text: "Check your phone.", nextId: 299 }] },
+            { id: 9010, text: "The librarian shakes his head sadly. 'Incorrect. The answer was a secret.' You pay the fee, slightly embarrassed. Later that evening, your phone buzzes.", choices: [{ text: "Check your phone.", nextId: 299 }] },
 
              // --- NEW DINER & DIY ARCS ---
             { id: 10000, text: "You decide to treat yourself to a proper meal. You head to 'The Silver Skillet,' a classic local diner that smells like coffee and bacon.", choices: [{ text: "Order the 'Lumberjack Special'.", nextId: 10001 }] },
             { id: 10001, text: "As you're halfway through a mountain of pancakes, a friendly but rambling old man sits down in your booth uninvited. 'Mind if I join you?' he asks, already settled.", choices: [{ text: "Be polite and listen.", nextId: 10002 }, { text: "Tell him you'd rather eat alone.", nextId: 10003 }] },
             { id: 10002, text: "You listen as he tells you a long story about the diner's 'glory days.' Before he leaves, he winks. 'The original owner, he was a sneaky one. Always said he left a piece of his heart under booth seven.' He points at your booth and then shuffles away.", choices: [{ text: "Check under the booth.", nextId: 10004 }, { text: "He was just a crazy old man.", nextId: 10005 }] },
-            { id: 10003, text: "The old man looks a little hurt, but he gets up and leaves you to your meal. The rest of your breakfast is peaceful. As evening sets in, your phone buzzes.", choices: [{ text: "Check your phone.", nextId: 300 }] },
+            { id: 10003, text: "The old man looks a little hurt, but he gets up and leaves you to your meal. The rest of your breakfast is peaceful. As evening sets in, your phone buzzes.", choices: [{ text: "Check your phone.", nextId: 299 }] },
             { id: 10004, text: "When no one's looking, you feel under the seat. Your fingers close around a loose tile. You pry it up and find a small, velvet pouch. Inside is an old but beautiful silver locket.", setState: { silverLocket: true }, choices: [{ text: "What a story. You head home.", nextId: 10005 }] },
-            { id: 10005, text: "You finish your breakfast and head home, the weird encounter making for a memorable morning. Later that evening, your phone buzzes.", choices: [{ text: "Check your phone.", nextId: 300 }] },
+            { id: 10005, text: "You finish your breakfast and head home, the weird encounter making for a memorable morning. Later that evening, your phone buzzes.", choices: [{ text: "Check your phone.", nextId: 299 }] },
             { id: 10010, text: "You decide to be productive and finally tackle the wobbly bookshelf that's been annoying you for months. You grab your toolbox but realize you're missing the right size Allen key.", choices: [{ text: "Jury-rig it with a screwdriver.", nextId: 10011 }, { text: "Go to the hardware store.", nextId: 10012 }] },
-            { id: 10011, text: "You spend an hour trying to tighten the bolt with the wrong tool, stripping the screw and making the wobble even worse. Frustrated, you give up. The bookshelf will have to wait. Later, your phone buzzes.", choices: [{ text: "Check your phone.", nextId: 300 }] },
+            { id: 10011, text: "You spend an hour trying to tighten the bolt with the wrong tool, stripping the screw and making the wobble even worse. Frustrated, you give up. The bookshelf will have to wait. Later, your phone buzzes.", choices: [{ text: "Check your phone.", nextId: 299 }] },
             { id: 10012, text: "You head to Middletown Hardware. While looking for the Allen key set, you see a display of vintage-style pocket knives. One with a simple wooden handle catches your eye.", choices: [{ text: "Buy the classic pocket knife.", nextId: 10013 }, { text: "Just get the Allen keys.", nextId: 10014 }] },
             { id: 10013, text: "You buy the knife. It feels solid and well-made in your hand. You also grab the Allen keys.", setState: { pocketKnife: true }, choices: [{ text: "Head home to finish the job.", nextId: 10014 }] },
-            { id: 10014, text: "You get home, and with the proper tool, you fix the bookshelf in under five minutes. It's perfectly stable. You feel a surge of accomplishment. Later that evening, your phone buzzes.", choices: [{ text: "Check your phone.", nextId: 300 }] }
+            { id: 10014, text: "You get home, and with the proper tool, you fix the bookshelf in under five minutes. It's perfectly stable. You feel a surge of accomplishment. Later that evening, your phone buzzes.", choices: [{ text: "Check your phone.", nextId: 299 }] }
 
         ];
 

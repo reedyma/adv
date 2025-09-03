@@ -256,28 +256,24 @@
             { id: 203, text: "You're not an idiot. You block the seller and go back to watching TV. You may not have a Camaro, but you also didn't get robbed.", choices: [{ text: "A wise choice.", nextId: 209 }] },
             { id: 209, text: "Well, that was an adventure. You head home, shaking your head at the weirdness of Facebook Marketplace. Later that evening, your phone buzzes.", choices: [{ text: "Check the text.", nextId: 299 }] },
             
-            // --- DATE PATH ENTRY [FIXED] ---
+            // --- DATE PATH ENTRY [CHANGED] ---
             { 
                 id: 299, 
                 text: "Your phone buzzes. It's a text from your partner: 'Date night tonight! What are you feeling? Maggiano's, Cheesecake Factory, or that new Hot Pot place?'",
                 choices: [
-                    { text: "Maggiano's sounds perfect.", nextId: 301 },
-                    { text: "Cheesecake Factory, a classic.", nextId: 321 },
-                    { text: "Let's try the Hot Pot place!", nextId: 311 },
-                    { text: "Let's hotbox the truck and go to Maggiano's.", nextId: 601 },
-                    { text: "Let's hotbox the truck and go to Cheesecake Factory.", nextId: 602 },
-                    { text: "Let's hotbox the truck and go to the Hot Pot place.", nextId: 603 }
+                    { text: "Maggiano's sounds perfect.", nextId: 300, setState: { postReadyNodeId: 900 } },
+                    { text: "Cheesecake Factory, a classic.", nextId: 300, setState: { postReadyNodeId: 322 } },
+                    { text: "Let's try the Hot Pot place!", nextId: 300, setState: { postReadyNodeId: 312 } },
+                    { text: "Let's hotbox the truck and go to Maggiano's.", nextId: 300, setState: { postReadyNodeId: 601 } },
+                    { text: "Let's hotbox the truck and go to Cheesecake Factory.", nextId: 300, setState: { postReadyNodeId: 602 } },
+                    { text: "Let's hotbox the truck and go to the Hot Pot place.", nextId: 300, setState: { postReadyNodeId: 603 } }
                 ] 
             },
-            { 
-                id: 301, 
-                text: "You text back: 'Maggiano's for sure.' She replies instantly: 'Yesss! Our reservation isn't for a bit, can we go to the mall first? I wanna look for a new outfit'", 
-                textFemale: "You text back: 'Maggiano's for sure.' He replies instantly: 'Awesome! Our reservation isn't for a bit, can we go to the mall first? I wanna check out the electronics store.'", 
-                choices: [{ text: "Sure, let's go to the mall.", nextId: 302 }, { text: "'I'd rather just meet for dinner.'", nextId: 306 }] 
+            {
+                id: 300,
+                text: "Your partner texts back: 'Perfect! Get ready and let's meet up soon.'",
+                choices: [{ text: "Head home to get ready.", nextId: 7000 }]
             },
-            // [FIXED] ADDED MISSING NODES 302 and 306
-            { id: 302, text: "You meet at the mall. The pre-date adventure is fun, and you eventually head to dinner.", choices: [{ text: "Head home to get ready first.", nextId: 7000 }] },
-            { id: 306, text: "You decide to meet at the restaurant. A little anticipation never hurt anyone.", choices: [{ text: "Head home to get ready first.", nextId: 7000 }] },
 
             // Out of Gas Path
             { 
@@ -294,27 +290,15 @@
             { id: 407, text: "Just as you're about to give up, a beat-up van painted with flames pulls over. A man in a purple satin jacket that says 'GAS GUYS' on the back gets out. 'Look like you're in a pickle, friend!' he says with a grin. 'First time's free!' He fills your tank with a couple of gallons, gives you a wink, and drives off. You make it to work just in the nick of time. What a weird start to the day. The rest of the shift is thankfully uneventful.", choices: [{ text: "Finally, time to head home.", nextId: 140 }] },
             
             // --- DATE PATHS CONTINUED ---
-            { 
-                id: 311, 
-                text: "You text back: 'Let's try the hot pot place!' She replies: 'Yay! I'm so excited! I'll meet you there!'", 
-                textFemale: "You text back: 'Let's try the hot pot place!' He replies: 'Heck yeah! I'm so excited! I'll meet you there!'", 
-                choices: [{ text: "Head home to get ready first.", nextId: 7000 }] 
-            },
             { id: 312, text: "You arrive at the Hot Pot place, ready for a fun and interactive meal.", choices: [{ text: "Continue the date...", nextId: 2000}] },
             { id: 315, text: "You finish your free and delicious meal.", choices: [{ text: "Continue the date...", nextId: 2000 }] },
-            { 
-                id: 321, 
-                text: "You suggest The Cheesecake Factory. A classic choice. She texts back: 'Okay! The wait will be insane but I need that brown bread. See you there!'", 
-                textFemale: "You suggest The Cheesecake Factory. A classic choice. He texts back: 'Okay! The wait will be insane but I need that brown bread. See you there!'", 
-                choices: [{ text: "Head home to get ready first.", nextId: 7000 }] 
-            },
             { id: 322, text: "You arrive at The Cheesecake Factory. The sheer size of the menu is dizzying, but you're ready for it.", choices: [{ text: "Continue the date...", nextId: 2000}] },
             
             // --- Pre-Date Smoking Paths ---
             { 
                 id: 601, 
-                text: "You text back: 'Maggiano's, but let's hotbox the truck first.' She replies: 'Hell yeah, on my way.' You two meet up and get comfortably hazy. The vibes are good. You look over at her.",
-                textFemale: "You text back: 'Maggiano's, but let's hotbox the truck first.' He replies: 'Hell yeah, on my way.' You two meet up and get comfortably hazy. The vibes are good. You look over at him.",
+                text: "You meet up with your partner, freshly changed and ready for the night. 'There you are,' she says with a smile, getting into the truck. You hotbox the truck and get comfortably hazy. The vibes are good. You look over at her.",
+                textFemale: "You meet up with your partner, freshly changed and ready for the night. 'There you are,' he says with a smile, getting into the truck. You hotbox the truck and get comfortably hazy. The vibes are good. You look over at him.",
                 choices: [{ text: "Compliment their outfit", nextId: 611 }, { text: "Just enjoy the music and head out", nextId: 900 }]
             },
             { 
@@ -325,8 +309,8 @@
             },
             { 
                 id: 602, 
-                text: "You text back: 'Cheesecake Factory, but let's hotbox the truck first.' She replies: 'Hell yeah, on my way.' You two meet up and get comfortably hazy. The vibes are good. You look over at her.",
-                textFemale: "You text back: 'Cheesecake Factory, but let's hotbox the truck first.' He replies: 'Hell yeah, on my way.' You two meet up and get comfortably hazy. The vibes are good. You look over at him.",
+                text: "You meet up with your partner, freshly changed and ready for the night. 'There you are,' she says with a smile, getting into the truck. You hotbox the truck and get comfortably hazy. The vibes are good. You look over at her.",
+                textFemale: "You meet up with your partner, freshly changed and ready for the night. 'There you are,' he says with a smile, getting into the truck. You hotbox the truck and get comfortably hazy. The vibes are good. You look over at him.",
                 choices: [{ text: "Compliment their clothes", nextId: 612 }, { text: "Just enjoy the music and head out", nextId: 322 }]
             },
             { 
@@ -337,8 +321,8 @@
             },
             { 
                 id: 603, 
-                text: "You text back: 'Hot Pot, but let's hotbox the truck first.' She replies: 'Hell yeah, on my way.' You two meet up and get comfortably hazy. The vibes are good. You look over at her.",
-                textFemale: "You text back: 'Hot Pot, but let's hotbox the truck first.' He replies: 'Hell yeah, on my way.' You two meet up and get comfortably hazy. The vibes are good. You look over at him.",
+                text: "You meet up with your partner, freshly changed and ready for the night. 'There you are,' she says with a smile, getting into the truck. You hotbox the truck and get comfortably hazy. The vibes are good. You look over at her.",
+                textFemale: "You meet up with your partner, freshly changed and ready for the night. 'There you are,' he says with a smile, getting into the truck. You hotbox the truck and get comfortably hazy. The vibes are good. You look over at him.",
                 choices: [{ text: "Compliment their hair", nextId: 613 }, { text: "Just enjoy the music and head out", nextId: 312 }]
             },
             { 
@@ -822,7 +806,7 @@
             { id: 6011, text: "You pack a couple of cones for her to take with her. She smiles. 'You're the best.'", setState: { cones: false }, choices: [{ text: "Now, about that car...", nextId: 6003 }] },
 
             // --- NEW "GETTING READY" SEQUENCE ---
-            { id: 7000, text: "Routing to your getting ready sequence...", choices: [] }, // This is a router node, handled by JS.
+            { id: 7000, text: "Routing to your getting ready sequence...", choices: [] },
             // MALE PATH
             { id: 7001, text: "You get home with plenty of time to get ready. First things first, time to clean up.", choices: [{ text: "Take a quick shower.", nextId: 7002 }, { text: "Nah, a little deodorant will do.", nextId: 7002 }] },
             { id: 7002, text: "You look in the mirror. Your facial hair is a little scruffy.", choices: [{ text: "Shave it clean.", nextId: 7003 }, { text: "Leave the whiskers. It's a look.", nextId: 7003 }] },
@@ -832,10 +816,9 @@
                 { text: "Wear a long sleeve light grey sweater and tan pants.", nextId: 7100 },
                 { text: "Wear a black t-shirt with a nice jacket and grey pants.", nextId: 7100 }
             ]},
-            { id: 7005, text: "You look sharp. All ready to go. One last thing to consider...", choices: [{ text: "Stop and buy flowers on the way.", nextId: 7006 }, { text: "No flowers, just head straight there.", nextId: 7008 }] },
+            { id: 7005, text: "You look sharp. All ready to go. One last thing to consider...", choices: [{ text: "Stop and buy flowers on the way.", nextId: 7006 }, { text: "No flowers, just head straight there.", nextId: 80000 }] },
             { id: 7006, text: "You make a quick stop at a local grocery store. They have a decent selection of bouquets. A nice touch. How are you paying?", choices: [{ text: "Pay with cash (keep some for a tip).", nextId: 7007 }, { text: "Pay with card.", nextId: 7007 }] },
-            { id: 7007, text: "Flowers in hand, you're ready to go meet your date. You feel confident and excited.", choices: [{ text: "Head to the date.", nextId: 2000 }] },
-            { id: 7008, text: "You decide against flowers and head straight out. Your charm will be enough.", choices: [{ text: "Head to the date.", nextId: 2000 }] },
+            { id: 7007, text: "Flowers in hand, you're ready to go meet your date. You feel confident and excited.", choices: [{ text: "Head to the date.", nextId: 80000 }] },
             // FEMALE PATH
             { id: 7010, text: "You get home with plenty of time. A little pampering is in order before your date.", choices: [{ text: "Take a long, relaxing shower.", nextId: 7011 }, { text: "Just a quick touch-up is fine.", nextId: 7011 }] },
             { id: 7011, text: "You stand in front of your huge perfume collection. What's the scent for tonight?", choices: [
@@ -848,10 +831,9 @@
                 { text: "The bright pink mini dress.", nextId: 7110 },
                 { text: "The high-waisted leather skirt with a satin blouse.", nextId: 7110 }
             ]},
-            { id: 7013, text: "You look absolutely stunning. You check yourself in the mirror one last time before heading out.", choices: [{ text: "Head to the date.", nextId: 2000 }] },
+            { id: 7013, text: "You look absolutely stunning. You check yourself in the mirror one last time before heading out.", choices: [{ text: "Head to the date.", nextId: 80000 }] },
 
             // --- NEW GROUP CHAT PATHS ---
-            // MALE
             { id: 7100, text: "You're dressed and about to head out when your phone buzzes. It's a text from your friend Aaron in the group chat: 'Boys, me and Ian just shot -4 and -5 at the outing today. We're basically pros.'", choices: [
                 { text: "Damn boys that's legit", nextId: 7101 },
                 { text: "Send a GIF of Tim Robinson squinting.", nextId: 7102 },
@@ -860,7 +842,6 @@
             { id: 7101, text: "Aaron replies instantly: 'lol for real'. You chuckle and put your phone away.", choices: [{ text: "Time to go.", nextId: 7200 }] },
             { id: 7102, text: "Ian replies with a GIF of a guy furiously typing on a tiny keyboard. Aaron sends one of a cat looking shocked. You reply with a GIF of a spinning hot dog. Ian sends a trophy GIF. The war is won. You laugh.", choices: [{ text: "Okay, for real this time.", nextId: 7200 }] },
             { id: 7103, text: "Ian replies: 'lol you've never shot under par in your life'. He's right, but it's funny. You put your phone away.", choices: [{ text: "Time to go.", nextId: 7200 }] },
-            // FEMALE
             { id: 7110, text: "You look amazing. As you're grabbing your purse, your phone buzzes. It's a text from your friend Tammy in the group chat: 'omg you will never beleive what tyler got me, a great dane puppy!'", choices: [
                 { text: "oh wow how cute, girl or boy whats the name?", nextId: 7111 },
                 { text: "those dogs get huge, you live in a studio apartment", nextId: 7112 },
@@ -869,10 +850,8 @@
             { id: 7111, text: "She replies a minute later: 'i know right? his name is goose'. You smile.", choices: [{ text: "Time to go.", nextId: 7200 }] },
             { id: 7112, text: "Tammy replies almost instantly: 'OMG you are so negative, your gonna love him.' You roll your eyes, but smile.", choices: [{ text: "Okay, time to focus.", nextId: 7200 }] },
             { id: 7113, text: "She sends back a bunch of heart emojis and 'his name is goose'.", choices: [{ text: "Time to go.", nextId: 7200 }] },
-                // Getting Ready Pt. 2
             { id: 7200, text: "You're almost ready to go. Just need to grab your keys and wallet.", choices: [{ text: "Where did I leave them...", nextId: 7201 }] },
             { id: 7201, text: "You check the usual spots. The kitchen counter, the coffee table... nothing.", choices: [{ text: "Check the junk drawer.", nextId: 7202 }, { text: "Look in your old coat.", nextId: 7203 }] },
-            // [FIXED] Corrected the choice object structure to handle gender-specific routing
             { id: 7202, text: "You rifle through the junk drawer. Amongst old batteries and takeout menus, you find them. You also find a faded, worn-out guitar pick. You remember you used to play a little.", setState: { guitarPick: true }, choices: [{ text: "A memory from another life.", nextId: 7005, nextIdFemale: 7013 }] },
             { id: 7203, text: "You check the pockets of the old coat hanging by the door. There they are. Phew.", choices: [{ text: "Time to go.", nextId: 7005, nextIdFemale: 7013 }] },
             
@@ -919,6 +898,7 @@
             { id: 8023, text: "You pop the board, flick your ankle, and land it cleanly. The kids give you a nod of respect. 'Sick.'", choices: [{ text: "Give the board back.", nextId: 8025 }] },
             { id: 8024, text: "You decide to show off a little. You pop the board and it spins a perfect 360 degrees under your feet before you land bolts. The kids lose their minds. 'WHOA! THAT WAS INSANE!'", choices: [{ text: "Give the board back, legend.", nextId: 8025 }] },
             { id: 8025, text: "You hand the board back with a smile. You feel pretty cool. You shoot your girlfriend a text: 'Car is all set. On my way to drop it off!' What a day.", choices: [{ text: "Time for the grand finale.", nextId: 12000 }] },
+            { id: 80000, text: "Heading to the date...", choices: [] }, // Router hub
             
             // --- NEW LIBRARY ARC ---
             { id: 9000, text: "You decide to be a responsible adult and finally return that library book that's been sitting on your shelf for weeks. First, you have to find it.", choices: [{ text: "Search the apartment.", nextId: 9001 }] },
@@ -980,7 +960,8 @@
             hasKey: false, hasCoins: false, wearsHawaiianShirt: false, hasGlock: false, hasCarInfo: false,
             giftCard: false, tirePlugs: false, gum: false, cones: false, bluntWrap: false, candy: false,
             lotteryTicket: false, bossMug: false, stevesCard: false, embarrassingPhoto: false, heardGossip: false,
-            fiveDollars: false, silverDollar: false, oldCasinoChip: false, guitarPick: false, silverLocket: false, pocketKnife: false
+            fiveDollars: false, silverDollar: false, oldCasinoChip: false, guitarPick: false, silverLocket: false, pocketKnife: false,
+            postReadyNodeId: null
         };
 
         const themes = {
@@ -1111,6 +1092,11 @@
         function showStoryNode(storyNodeId) {
             // --- SPECIAL ROUTING LOGIC ---
             if (storyNodeId === 7000) return showStoryNode(playerGender === 'male' ? 7001 : 7010);
+            if (storyNodeId === 80000) {
+                const nextNode = playerState.postReadyNodeId || 1; 
+                playerState.postReadyNodeId = null; // Clear state after use
+                return showStoryNode(nextNode);
+            }
             if (storyNodeId === 6004 && playerGender === 'female') return showStoryNode(6007);
             if (storyNodeId === 2011 && playerState.hasCoins) return showStoryNode(1201);
             if (storyNodeId === 8009 && playerState.pocketKnife) storyNodeId = 80091;
@@ -1146,7 +1132,7 @@
             if (storyNode.id === 6002 && playerState.cones && playerGender === 'male') {
                 choices.unshift({ text: "Offer to pack a few cones.", nextId: 6010 });
             }
-             if (storyNode.id === 3006) {
+            if (storyNode.id === 3006) {
                 if (playerState.mixCD) choices.unshift({ text: "Play the old mix CD.", nextId: 3010 });
                 if (playerState.gum) choices.unshift({ text: "Offer her a piece of gum.", textFemale: "He offers you a piece of gum.", nextId: 3008 });
                 if (playerState.candy) choices.unshift({ text: "Offer her the candy.", textFemale: "He offers you the candy.", nextId: 3009 });
@@ -1204,13 +1190,17 @@
                 button.innerText = choiceText;
                 button.className = 'w-full text-white font-semibold py-3 px-4 rounded-lg shadow-md transition-all duration-300 ease-in-out transform hover:scale-105 fade-in';
                 button.classList.add(...secondaryBtnClasses.split(' '));
-                button.addEventListener('click', () => selectChoice(nextNodeId));
+                button.addEventListener('click', () => selectChoice(choice));
                 choicesContainerElement.appendChild(button);
             });
         }
 
-        function selectChoice(nextNodeId) {
-            showStoryNode(nextNodeId);
+        function selectChoice(choice) {
+            // If the choice sets state, apply it before moving on
+            if (choice.setState) {
+                Object.assign(playerState, choice.setState);
+            }
+            showStoryNode(choice.nextId);
         }
 
         function saveProgress(nodeId) {

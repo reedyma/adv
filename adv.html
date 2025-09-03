@@ -10,7 +10,6 @@
         body {
             font-family: 'Inter', sans-serif;
         }
-        /* Simple fade-in animation */
         .fade-in {
             animation: fadeIn 0.5s ease-in-out;
         }
@@ -104,7 +103,6 @@
             { id: 341, text: "You spend a few hours at a cafe/mall, just people watching and enjoying the freedom. As the sun begins to set, your phone buzzes.", choices: [{ text: "Check your phone.", nextId: 299 }] },
             { id: 342, text: "You head to the local park. It's peaceful. You see a friendly-looking orange tabby cat sitting on a bench.", choices: [{ text: "Try to pet the cat.", nextId: 343 }, { text: "Leave it be and enjoy the quiet.", nextId: 341 }] },
             { id: 343, text: "You approach slowly and offer your hand. The cat purrs loudly and rubs against you before hopping off the bench. As it leaves, it nudges something shiny on the ground with its nose, looks back at you, and darts away. It's an old, heavy silver dollar.", setState: { silverDollar: true }, choices: [{ text: "What a strange cat. What a cool coin.", nextId: 341 }] },
-
             
             // Commute Path
             { id: 41, text: "You quickly whip up some eggs and toast. A solid breakfast.", choices: [{ text: "Commute (Drive)", nextId: 51 }, { text: "Commute (Bus)", nextId: 52 }, { text: "Smoke a bowl before you go", nextId: 80 }, { text: "Skip Work Last Minute", nextId: 54 }] },
@@ -130,7 +128,6 @@
             { id: 63, text: "The cold water is a sensory explosion. Your brain short-circuits for a second, then reboots with crystal clarity. A bold choice.", choices: [{ text: "Pick outfit (Jeans/Hoodie)", nextId: 65 }, { text: "Pick outfit (Slacks/Business)", nextId: 36 }] },
             { id: 64, text: "Showering seems like a lot of work. You brush your teeth meticulously instead, focusing intensely on each tooth.", choices: [{ text: "Pick outfit (Jeans/Hoodie)", nextId: 65 }, { text: "Pick outfit (Slacks/Business)", nextId: 36 }] },
             { id: 65, text: "You pull on a comfortable pair of jeans and a hoodie. As you put your hands in the pockets, you feel something cold and metallic. It's a small, ornate key you've never seen before. Weird. You shrug and pocket it, feeling a strange sense of destiny.", setState: { hasKey: true }, choices: [{ text: "Get some breakfast", nextId: 95 }] },
-
             { id: 70, text: "You pack a fat bowl. The sweet smoke fills your lungs. An hour later, you're staring at the ceiling, contemplating the mysteries of the universe and whether you have any chips in the house.", choices: [{ text: "Watch TV", nextId: 71 }, { text: "Go on a snack quest to the kitchen", nextId: 72 }, { text: "Mindlessly scroll Facebook Marketplace", nextId: 73 }] },
             { id: 71, text: "You flip on the TV. What's the plan?", choices: [{ text: "See what's on Adult Swim", nextId: 711 }, { text: "Watch daytime court shows and feel superior", nextId: 712 }] },
             { id: 711, text: "You get sucked into a marathon of 'Delocated'. Jon is trying to get a new 'krime' photo taken. You grab your snacks and forget the outside world exists.", choices: [{ text: "The perfect day.", nextId: 79 }] },
@@ -139,13 +136,11 @@
             { id: 73, text: "You open Facebook Marketplace. Amidst the broken furniture and MLM scams, something beautiful catches your eye: a 1995 Z28 Camaro, T-tops, cherry red. The price is... suspiciously low.", choices: [{ text: "Message the seller: 'is this still available?'", nextId: 201 }, { text: "Assume it's a scam and look for weird taxidermy instead", nextId: 70 }] },
             { id: 79, text: "You spend the rest of the day in a blissful haze. As evening sets in, your phone buzzes, pulling you back to reality.", choices: [{ text: "See who it is.", nextId: 299 }] },
             { id: 80, text: "You take a quick rip from your bong to 'prepare' for the day. You feel calm, maybe too calm. Time to head to work, hopefully no one notices your eyes are as red as the devil's... well, you know.", choices: [{ text: "Commute (Drive, probably a bad idea)", nextId: 511 }, { text: "Commute (Bus, the safer choice)", nextId: 52 }] },
-            
             { id: 89, text: "Time to pick an outfit for the day.", choices: [{ text: "Pick outfit (Jeans/Hoodie)", nextId: 35 }, { text: "Pick outfit (Slacks/Business)", nextId: 36 }, { text: "Pick outfit (Hawaiian Shirt)", nextId: 37 }, { text: "Stay in Pajamas", nextId: 38 }] },
             // Glock Path
             { id: 90, text: "You're all dressed. One last look in the mirror before you head out. Any final preparations?", choices: [{ text: "Strap on your shoulder harness and gold 9mm Glock.", nextId: 91 }, { text: "Nah, let's just get some breakfast.", nextId: 95 }] },
             { id: 91, text: "You open a hidden compartment in your closet and pull out your custom gold 9mm Glock. You strap on the leather shoulder harness. It feels heavy and familiar under your jacket. You're ready for anything.", setState: { hasGlock: true }, choices: [{ text: "Now for some breakfast.", nextId: 95 }] },
             { id: 95, text: "Time for the most important meal of the day. What's on the menu?", choices: [{ text: "Breakfast (Eggs/Toast)", nextId: 41 }, { text: "Breakfast (Cereal)", nextId: 42 }, { text: "Breakfast (Oatmeal)", nextId: 46 }, { text: "Coffee Only", nextId: 43 }, { text: "Skip Breakfast", nextId: 44 }] },
-
 
             // High Commute Path
             { id: 511, text: "You get in your car. The music sounds incredible. You're driving 15 mph under the speed limit and are intensely focused on the lines on the road. You make it to the bank, but you're mentally exhausted from the effort.", choices: [{ text: "Stumble into work (feeling fuzzy)", nextId: 1011 }] },
@@ -157,7 +152,7 @@
                 choices: [{ text: "Check your phone.", nextId: 299 }]
             },
 
-            // --- BANK TELLER PATH (ROBBERY REMOVED) ---
+            // --- BANK TELLER PATH ---
             { 
                 id: 101, 
                 text: "Centerville Savings Bank stands tall in its beige blandness. The lobby smells faintly of stale coffee and Lysol. You swipe in and step behind the counter. Matt, your coworker, waves at you. 'Hey, they finally restocked the Nutter Butters.' Mr. Johns, your boss, shuffles past. 'Clock in already. And no slacking.'", 
@@ -255,18 +250,16 @@
             { id: 166, text: "Jenny narrows her eyes. 'Stretching your legs? There's a lot of work to do, you know. Mr. Johns doesn't like people wandering.' She seems suspicious for no reason.", choices: [{ text: "You're right. I'll head back now.", nextId: 167 }] },
             { id: 167, text: "You head back to your station, the brief escape over. Time to get back to it. The rest of the afternoon passes by.", choices: [{ text: "Finally, quitting time.", nextId: 140 }] },
 
-
             // Camaro Quest
             { id: 201, text: "A reply comes back almost instantly: 'yo it is. cash only no test drives i know what i got. u want it or not? address is 123 sketchy lane out by the old factory.'", choices: [{ text: "Agree to go check it out", nextId: 202 }, { text: "'No test drive? No thanks.'", nextId: 203 }] },
             { id: 202, text: "You decide to risk it. You end up in a tense cash exchange and drive off in a rumbling beast that smells like cigarettes and freedom. It breaks down two miles later, but what a story.", choices: [{ text: "Well, that was an adventure.", nextId: 209 }] },
             { id: 203, text: "You're not an idiot. You block the seller and go back to watching TV. You may not have a Camaro, but you also didn't get robbed.", choices: [{ text: "A wise choice.", nextId: 209 }] },
             { id: 209, text: "Well, that was an adventure. You head home, shaking your head at the weirdness of Facebook Marketplace. Later that evening, your phone buzzes.", choices: [{ text: "Check the text.", nextId: 299 }] },
             
-            // --- DATE PATH ENTRY ---
+            // --- DATE PATH ENTRY [FIXED] ---
             { 
                 id: 299, 
                 text: "Your phone buzzes. It's a text from your partner: 'Date night tonight! What are you feeling? Maggiano's, Cheesecake Factory, or that new Hot Pot place?'",
-                textFemale: "Your phone buzzes. It's a text from your partner: 'Date night tonight! What are you feeling? Maggiano's, Cheesecake Factory, or that new Hot Pot place?'",
                 choices: [
                     { text: "Maggiano's sounds perfect.", nextId: 301 },
                     { text: "Cheesecake Factory, a classic.", nextId: 321 },
@@ -307,13 +300,15 @@
                 textFemale: "You text back: 'Let's try the hot pot place!' He replies: 'Heck yeah! I'm so excited! I'll meet you there!'", 
                 choices: [{ text: "Head home to get ready first.", nextId: 7000 }] 
             },
-                { id: 315, text: "You finish your free and delicious meal.", choices: [{ text: "Continue the date...", nextId: 2000 }] },
+            { id: 312, text: "You arrive at the Hot Pot place, ready for a fun and interactive meal.", choices: [{ text: "Continue the date...", nextId: 2000}] },
+            { id: 315, text: "You finish your free and delicious meal.", choices: [{ text: "Continue the date...", nextId: 2000 }] },
             { 
                 id: 321, 
                 text: "You suggest The Cheesecake Factory. A classic choice. She texts back: 'Okay! The wait will be insane but I need that brown bread. See you there!'", 
                 textFemale: "You suggest The Cheesecake Factory. A classic choice. He texts back: 'Okay! The wait will be insane but I need that brown bread. See you there!'", 
                 choices: [{ text: "Head home to get ready first.", nextId: 7000 }] 
             },
+            { id: 322, text: "You arrive at The Cheesecake Factory. The sheer size of the menu is dizzying, but you're ready for it.", choices: [{ text: "Continue the date...", nextId: 2000}] },
             
             // --- Pre-Date Smoking Paths ---
             { 
@@ -357,7 +352,6 @@
             { id: 700, text: "You figure you might as well pass the time. You spark up a joint. As you're taking a puff, a small squirrel scurries down a nearby tree and sits on the guardrail, twitching its nose and staring right at the joint.", choices: [{ text: "Offer the squirrel a hit.", nextId: 701 }, { text: "Ignore it and keep smoking.", nextId: 702 }] },
             { id: 701, text: "You hold the joint out. 'Want some, little guy?' The squirrel, with no fear, scampers over, takes the joint in its tiny paws, and actually takes a drag. Its eyes go wide. Before you can react, it snatches the rest of the joint and darts back up the tree, leaving you completely stunned.", choices: [{ text: "Well... that happened. Keep waiting.", nextId: 406 }] },
             { id: 702, text: "You're not sharing your weed with a rodent. You turn away from it. The squirrel chitters in annoyance for a moment before giving up and running off into the woods.", choices: [{ text: "Finish your joint and keep waiting.", nextId: 406 }] },
-
             
             // Maggiano's Wine Path
             { id: 900, text: "You arrive at Maggiano's. The atmosphere is cozy and romantic. You're seated at your table and look over the menu.", choices: [{ text: "Your partner points out an expensive bottle of wine.", nextId: 901 }, { text: "You spot something on the floor by a vacant table.", nextId: 307 }] },
@@ -512,7 +506,7 @@
                 text: "After the story, you pass a vintage movie theater with a brightly lit marquee. They're playing a one-night-only screening of a classic romantic movie.",
                 choices: [ { text: "Want to go see it?", nextId: 2013 }, { text: "Nah, let's stick to the plan.", nextId: 3000 } ]
             },
-                {
+            {
                 id: 2013,
                 text: "You both go inside. The theater is old and beautiful. You share a large popcorn, whispering jokes to each other during the previews and holding hands through the whole film. It's perfect.",
                 choices: [{ text: "This was a great idea.", nextId: 2014 }]
@@ -666,7 +660,7 @@
                 id: 4002,
                 text: "Your hands find her waist, tracing the curve of her hips and moving slowly down her sides. You can feel the warmth of her skin through her clothes.",
                 textFemale: "His hands find your waist, tracing the curve of your hips and moving slowly down your sides. You can feel the warmth of his touch through your clothes.",
-                    choices: [
+                choices: [
                     { text: "Pick her up and hold her.", textFemale: "Leap into his arms.", nextId: 4100 },
                     { text: "Spin her around against the door.", textFemale: "Let him press you against the door.", nextId: 4200 },
                     { text: "Kiss down her neck.", textFemale: "Kiss down his neck.", nextId: 4300 }
@@ -676,7 +670,7 @@
                 id: 4003,
                 text: "Your right hand slides down her thigh, gripping it firmly and pulling her leg up to wrap around your waist. The sudden intimacy makes her gasp against your mouth.",
                 textFemale: "You wrap your leg around him, pulling him impossibly closer. The sudden intimacy makes him gasp against your mouth.",
-                    choices: [
+                choices: [
                     { text: "Pick her up and hold her.", textFemale: "Leap into his arms.", nextId: 4100 },
                     { text: "Spin her around against the door.", textFemale: "Let him press you against the door.", nextId: 4200 },
                     { text: "Kiss down her neck.", textFemale: "Kiss down his neck.", nextId: 4300 }
@@ -686,7 +680,7 @@
                 id: 4004,
                 text: "You lock your hands behind the small of her back, pulling her body flush against yours. There is absolutely no space between you now.",
                 textFemale: "You lock your hands behind the small of his back, pulling his body flush against yours. There is absolutely no space between you now.",
-                    choices: [
+                choices: [
                     { text: "Pick her up and hold her.", textFemale: "Leap into his arms.", nextId: 4100 },
                     { text: "Spin her around against the door.", textFemale: "Let him press you against the door.", nextId: 4200 },
                     { text: "Kiss down her neck.", textFemale: "Kiss down his neck.", nextId: 4300 }
@@ -720,7 +714,7 @@
                 ]
             },
 
-                // --- SEX SCENE PART 2 & MORNING AFTER ---
+            // --- SEX SCENE PART 2 & MORNING AFTER ---
             {
                 id: 5000,
                 text: "The passion of the moment completely takes over, a whirlwind of touch and sensation. It's clear where this is heading.",
@@ -823,7 +817,7 @@
                 text: "You shoot him a text and head over to his place to meet the tow truck and pay the driver. It's a sweet end to a chaotic, wonderful day.",
                 choices: [{ text: "Time for the grand finale.", nextId: 12000 }]
             },
-                { id: 6009, text: "You remember Steve's business card. You give him a call. 'Hey Steve, it's me from the bank. Funny story...' He laughs and says he'll send his brother-in-law over. The tow and repair costs the same as AAA, a hefty $430, but you feel good giving the business to a friend-of-a-friend. 'Thanks for the hookup!' you text your boyfriend.", choices: [{ text: "Time for the grand finale.", nextId: 12000 }] },
+            { id: 6009, text: "You remember Steve's business card. You give him a call. 'Hey Steve, it's me from the bank. Funny story...' He laughs and says he'll send his brother-in-law over. The tow and repair costs the same as AAA, a hefty $430, but you feel good giving the business to a friend-of-a-friend. 'Thanks for the hookup!' you text your boyfriend.", choices: [{ text: "Time for the grand finale.", nextId: 12000 }] },
             { id: 6010, text: "'Want me to pack a few cones for the road?' you ask, pulling out the package you bought last night. 'I got these at the gas station.'", choices: [ { text: "Yeah, that sounds perfect.", nextId: 6011 }, { text: "No thanks, I'm good for now.", nextId: 6003 } ] },
             { id: 6011, text: "You pack a couple of cones for her to take with her. She smiles. 'You're the best.'", setState: { cones: false }, choices: [{ text: "Now, about that car...", nextId: 6003 }] },
 
@@ -855,7 +849,7 @@
                 { text: "The high-waisted leather skirt with a satin blouse.", nextId: 7110 }
             ]},
             { id: 7013, text: "You look absolutely stunning. You check yourself in the mirror one last time before heading out.", choices: [{ text: "Head to the date.", nextId: 2000 }] },
-            
+
             // --- NEW GROUP CHAT PATHS ---
             // MALE
             { id: 7100, text: "You're dressed and about to head out when your phone buzzes. It's a text from your friend Aaron in the group chat: 'Boys, me and Ian just shot -4 and -5 at the outing today. We're basically pros.'", choices: [
@@ -878,8 +872,9 @@
                 // Getting Ready Pt. 2
             { id: 7200, text: "You're almost ready to go. Just need to grab your keys and wallet.", choices: [{ text: "Where did I leave them...", nextId: 7201 }] },
             { id: 7201, text: "You check the usual spots. The kitchen counter, the coffee table... nothing.", choices: [{ text: "Check the junk drawer.", nextId: 7202 }, { text: "Look in your old coat.", nextId: 7203 }] },
-            { id: 7202, text: "You rifle through the junk drawer. Amongst old batteries and takeout menus, you find them. You also find a faded, worn-out guitar pick. You remember you used to play a little.", setState: { guitarPick: true }, choices: [{ text: "A memory from another life.", nextId: 7005, textFemale: 7013 }] },
-            { id: 7203, text: "You check the pockets of the old coat hanging by the door. There they are. Phew.", choices: [{ text: "Time to go.", nextId: 7005, textFemale: 7013 }] },
+            // [FIXED] Corrected the choice object structure to handle gender-specific routing
+            { id: 7202, text: "You rifle through the junk drawer. Amongst old batteries and takeout menus, you find them. You also find a faded, worn-out guitar pick. You remember you used to play a little.", setState: { guitarPick: true }, choices: [{ text: "A memory from another life.", nextId: 7005, nextIdFemale: 7013 }] },
+            { id: 7203, text: "You check the pockets of the old coat hanging by the door. There they are. Phew.", choices: [{ text: "Time to go.", nextId: 7005, nextIdFemale: 7013 }] },
             
             // --- NEW TIRE FIXING SEQUENCE ---
             { id: 8000, text: "You order her an Uber. While you wait, you carry her bag out for her. 'I love you, and I had a wonderful time,' you say. 'I'm gonna go fix that tire. I'll text you when I'm done and I'll drop the car off, then we can go get my truck.'", choices: [{ text: "Wait for her reply.", nextId: 8001 }] },
@@ -938,7 +933,7 @@
             { id: 9009, text: "'Precisely!' the librarian exclaims. 'The fee is waived!' You feel a surge of pride. You head home, victorious. That evening, your phone buzzes.", choices: [{ text: "Check your phone.", nextId: 299 }] },
             { id: 9010, text: "The librarian shakes his head sadly. 'Incorrect. The answer was a secret.' You pay the fee, slightly embarrassed. Later that evening, your phone buzzes.", choices: [{ text: "Check your phone.", nextId: 299 }] },
 
-                // --- NEW DINER & DIY ARCS ---
+            // --- NEW DINER & DIY ARCS ---
             { id: 10000, text: "You decide to treat yourself to a proper meal. You head to 'The Silver Skillet,' a classic local diner that smells like coffee and bacon.", choices: [{ text: "Order the 'Lumberjack Special'.", nextId: 10001 }] },
             { id: 10001, text: "As you're halfway through a mountain of pancakes, a friendly but rambling old man sits down in your booth uninvited. 'Mind if I join you?' he asks, already settled.", choices: [{ text: "Be polite and listen.", nextId: 10002 }, { text: "Tell him you'd rather eat alone.", nextId: 10003 }] },
             { id: 10002, text: "You listen as he tells you a long story about the diner's 'glory days.' Before he leaves, he winks. 'The original owner, he was a sneaky one. Always said he left a piece of his heart under booth seven.' He points at your booth and then shuffles away.", choices: [{ text: "Check under the booth.", nextId: 10004 }, { text: "He was just a crazy old man.", nextId: 10005 }] },
@@ -989,50 +984,24 @@
         };
 
         const themes = {
-            default: {
-                bg: 'bg-slate-900', container: 'bg-slate-800', text: 'text-slate-200', subtleText: 'text-slate-400',
-                primaryBtn: 'bg-indigo-600 hover:bg-indigo-700', secondaryBtn: 'bg-slate-700 hover:bg-indigo-600',
-                input: 'bg-slate-700', border: 'border-slate-700'
-            },
-            green: {
-                bg: 'bg-green-900', container: 'bg-green-800', text: 'text-white', subtleText: 'text-green-200',
-                primaryBtn: 'bg-lime-500 hover:bg-lime-600', secondaryBtn: 'bg-green-700 hover:bg-lime-500',
-                input: 'bg-green-700', border: 'border-green-700'
-            },
-            blue: {
-                bg: 'bg-blue-900', container: 'bg-blue-800', text: 'text-white', subtleText: 'text-blue-200',
-                primaryBtn: 'bg-sky-500 hover:bg-sky-600', secondaryBtn: 'bg-blue-700 hover:bg-sky-500',
-                input: 'bg-blue-700', border: 'border-blue-700'
-            },
-            purple: {
-                bg: 'bg-purple-900', container: 'bg-purple-800', text: 'text-white', subtleText: 'text-purple-200',
-                primaryBtn: 'bg-fuchsia-500 hover:bg-fuchsia-600', secondaryBtn: 'bg-purple-700 hover:bg-fuchsia-500',
-                input: 'bg-purple-700', border: 'border-purple-700'
-            },
-            pink: {
-                bg: 'bg-pink-100', container: 'bg-white', text: 'text-pink-800', subtleText: 'text-pink-500',
-                primaryBtn: 'bg-pink-500 hover:bg-pink-600', secondaryBtn: 'bg-pink-100 hover:bg-pink-200 text-pink-700',
-                input: 'bg-pink-50 text-pink-900', border: 'border-pink-300'
-            },
-            gray: {
-                bg: 'bg-gray-200', container: 'bg-white', text: 'text-gray-900', subtleText: 'text-gray-600',
-                primaryBtn: 'bg-gray-800 hover:bg-gray-900', secondaryBtn: 'bg-gray-100 hover:bg-gray-300 text-gray-800',
-                input: 'bg-gray-100 text-gray-800', border: 'border-gray-300'
-            }
+            default: { bg: 'bg-slate-900', container: 'bg-slate-800', text: 'text-slate-200', subtleText: 'text-slate-400', primaryBtn: 'bg-indigo-600 hover:bg-indigo-700', secondaryBtn: 'bg-slate-700 hover:bg-indigo-600', input: 'bg-slate-700', border: 'border-slate-700' },
+            green: { bg: 'bg-green-900', container: 'bg-green-800', text: 'text-white', subtleText: 'text-green-200', primaryBtn: 'bg-lime-500 hover:bg-lime-600', secondaryBtn: 'bg-green-700 hover:bg-lime-500', input: 'bg-green-700', border: 'border-green-700' },
+            blue: { bg: 'bg-blue-900', container: 'bg-blue-800', text: 'text-white', subtleText: 'text-blue-200', primaryBtn: 'bg-sky-500 hover:bg-sky-600', secondaryBtn: 'bg-blue-700 hover:bg-sky-500', input: 'bg-blue-700', border: 'border-blue-700' },
+            purple: { bg: 'bg-purple-900', container: 'bg-purple-800', text: 'text-white', subtleText: 'text-purple-200', primaryBtn: 'bg-fuchsia-500 hover:bg-fuchsia-600', secondaryBtn: 'bg-purple-700 hover:bg-fuchsia-500', input: 'bg-purple-700', border: 'border-purple-700' },
+            pink: { bg: 'bg-pink-100', container: 'bg-white', text: 'text-pink-800', subtleText: 'text-pink-500', primaryBtn: 'bg-pink-500 hover:bg-pink-600', secondaryBtn: 'bg-pink-100 hover:bg-pink-200 text-pink-700', input: 'bg-pink-50 text-pink-900', border: 'border-pink-300' },
+            gray: { bg: 'bg-gray-200', container: 'bg-white', text: 'text-gray-900', subtleText: 'text-gray-600', primaryBtn: 'bg-gray-800 hover:bg-gray-900', secondaryBtn: 'bg-gray-100 hover:bg-gray-300 text-gray-800', input: 'bg-gray-100 text-gray-800', border: 'border-gray-300' }
         };
 
         function applyTheme(themeName) {
             const theme = themes[themeName] || themes.default;
-            const elementsToClear = Object.values(themes).flatMap(t => Object.values(t)).join(' ').split(' ');
-            const uniqueClasses = [...new Set(elementsToClear)];
+            const allThemeClasses = [...new Set(Object.values(themes).flatMap(t => Object.values(t)).join(' ').split(' '))];
+            
+            const themedElements = document.querySelectorAll('.themed-container, .themed-text, .themed-subtle-text, .themed-primary-btn, .themed-input, .themed-border');
+            
+            document.body.classList.remove(...allThemeClasses);
+            themedElements.forEach(el => el.classList.remove(...allThemeClasses));
 
-            document.body.classList.remove(...uniqueClasses);
             document.body.classList.add(theme.bg, theme.text);
-
-            document.querySelectorAll('.themed-container, .themed-text, .themed-subtle-text, .themed-primary-btn, .themed-input, .themed-border').forEach(el => {
-                el.classList.remove(...uniqueClasses);
-            });
-
             document.querySelectorAll('.themed-container').forEach(el => el.classList.add(theme.container));
             document.querySelectorAll('.themed-text').forEach(el => el.classList.add(theme.text));
             document.querySelectorAll('.themed-subtle-text').forEach(el => el.classList.add(theme.subtleText));
@@ -1045,36 +1014,10 @@
         
         function updateInventoryDisplay() {
             inventoryList.innerHTML = '';
-            const items = [];
-            // A slightly cleaner, data-driven way to manage inventory display
             const itemMap = {
-                hasKey: "Small Ornate Key",
-                hasCoins: "8 Gold Coins",
-                lotteryTicket: "Winning Lottery Ticket ($100)",
-                bossMug: "Chipped 'World's Best Boss' Mug",
-                stevesCard: "Steve's Business Card",
-                hasCarInfo: "Note with Phone # (Corvette)",
-                hasGlock: "Gold 9mm Glock",
-                giftCard: "Starbucks Gift Card",
-                tirePlugs: "Tire Plug Kit",
-                gum: "Pack of Gum",
-                cones: "Raw Cones",
-                bluntWrap: "Blunt Wrap",
-                candy: "Partner's Favorite Candy",
-                embarrassingPhoto: "Embarrassing High School Photo",
-                fiveDollars: "$5 Bill",
-                silverDollar: "Old Silver Dollar",
-                oldCasinoChip: "Old Casino Chip",
-                guitarPick: "Worn Guitar Pick",
-                silverLocket: "Silver Locket",
-                pocketKnife: "Classic Pocket Knife"
+                hasKey: "Small Ornate Key", hasCoins: "8 Gold Coins", lotteryTicket: "Winning Lottery Ticket ($100)", bossMug: "Chipped 'World's Best Boss' Mug", stevesCard: "Steve's Business Card", hasCarInfo: "Note with Phone # (Corvette)", hasGlock: "Gold 9mm Glock", giftCard: "Starbucks Gift Card", tirePlugs: "Tire Plug Kit", gum: "Pack of Gum", cones: "Raw Cones", bluntWrap: "Blunt Wrap", candy: "Partner's Favorite Candy", embarrassingPhoto: "Embarrassing High School Photo", fiveDollars: "$5 Bill", silverDollar: "Old Silver Dollar", oldCasinoChip: "Old Casino Chip", guitarPick: "Worn Guitar Pick", silverLocket: "Silver Locket", pocketKnife: "Classic Pocket Knife"
             };
-
-            for (const key in itemMap) {
-                if (playerState[key]) {
-                    items.push(itemMap[key]);
-                }
-            }
+            const items = Object.keys(itemMap).filter(key => playerState[key]).map(key => itemMap[key]);
 
             if (items.length > 0) {
                 inventoryContainer.classList.remove('hidden');
@@ -1089,15 +1032,7 @@
         }
 
         function initializeGame() {
-            colorSelectionScreen.classList.add('hidden');
-            welcomeScreen.classList.remove('hidden');
-            welcomeScreen.classList.add('fade-in');
-
             const username = usernameInput.value.trim();
-            if (username === '') {
-                // This is for subsequent starts, not the very first one
-                return;
-            }
             currentUser = username;
             playerNameElement.innerText = currentUser;
 
@@ -1146,27 +1081,24 @@
             welcomeScreen.classList.add('hidden');
             gameContainer.classList.remove('hidden');
             gameContainer.classList.add('fade-in');
-            saveProgress(1); 
             showStoryNode(1);
         }
         
         startButton.addEventListener('click', () => {
-                const username = usernameInput.value.trim();
-                if (username === '') {
-                    usernameInput.placeholder = "Please enter a name!";
-                    usernameInput.classList.add('placeholder-red-400', 'ring-2', 'ring-red-500');
-                    return;
-                }
-                initializeGame();
+            if (usernameInput.value.trim() === '') {
+                usernameInput.placeholder = "Please enter a name!";
+                usernameInput.classList.add('placeholder-red-400', 'ring-2', 'ring-red-500');
+                return;
+            }
+            initializeGame();
         });
+
         usernameInput.addEventListener('keyup', (event) => {
-            if (event.key === 'Enter') {
-                const username = usernameInput.value.trim();
-                if (username !== '') {
-                    initializeGame();
-                }
+            if (event.key === 'Enter' && usernameInput.value.trim() !== '') {
+                initializeGame();
             }
         });
+
         maleButton.addEventListener('click', () => setGenderAndStart('male'));
         femaleButton.addEventListener('click', () => setGenderAndStart('female'));
 
@@ -1178,34 +1110,23 @@
 
         function showStoryNode(storyNodeId) {
             // --- SPECIAL ROUTING LOGIC ---
-            if (storyNodeId === 7000) {
-                return showStoryNode(playerGender === 'male' ? 7001 : 7010);
-            }
-            if (storyNodeId === 6004 && playerGender === 'female') {
-                return showStoryNode(6007);
-            }
-            if (storyNodeId === 2011 && playerState.hasCoins) {
-                return showStoryNode(1201);
-            }
-            if (storyNodeId === 8009 && playerState.pocketKnife) {
-                storyNodeId = 80091; // Reroute to special node if player has knife
-            }
-            if (choice.nextId === 7005 && playerGender === 'female') {
-                storyNodeId = 7013;
-            }
+            if (storyNodeId === 7000) return showStoryNode(playerGender === 'male' ? 7001 : 7010);
+            if (storyNodeId === 6004 && playerGender === 'female') return showStoryNode(6007);
+            if (storyNodeId === 2011 && playerState.hasCoins) return showStoryNode(1201);
+            if (storyNodeId === 8009 && playerState.pocketKnife) storyNodeId = 80091;
 
             const storyNode = story.find(node => node.id === storyNodeId);
 
             if (!storyNode) {
                 console.error(`Story node with id ${storyNodeId} not found!`);
-                showStoryNode(1); // Default to the start if a node is missing
-                return;
+                return showStoryNode(1);
             }
 
+            // Save progress whenever a node is successfully displayed
             if (storyNode.setState) {
                 Object.assign(playerState, storyNode.setState);
-                saveProgress(storyNodeId);
             }
+            saveProgress(storyNodeId);
 
             let textToDisplay = storyNode.text;
             if (playerGender === 'female' && storyNode.textFemale) {
@@ -1213,95 +1134,73 @@
             }
 
             storyTextElement.classList.remove('fade-in');
-            void storyTextElement.offsetWidth; 
+            void storyTextElement.offsetWidth;
             storyTextElement.classList.add('fade-in');
             storyTextElement.innerText = textToDisplay;
 
             choicesContainerElement.innerHTML = '';
             
-            let choices = [...storyNode.choices];
+            let choices = [...(storyNode.choices || [])];
 
             // --- CONDITIONAL CHOICES LOGIC ---
             if (storyNode.id === 6002 && playerState.cones && playerGender === 'male') {
                 choices.unshift({ text: "Offer to pack a few cones.", nextId: 6010 });
             }
-            if (storyNode.id === 3006) {
-                if (playerState.mixCD) {
-                    choices.unshift({ text: "Play the old mix CD.", nextId: 3010 });
-                }
-                if (playerState.gum) {
-                    choices.unshift({ text: "Offer her a piece of gum.", textFemale: "He offers you a piece of gum.", nextId: 3008 });
-                }
-                if (playerState.candy) {
-                    choices.unshift({ text: "Offer her the candy.", textFemale: "He offers you the candy.", nextId: 3009 });
-                }
+             if (storyNode.id === 3006) {
+                if (playerState.mixCD) choices.unshift({ text: "Play the old mix CD.", nextId: 3010 });
+                if (playerState.gum) choices.unshift({ text: "Offer her a piece of gum.", textFemale: "He offers you a piece of gum.", nextId: 3008 });
+                if (playerState.candy) choices.unshift({ text: "Offer her the candy.", textFemale: "He offers you the candy.", nextId: 3009 });
             }
             if (storyNode.id === 138 && playerState.heardGossip) {
                 choices.unshift({ text: "Make a joke about the parking gate.", nextId: 139 });
             }
-
             if ((storyNode.id === 900 || storyNode.id === 322 || storyNode.id === 312) && playerState.lotteryTicket) {
                 choices.unshift({ text: "Use your $100 lottery ticket to make the night special.", nextId: 1999 });
             }
-                if (storyNode.id === 2000) {
-                    if(playerState.silverDollar) choices.unshift({text: "Tell her about the cat and the silver dollar.", nextId: 2020});
-                    if(playerState.oldCasinoChip) choices.unshift({text: "Show her the old casino chip you found.", nextId: 2022});
-                    if(playerState.guitarPick) choices.unshift({text: "Tell her you found your old guitar pick.", nextId: 2024});
-                    if(playerState.silverLocket) choices.unshift({text: "I have something for you.", nextId: 2028});
-                    if(playerState.magazinePage) choices.unshift({text: "You know, I almost wore something else tonight...", nextId: 2027});
+            if (storyNode.id === 2000) {
+                if (playerState.silverDollar) choices.unshift({ text: "Tell her about the cat and the silver dollar.", nextId: 2020 });
+                if (playerState.oldCasinoChip) choices.unshift({ text: "Show her the old casino chip you found.", nextId: 2022 });
+                if (playerState.guitarPick) choices.unshift({ text: "Tell her you found your old guitar pick.", nextId: 2024 });
+                if (playerState.silverLocket) choices.unshift({ text: "I have something for you.", nextId: 2028 });
             }
-
             if (storyNode.id === 6003 && playerGender === 'female' && playerState.stevesCard) {
                 const aaaIndex = choices.findIndex(c => c.nextId === 6004);
-                if (aaaIndex !== -1) {
-                    choices[aaaIndex] = { text: "Call Steve for help.", nextId: 6009 };
-                }
+                if (aaaIndex !== -1) choices[aaaIndex] = { text: "Call Steve for help.", nextId: 6009 };
             }
-
             if (storyNodeId === 6003 && playerGender === 'female') {
                 choices = choices.filter(choice => choice.nextId !== 6005 && choice.nextId !== 6006);
             }
             if (storyNode.id === 89 && playerGender === 'female') {
                 choices = [
-                    { text: "A blue dress", nextId: 1000 },
-                    { text: "A black skirt with pink blouse and white sweater", nextId: 1001 },
-                    { text: "A black hoodie and a pair of jeans", nextId: 1002 },
-                    { text: "Sweatpants and a cutoff shirt", nextId: 1003 }
+                    { text: "A blue dress", nextId: 1000 }, { text: "A black skirt with pink blouse and white sweater", nextId: 1001 },
+                    { text: "A black hoodie and a pair of jeans", nextId: 1002 }, { text: "Sweatpants and a cutoff shirt", nextId: 1003 }
                 ];
             }
             if (storyNode.id === 33 && playerGender === 'female') {
-                    choices.unshift({ text: "Call your friend Tammy.", nextId: 10020 });
+                choices.unshift({ text: "Call your friend Tammy.", nextId: 10020 });
             }
             if (storyNode.id === 34 && playerGender === 'female') {
-                    choices.unshift({ text: "Go to the drive-through for lunch.", nextId: 10025 });
-                    choices.push({ text: "Visit the pet store at the mall.", nextId: 10030 });
+                choices.unshift({ text: "Go to the drive-through for lunch.", nextId: 10025 });
+                choices.push({ text: "Visit the pet store at the mall.", nextId: 10030 });
             }
-                if (storyNode.id === 7012 && playerGender === 'female') {
-                    choices.push({ text: "Do a quick DIY nail art project.", nextId: 10035 });
+            if (storyNode.id === 7012 && playerGender === 'female') {
+                choices.push({ text: "Do a quick DIY nail art project.", nextId: 10035 });
             }
 
-            // --- END CONDITIONAL LOGIC ---
             updateInventoryDisplay();
 
             choices.forEach(choice => {
                 const button = document.createElement('button');
-                
                 let choiceText = choice.text;
                 let nextNodeId = choice.nextId;
 
                 // Handle gender-specific text and routing in choices
                 if (playerGender === 'female') {
-                    if (choice.textFemale) {
-                        choiceText = choice.textFemale;
-                    }
-                    // Special case for routing from the junk drawer find
-                    if (choice.nextId === 7005 && choice.textFemale) {
-                        nextNodeId = choice.textFemale;
-                    }
+                    if (choice.textFemale) choiceText = choice.textFemale;
+                    if (choice.nextIdFemale) nextNodeId = choice.nextIdFemale;
                 }
                 
                 const secondaryBtnClasses = choicesContainerElement.dataset.secondaryBtnClass || themes.default.secondaryBtn;
-
                 button.innerText = choiceText;
                 button.className = 'w-full text-white font-semibold py-3 px-4 rounded-lg shadow-md transition-all duration-300 ease-in-out transform hover:scale-105 fade-in';
                 button.classList.add(...secondaryBtnClasses.split(' '));
@@ -1311,14 +1210,13 @@
         }
 
         function selectChoice(nextNodeId) {
-            saveProgress(nextNodeId);
             showStoryNode(nextNodeId);
         }
 
         function saveProgress(nodeId) {
             try {
                 const allProgress = JSON.parse(localStorage.getItem('adventureGameProgress')) || {};
-                allProgress[currentUser] = { nodeId: nodeId, gender: playerGender, state: playerState };
+                allProgress[currentUser] = { nodeId, gender: playerGender, state: playerState };
                 localStorage.setItem('adventureGameProgress', JSON.stringify(allProgress));
             } catch (e) {
                 console.error("Could not save progress:", e);

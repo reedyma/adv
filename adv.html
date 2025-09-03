@@ -108,13 +108,10 @@
             
             // --- STORY DATA ---
             const story = [
-                // --- Start of Game ---
                 { id: 1, text: 'You open your eyes. The dream is already gone, just a vague feeling of unease remains. The alarm blares.', choices: [{ text: "Hit snooze", nextId: 11 }, { text: "Get up and stretch", nextId: 12 }, { text: "Grab your phone first", nextId: 13 }, { text: "Take a wake and bake dab", nextId: 60 }] },
                 { id: 11, text: "You drift off again. Suddenly it’s 7:30. You’re late.", choices: [{ text: "Rush out of bed, forget shower/breakfast", nextId: 21 }, { text: "Say screw it, call in sick", nextId: 22 }] },
                 { id: 12, text: "Your muscles pop. You feel awake. Time for the bathroom.", choices: [{ text: "Hot shower", nextId: 23 }, { text: "Cold shower", nextId: 24 }, { text: "Skip shower, brush teeth only", nextId: 25 }] },
                 { id: 13, text: 'You scroll through your phone. A weirdly targeted ad appears: "Tired of your boring life? Try Tactical Soap. Washes away the grime AND the regret."', choices: [{ text: "Click the ad", nextId: 26 }, { text: "Ignore it, head to bathroom", nextId: 27 }] },
-
-                // --- Story Paths ---
                 { id: 21, text: "You scramble around, a whirlwind of panicked energy.", choices: [{ text: "Throw on random clothes quickly", nextId: 31 }, { text: "Leave house in pajamas", nextId: 32 }] },
                 { id: 22, text: "You grab your phone and call in sick, putting on your best 'dying frog' voice. The day is yours.", choices: [{ text: "Actually stay home all day", nextId: 33 }, { text: "Decide to explore the city instead", nextId: 34 }, { text: "Smoke weed and see where the day goes", nextId: 70 }, { text: "Go get a proper diner breakfast.", nextId: 10000 }, { text: "Finally fix that wobbly bookshelf.", nextId: 10010 }, { text: "Finally return that overdue library book.", nextId: 9000 }] },
                 { id: 23, text: "The hot water is a blessing, melting away the last of your sleepiness. You feel refreshed and relaxed.", choices: [{ text: "Get dressed", nextId: 89 }] },
@@ -125,40 +122,58 @@
                 { id: 27, text: "It's just an ad. You toss your phone on the bed and head to the bathroom.", choices: [{ text: "Hot shower", nextId: 23 }, { text: "Cold shower", nextId: 24 }, { text: "Skip shower", nextId: 25 }] },
                 { id: 31, text: "You grab a shirt and pants from the floor. They might be clean. They might not. No time to check.", choices: [{ text: "Breakfast (Eggs/Toast)", nextId: 41 }, { text: "Breakfast (Cereal)", nextId: 42 }, { text: "Breakfast (Oatmeal)", nextId: 46 }, { text: "Coffee Only", nextId: 43 }, { text: "Skip Breakfast", nextId: 44 }] },
                 { id: 32, text: "You're already late, what's a dress code violation on top of it? You walk out the door in your flannel pajama pants.", choices: [{ text: "Breakfast (Eggs/Toast)", nextId: 41 }, { text: "Breakfast (Cereal)", nextId: 42 }, { text: "Breakfast (Oatmeal)", nextId: 46 }, { text: "Coffee Only", nextId: 43 }, { text: "Skip Breakfast", nextId: 44 }] },
-                { id: 33, text: "You spend the day on the couch, binging shows and ordering delivery. You feel a bit like a slob, but a comfortable, happy slob. As evening approaches, your phone buzzes.", choices: [{ text: "Check your phone.", nextId: 299 }, { text: "Call your friend Tammy.", nextId: 10020, condition: { gender: 'female' } }] },
-                { id: 34, text: "You wander the city, a tourist in your own town. What should you do?", choices: [{ text: "Go to the drive-through for lunch.", nextId: 10025, condition: { gender: 'female' } }, { text: "Visit a cafe.", nextId: 341 }, { text: "Go to the park.", nextId: 342 }, { text: "Go to the mall.", nextId: 341 }, { text: "Visit the pet store at the mall.", nextId: 10030, condition: { gender: 'female' } }] },
+                { id: 33, text: "You spend the day on the couch, binging shows and ordering delivery. You feel a bit like a slob, but a comfortable, happy slob. As evening approaches, your phone buzzes.", choices: [{ text: "Check your phone.", nextId: 299 }] },
+                { id: 34, text: "You wander the city, a tourist in your own town. What should you do?", choices: [{ text: "Visit a cafe.", nextId: 341 }, { text: "Go to the park.", nextId: 342 }, { text: "Go to the mall.", nextId: 341 }] },
                 { id: 35, text: "You pull on a comfortable pair of jeans and a hoodie. Casual Friday, here you come.", setState: { wearsHawaiianShirt: false }, choices: [{ text: "Finish getting ready", nextId: 90 }] },
                 { id: 36, text: "You dress in your work uniform: slacks and a button-up. Professional, if a bit boring.", setState: { wearsHawaiianShirt: false }, choices: [{ text: "Finish getting ready", nextId: 90 }] },
                 { id: 37, text: "You decide today needs a splash of color. The Hawaiian shirt it is. Let the world know you're here for a good time.", setState: { wearsHawaiianShirt: true }, choices: [{ text: "Finish getting ready", nextId: 90 }] },
                 { id: 38, text: "Why bother changing? You're already comfortable. You decide to embrace the pajama lifestyle.", setState: { wearsHawaiianShirt: false }, choices: [{ text: "Finish getting ready", nextId: 90 }] },
-                
                 { id: 89, text: "Time to pick an outfit for the day.", routeBy: 'gender', routes: { male: 891, female: 892 } },
                 { id: 891, text: "Time to pick an outfit for the day.", choices: [{ text: "Pick outfit (Jeans/Hoodie)", nextId: 35 }, { text: "Pick outfit (Slacks/Business)", nextId: 36 }, { text: "Pick outfit (Hawaiian Shirt)", nextId: 37 }, { text: "Stay in Pajamas", nextId: 38 }] },
                 { id: 892, text: "Time to pick an outfit for the day.", choices: [{ text: "A blue dress", nextId: 1000 }, { text: "A black skirt with pink blouse and white sweater", nextId: 1001 }, { text: "A black hoodie and a pair of jeans", nextId: 1002 }, { text: "Sweatpants and a cutoff shirt", nextId: 1003 }] },
-                
                 { id: 90, text: "You're all dressed. One last look in the mirror before you head out. Any final preparations?", routeBy: 'gender', routes: { male: 901, female: 902 } },
                 { id: 901, text: "You're all dressed. One last look in the mirror before you head out. Any final preparations?", choices: [{ text: "Strap on your shoulder harness and gold 9mm Glock.", nextId: 91 }, { text: "Nah, let's just get some breakfast.", nextId: 95 }] },
                 { id: 902, text: "You're all dressed. One last look in the mirror before you head out. Any final preparations?", choices: [{ text: "Put on the ring your boyfriend gave you.", nextId: 92 }, { text: "Strap on your shoulder harness and gold 9mm Glock.", nextId: 91 }, { text: "Nah, let's just get some breakfast.", nextId: 95 }] },
                 { id: 91, text: "You open a hidden compartment in your closet and pull out your custom gold 9mm Glock. You strap on the leather shoulder harness. It feels heavy and familiar under your jacket. You're ready for anything.", setState: { hasGlock: true }, choices: [{ text: "Now for some breakfast.", nextId: 95 }] },
                 { id: 92, text: "You slip on the beautiful ring your boyfriend gave you last year. It sparkles on your finger as you admire it.", setState: { hasRing: true }, choices: [{ text: "Now for some breakfast.", nextId: 95 }] },
                 { id: 95, text: "Time for the most important meal of the day. What's on the menu?", choices: [{ text: "Breakfast (Eggs/Toast)", nextId: 41 }, { text: "Breakfast (Cereal)", nextId: 42 }, { text: "Breakfast (Oatmeal)", nextId: 46 }, { text: "Coffee Only", nextId: 43 }, { text: "Skip Breakfast", nextId: 44 }] },
-                
+                { id: 140, text: "The rest of the workday is surprisingly calm. As you're packing up to leave, your phone buzzes.", choices: [{ text: "Check the text from your partner.", nextId: 299 }] },
+                { id: 299, text: "As evening approaches, your phone buzzes with a text from your partner.", choices: [{ text: "Read it.", nextId: 300 }] },
+                { id: 300, text: "'Hey! Date night tonight :) Where do you want to go?'", choices: [{ text: "Maggiano's", nextId: 301 }, { text: "The Cheesecake Factory", nextId: 321 }, { text: "The Mala Hot Pot", nextId: 311 }] },
+                { id: 301, text: "You text back: 'Maggiano's for sure.' They reply instantly: 'Yesss! Perfect. See you in a bit!'", setState: { dateLocation: 'maggianos' }, choices: [{ text: "Time to get ready.", nextId: 7000 }] },
+                { id: 311, text: "You text back: 'Let's try the hot pot place!' They reply: 'Yay! I'm so excited! I'll meet you there!'", setState: { dateLocation: 'hotpot' }, choices: [{ text: "Time to get ready.", nextId: 7000 }] },
+                { id: 312, text: "You arrive at the Hot Pot restaurant. The smell of sichuan peppercorns is in the air as you're seated.", choices: [{ text: "Time to order...", nextId: 2000 }] },
+                { id: 321, text: "You suggest The Cheesecake Factory. A classic choice. They text back: 'Okay! The wait will be insane but I need that brown bread. See you there!'", setState: { dateLocation: 'cheesecake' }, choices: [{ text: "Time to get ready.", nextId: 7000 }] },
+                { id: 322, text: "You arrive at The Cheesecake Factory. It's bustling, as expected, but you get a table.", choices: [{ text: "Time to order...", nextId: 2000 }] },
                 { id: 900, text: "You arrive at Maggiano's. The atmosphere is cozy and romantic. You're seated at your table and look over the menu.", choices: [{ text: "Your partner points out an expensive bottle of wine.", nextId: 901 }, { text: "You spot something on the floor by a vacant table.", nextId: 307 }, { text: "Excuse yourself to the bathroom.", nextId: 950, condition: { gender: 'female', state: '!usedBathroom' } }] },
-                { id: 950, text: "You excuse yourself and head to the restroom. It's a moment of quiet away from the restaurant buzz.", setState: { usedBathroom: true }, choices: [{ text: "Check your phone.", nextId: 951 }] },
+                { id: 950, text: "You excuse yourself and head to the restroom. It's a moment of quiet away from the restaurant buzz.", setState: { usedBathroom: true }, choices: [{ text: "Check your phone.", nextId: 951 }, { text: "Just freshen up and head back.", nextId: 900 }] },
                 { id: 951, text: "You pull out your phone and see a text from your best friend Cammy: 'Hey hows the date?'", choices: [{ text: "its great!", nextId: 952 }, { text: "Girl, its amazing", nextId: 952 }, { text: "The food is the best here.", nextId: 952 }] },
                 { id: 952, text: "You quickly send the text and put your phone away. You head back to the table, feeling refreshed.", choices: [{ text: "Continue the date...", nextId: 900 }] },
-                
                 { id: 1000, text: "You slip on a simple but elegant blue dress. It's comfortable and makes you feel confident.", setState: { wearsHawaiianShirt: false }, choices: [{ text: "Finish getting ready", nextId: 90 }] },
                 { id: 1001, text: "You choose the black skirt, pink blouse, and a cozy white sweater. It's a classic, cute look.", setState: { wearsHawaiianShirt: false }, choices: [{ text: "Finish getting ready", nextId: 90 }] },
                 { id: 1002, text: "You go for comfort and style with a black hoodie and your favorite pair of jeans. You're ready for anything.", setState: { wearsHawaiianShirt: false }, choices: [{ text: "Finish getting ready", nextId: 90 }] },
                 { id: 1003, text: "You pull on a pair of soft sweatpants and a cutoff shirt. It's a lazy day, after all.", setState: { wearsHawaiianShirt: false }, choices: [{ text: "Finish getting ready", nextId: 90 }] },
-                
                 { id: 2000, text: "Your partner leans in conspiratorially. 'Oh my god, there is tea,' they say, their eyes wide. 'There is work tea.'", textFemale: "Your partner leans in conspiratorially. 'Oh my god, there is tea,' he says, his eyes wide. 'There is work tea.'", choices: [ { text: "Remind him about the ring you're wearing.", nextId: 2029, condition: { gender: 'female', state: 'hasRing' } }, { text: "Okay, let's hear it.", nextId: 2001 }, { text: "You know I love it.", nextId: 2001 }, { text: "Oh yeah? Is it that you're the hottest woman that works there?", textFemale: "Oh yeah? Is it that you're the most handsome guy that works there?", nextId: 2002 } ] },
+                { id: 2001, text: "Your partner launches into a long, dramatic story about office politics involving a birthday cake and a shared blouse. It's petty, hilarious, and you're completely engrossed.", choices: [{ text: "What a night.", nextId: 2011 }] },
+                { id: 2002, text: "Your partner playfully rolls their eyes and laughs. 'Shut up. Okay, but for real, listen to this.'", textFemale: "Your boyfriend laughs. 'I wish. Nah, listen to this.'", choices: [{ text: "I'm listening...", nextId: 2001 }] },
+                { id: 2011, text: "After the story, the conversation flows easily. The date is going perfectly.", choices: [{ text: "Time to head home.", nextId: 3000 }] },
                 { id: 2029, text: "'This is still my favorite ring,' you say, showing him your hand. He smiles. 'I remember getting that for you a year ago. It looks perfect on you. I'll have to get you an even bigger one soon.'", setState: { hasRing: false }, choices: [{ text: "So, about this work tea...", nextId: 2001 }] },
-                
-                // --- End of Story ---
+                { id: 3000, text: "You walk out to their car, but as you approach, you both see it: the rear passenger-side tire is completely, hopelessly flat. 'You've got to be kidding me,' they groan.", choices: [{ text: "Well, looks like you're riding with me.", nextId: 3001 }] },
+                { id: 7000, text: "Time to get ready for your date.", routeBy: 'gender', routes: { male: 7001, female: 7010 } },
+                { id: 7001, text: "You get home with plenty of time to get ready. First things first, time to clean up.", choices: [{ text: "Take a quick shower.", nextId: 7002 }, { text: "Nah, a little deodorant will do.", nextId: 7002 }] },
+                { id: 7002, text: "You look in the mirror. Your facial hair is a little scruffy.", choices: [{ text: "Shave it clean.", nextId: 7003 }, { text: "Leave the whiskers. It's a look.", nextId: 7003 }] },
+                { id: 7003, text: "Time for cologne. What's the vibe tonight?", choices: [{ text: "A heavy, musky cologne.", nextId: 7004 }, { text: "A light, fresh cologne.", nextId: 7004 }] },
+                { id: 7004, text: "Now for the outfit. You want to look good tonight.", choices: [{ text: "Wear a black polo shirt and grey pants.", nextId: 7100 }, { text: "Wear a long sleeve light grey sweater and tan pants.", nextId: 7100 }, { text: "Wear a black t-shirt with a nice jacket and grey pants.", nextId: 7100 }] },
+                { id: 7008, text: "You decide against flowers and head straight out. Your charm will be enough.", choices: [{ text: "Head to the date.", nextId: 7050 }] },
+                { id: 7010, text: "You get home with plenty of time. A little pampering is in order before your date.", choices: [{ text: "Take a long, relaxing shower.", nextId: 7011 }, { text: "Just a quick touch-up is fine.", nextId: 7011 }] },
+                { id: 7011, text: "You stand in front of your huge perfume collection. What's the scent for tonight?", choices: [{ text: "A light and balanced perfume.", nextId: 7012 }, { text: "A deep floral scent.", nextId: 7012 }, { text: "A spicy and sweet perfume.", nextId: 7012 }] },
+                { id: 7012, text: "Perfect. Now for the killer outfit.", choices: [{ text: "The silk slip dress in deep emerald.", nextId: 7110 }, { text: "The bright pink mini dress.", nextId: 7110 }, { text: "The high-waisted leather skirt with a satin blouse.", nextId: 7110 }] },
+                { id: 7013, text: "You look absolutely stunning. You check yourself in the mirror one last time before heading out.", choices: [{ text: "Head to the date.", nextId: 7050 }] },
+                { id: 7050, text: "You head out for your date, feeling excited.", routeBy: 'dateLocation', routes: { maggianos: 900, cheesecake: 322, hotpot: 312 } },
+                { id: 7100, text: "You're dressed and about to head out when your phone buzzes. It's a text from your friend Aaron in the group chat: 'Boys, me and Ian just shot -4 and -5 at the outing today. We're basically pros.'", choices: [{ text: "Damn boys that's legit", nextId: 7200 }, { text: "Send a GIF of Tim Robinson squinting.", nextId: 7200 }, { text: "I figured you boys would be in the sub 6's like me in no time.", nextId: 7200 }] },
+                { id: 7110, text: "You look amazing. As you're grabbing your purse, your phone buzzes. It's a text from your friend Tammy in the group chat: 'omg you will never beleive what tyler got me, a great dane puppy!'", choices: [{ text: "oh wow how cute, girl or boy whats the name?", nextId: 7200 }, { text: "those dogs get huge, you live in a studio apartment", nextId: 7200 }, { text: "thats great haha", nextId: 7200 }] },
+                { id: 7200, text: "You're almost ready to go. Just need to grab your keys and wallet.", choices: [{ text: "Head to the date.", nextId: 7050 }] },
                 { id: 1205, text: "You spend the rest of the night dreaming and planning, the pile of gold coins gleaming on your coffee table like a promise of a brighter, more exciting future. This single day has changed your life forever. THE END.", choices: [{ text: "Play Again", nextId: 1 }] }
-                // Note: The complete story data is included in the script but collapsed here for brevity.
             ];
             
             // --- GAME STATE ---
@@ -173,7 +188,7 @@
                 giftCard: false, tirePlugs: false, gum: false, cones: false, bluntWrap: false, candy: false,
                 lotteryTicket: false, bossMug: false, stevesCard: false, embarrassingPhoto: false, heardGossip: false,
                 fiveDollars: false, silverDollar: false, oldCasinoChip: false, guitarPick: false, silverLocket: false, pocketKnife: false,
-                hasRing: false, usedBathroom: false
+                hasRing: false, usedBathroom: false, dateLocation: null
              };
              
              // --- CORE GAME LOGIC ---
@@ -187,6 +202,7 @@
                 const allThemeClasses = [...new Set(Object.values(themes).flatMap(t => Object.values(t)).join(' ').split(' '))];
 
                 const applyClasses = (element, classList) => {
+                    if (!element) return;
                     element.classList.remove(...allThemeClasses);
                     element.classList.add(...classList.split(' '));
                 };
@@ -199,13 +215,16 @@
                 document.querySelectorAll('.themed-input').forEach(el => applyClasses(el, theme.input));
                 document.querySelectorAll('.themed-border').forEach(el => applyClasses(el, theme.border));
                 
-                elements.choicesContainerElement.dataset.secondaryBtnClass = theme.secondaryBtn;
+                if (elements.choicesContainerElement) {
+                    elements.choicesContainerElement.dataset.secondaryBtnClass = theme.secondaryBtn;
+                }
             }
 
             /**
              * Updates the inventory display based on the current player state.
              */
             function updateInventoryDisplay() {
+                if (!elements.inventoryList) return;
                 elements.inventoryList.innerHTML = '';
                 const itemsMap = {
                     hasKey: "Small Ornate Key", hasCoins: "8 Gold Coins", lotteryTicket: "Winning Lottery Ticket ($100)",
@@ -244,13 +263,8 @@
                     return showStoryNode(1);
                 }
 
-                // --- Handle special node types like redirects or routers ---
-                if (currentNode.redirectTo) {
-                    return showStoryNode(currentNode.redirectTo);
-                }
-
                 if (currentNode.routeBy) {
-                    const routeValue = gameState[currentNode.routeBy];
+                    const routeValue = gameState.playerState[currentNode.routeBy] || gameState[currentNode.routeBy];
                     const nextNodeId = currentNode.routes[routeValue];
                     if (nextNodeId) {
                         return showStoryNode(nextNodeId);
@@ -413,4 +427,3 @@
     </script>
 </body>
 </html>
-

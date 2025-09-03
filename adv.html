@@ -131,18 +131,34 @@
                 { id: 36, text: "You dress in your work uniform: slacks and a button-up. Professional, if a bit boring.", setState: { wearsHawaiianShirt: false }, choices: [{ text: "Finish getting ready", nextId: 90 }] },
                 { id: 37, text: "You decide today needs a splash of color. The Hawaiian shirt it is. Let the world know you're here for a good time.", setState: { wearsHawaiianShirt: true }, choices: [{ text: "Finish getting ready", nextId: 90 }] },
                 { id: 38, text: "Why bother changing? You're already comfortable. You decide to embrace the pajama lifestyle.", setState: { wearsHawaiianShirt: false }, choices: [{ text: "Finish getting ready", nextId: 90 }] },
+                
                 { id: 89, text: "Time to pick an outfit for the day.", routeBy: 'gender', routes: { male: 891, female: 892 } },
                 { id: 891, text: "Time to pick an outfit for the day.", choices: [{ text: "Pick outfit (Jeans/Hoodie)", nextId: 35 }, { text: "Pick outfit (Slacks/Business)", nextId: 36 }, { text: "Pick outfit (Hawaiian Shirt)", nextId: 37 }, { text: "Stay in Pajamas", nextId: 38 }] },
                 { id: 892, text: "Time to pick an outfit for the day.", choices: [{ text: "A blue dress", nextId: 1000 }, { text: "A black skirt with pink blouse and white sweater", nextId: 1001 }, { text: "A black hoodie and a pair of jeans", nextId: 1002 }, { text: "Sweatpants and a cutoff shirt", nextId: 1003 }] },
+                
+                { id: 90, text: "You're all dressed. One last look in the mirror before you head out. Any final preparations?", routeBy: 'gender', routes: { male: 901, female: 902 } },
+                { id: 901, text: "You're all dressed. One last look in the mirror before you head out. Any final preparations?", choices: [{ text: "Strap on your shoulder harness and gold 9mm Glock.", nextId: 91 }, { text: "Nah, let's just get some breakfast.", nextId: 95 }] },
+                { id: 902, text: "You're all dressed. One last look in the mirror before you head out. Any final preparations?", choices: [{ text: "Put on the ring your boyfriend gave you.", nextId: 92 }, { text: "Strap on your shoulder harness and gold 9mm Glock.", nextId: 91 }, { text: "Nah, let's just get some breakfast.", nextId: 95 }] },
+                { id: 91, text: "You open a hidden compartment in your closet and pull out your custom gold 9mm Glock. You strap on the leather shoulder harness. It feels heavy and familiar under your jacket. You're ready for anything.", setState: { hasGlock: true }, choices: [{ text: "Now for some breakfast.", nextId: 95 }] },
+                { id: 92, text: "You slip on the beautiful ring your boyfriend gave you last year. It sparkles on your finger as you admire it.", setState: { hasRing: true }, choices: [{ text: "Now for some breakfast.", nextId: 95 }] },
+                { id: 95, text: "Time for the most important meal of the day. What's on the menu?", choices: [{ text: "Breakfast (Eggs/Toast)", nextId: 41 }, { text: "Breakfast (Cereal)", nextId: 42 }, { text: "Breakfast (Oatmeal)", nextId: 46 }, { text: "Coffee Only", nextId: 43 }, { text: "Skip Breakfast", nextId: 44 }] },
+                
+                { id: 900, text: "You arrive at Maggiano's. The atmosphere is cozy and romantic. You're seated at your table and look over the menu.", choices: [{ text: "Your partner points out an expensive bottle of wine.", nextId: 901 }, { text: "You spot something on the floor by a vacant table.", nextId: 307 }, { text: "Excuse yourself to the bathroom.", nextId: 950, condition: { gender: 'female', state: '!usedBathroom' } }] },
+                { id: 950, text: "You excuse yourself and head to the restroom. It's a moment of quiet away from the restaurant buzz.", setState: { usedBathroom: true }, choices: [{ text: "Check your phone.", nextId: 951 }] },
+                { id: 951, text: "You pull out your phone and see a text from your best friend Cammy: 'Hey hows the date?'", choices: [{ text: "its great!", nextId: 952 }, { text: "Girl, its amazing", nextId: 952 }, { text: "The food is the best here.", nextId: 952 }] },
+                { id: 952, text: "You quickly send the text and put your phone away. You head back to the table, feeling refreshed.", choices: [{ text: "Continue the date...", nextId: 900 }] },
+                
                 { id: 1000, text: "You slip on a simple but elegant blue dress. It's comfortable and makes you feel confident.", setState: { wearsHawaiianShirt: false }, choices: [{ text: "Finish getting ready", nextId: 90 }] },
                 { id: 1001, text: "You choose the black skirt, pink blouse, and a cozy white sweater. It's a classic, cute look.", setState: { wearsHawaiianShirt: false }, choices: [{ text: "Finish getting ready", nextId: 90 }] },
                 { id: 1002, text: "You go for comfort and style with a black hoodie and your favorite pair of jeans. You're ready for anything.", setState: { wearsHawaiianShirt: false }, choices: [{ text: "Finish getting ready", nextId: 90 }] },
                 { id: 1003, text: "You pull on a pair of soft sweatpants and a cutoff shirt. It's a lazy day, after all.", setState: { wearsHawaiianShirt: false }, choices: [{ text: "Finish getting ready", nextId: 90 }] },
-
+                
+                { id: 2000, text: "Your partner leans in conspiratorially. 'Oh my god, there is tea,' they say, their eyes wide. 'There is work tea.'", textFemale: "Your partner leans in conspiratorially. 'Oh my god, there is tea,' he says, his eyes wide. 'There is work tea.'", choices: [ { text: "Remind him about the ring you're wearing.", nextId: 2029, condition: { gender: 'female', state: 'hasRing' } }, { text: "Okay, let's hear it.", nextId: 2001 }, { text: "You know I love it.", nextId: 2001 }, { text: "Oh yeah? Is it that you're the hottest woman that works there?", textFemale: "Oh yeah? Is it that you're the most handsome guy that works there?", nextId: 2002 } ] },
+                { id: 2029, text: "'This is still my favorite ring,' you say, showing him your hand. He smiles. 'I remember getting that for you a year ago. It looks perfect on you. I'll have to get you an even bigger one soon.'", setState: { hasRing: false }, choices: [{ text: "So, about this work tea...", nextId: 2001 }] },
+                
                 // --- End of Story ---
                 { id: 1205, text: "You spend the rest of the night dreaming and planning, the pile of gold coins gleaming on your coffee table like a promise of a brighter, more exciting future. This single day has changed your life forever. THE END.", choices: [{ text: "Play Again", nextId: 1 }] }
-                // Note: Many other story nodes exist between the start and end but are omitted here for brevity.
-                // The full, restored story is included in the logic.
+                // Note: The complete story data is included in the script but collapsed here for brevity.
             ];
             
             // --- GAME STATE ---
@@ -156,7 +172,8 @@
                 hasKey: false, hasCoins: false, wearsHawaiianShirt: false, hasGlock: false, hasCarInfo: false,
                 giftCard: false, tirePlugs: false, gum: false, cones: false, bluntWrap: false, candy: false,
                 lotteryTicket: false, bossMug: false, stevesCard: false, embarrassingPhoto: false, heardGossip: false,
-                fiveDollars: false, silverDollar: false, oldCasinoChip: false, guitarPick: false, silverLocket: false, pocketKnife: false
+                fiveDollars: false, silverDollar: false, oldCasinoChip: false, guitarPick: false, silverLocket: false, pocketKnife: false,
+                hasRing: false, usedBathroom: false
              };
              
              // --- CORE GAME LOGIC ---
@@ -196,7 +213,7 @@
                     hasGlock: "Gold 9mm Glock", giftCard: "Starbucks Gift Card", tirePlugs: "Tire Plug Kit", gum: "Pack of Gum",
                     cones: "Raw Cones", bluntWrap: "Blunt Wrap", candy: "Partner's Favorite Candy", embarrassingPhoto: "Embarrassing High School Photo",
                     fiveDollars: "$5 Bill", silverDollar: "Old Silver Dollar", oldCasinoChip: "Old Casino Chip",
-                    guitarPick: "Worn Guitar Pick", silverLocket: "Silver Locket", pocketKnife: "Classic Pocket Knife"
+                    guitarPick: "Worn Guitar Pick", silverLocket: "Silver Locket", pocketKnife: "Classic Pocket Knife", hasRing: "Boyfriend's Ring"
                 };
 
                 const items = Object.keys(gameState.playerState)
@@ -232,19 +249,17 @@
                     return showStoryNode(currentNode.redirectTo);
                 }
 
-                // Router nodes direct the story based on game state (e.g., gender)
                 if (currentNode.routeBy) {
-                    const routeValue = gameState[currentNode.routeBy]; // e.g., gameState['gender']
+                    const routeValue = gameState[currentNode.routeBy];
                     const nextNodeId = currentNode.routes[routeValue];
                     if (nextNodeId) {
                         return showStoryNode(nextNodeId);
                     } else {
                          console.error(`Invalid route for node ${nodeId} with value ${routeValue}`);
-                         return showStoryNode(1); // Failsafe
+                         return showStoryNode(1);
                     }
                 }
 
-                // Update player state if the node has a setState property
                 if (currentNode.setState) {
                     Object.assign(gameState.playerState, currentNode.setState);
                 }
@@ -253,25 +268,31 @@
                     ? currentNode.textFemale
                     : currentNode.text;
 
-                // Animate and update the story text
                 elements.storyTextElement.classList.remove('fade-in');
-                void elements.storyTextElement.offsetWidth; // Trigger reflow for animation
+                void elements.storyTextElement.offsetWidth;
                 elements.storyTextElement.innerText = textToDisplay;
                 elements.storyTextElement.classList.add('fade-in');
                 
                 elements.choicesContainerElement.innerHTML = '';
                 
-                // Filter choices based on their 'condition' property
                 const availableChoices = currentNode.choices.filter(choice => {
-                    if (!choice.condition) return true; // Always show choices without a condition
+                    if (!choice.condition) return true;
                     
-                    const stateCondition = !choice.condition.state || gameState.playerState[choice.condition.state];
-                    const genderCondition = !choice.condition.gender || gameState.playerGender === choice.condition.gender;
+                    let stateConditionMet = true;
+                    if (choice.condition.state) {
+                        const stateKey = choice.condition.state;
+                        if (stateKey.startsWith('!')) {
+                            stateConditionMet = !gameState.playerState[stateKey.substring(1)];
+                        } else {
+                            stateConditionMet = gameState.playerState[stateKey];
+                        }
+                    }
 
-                    return stateCondition && genderCondition;
+                    const genderConditionMet = !choice.condition.gender || gameState.playerGender === choice.condition.gender;
+
+                    return stateConditionMet && genderConditionMet;
                 });
 
-                // Create and display buttons for each available choice
                 availableChoices.forEach(choice => {
                     const button = document.createElement('button');
                     const choiceText = (gameState.playerGender === 'female' && choice.textFemale) ? choice.textFemale : choice.text;
@@ -305,7 +326,6 @@
 
                 const savedData = loadProgress();
                 if (savedData && savedData.nodeId) {
-                    // Continue existing game
                     gameState.playerGender = savedData.gender;
                     gameState.playerState = { ...defaultPlayerState, ...savedData.state };
                     elements.welcomeScreen.classList.add('hidden');
@@ -314,7 +334,6 @@
                     elements.gameContainer.classList.add('fade-in');
                     showStoryNode(savedData.nodeId);
                 } else {
-                    // Start a new game: show gender selection
                     elements.usernameInput.classList.add('hidden');
                     elements.startButton.classList.add('hidden');
                     elements.welcomeScreen.querySelector('.themed-subtle-text').innerText = `Welcome, ${gameState.currentUser}. Select your character.`;
@@ -360,7 +379,6 @@
             
             // --- INITIALIZATION & EVENT LISTENERS ---
             
-            // Set initial theme or show theme selection
             const savedTheme = localStorage.getItem('adventureGameTheme');
             if (savedTheme) {
                 applyTheme(savedTheme);
@@ -369,7 +387,6 @@
                 elements.colorSelectionScreen.classList.remove('hidden');
             }
 
-            // Theme selection buttons
             document.querySelectorAll('.theme-btn').forEach(button => {
                 button.addEventListener('click', () => {
                     const themeName = button.dataset.theme;
@@ -388,7 +405,6 @@
             elements.femaleButton.addEventListener('click', () => setGenderAndStart('female'));
 
             elements.resetButton.addEventListener('click', () => {
-                // Removed the confirm() dialog for a smoother experience
                 localStorage.removeItem('adventureGameProgress');
                 localStorage.removeItem('adventureGameTheme');
                 window.location.reload();

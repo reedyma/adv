@@ -10,7 +10,7 @@
         body {
             font-family: 'Inter', sans-serif;
         }
-        /* Simple fade-in animation */
+        /* Simple fade-in animation for new content */
         .fade-in {
             animation: fadeIn 0.5s ease-in-out;
         }
@@ -20,469 +20,453 @@
         }
     </style>
 </head>
-<body class="bg-slate-900 text-slate-200 flex items-center justify-center min-h-screen p-4">
+<body class="flex items-center justify-center min-h-screen p-4 transition-colors duration-500">
+
+    <!-- Screen for selecting a color theme -->
+    <div id="color-selection-screen" class="w-full max-w-md bg-gray-800 rounded-xl shadow-2xl p-6 md:p-8 text-center fade-in hidden">
+        <h1 class="text-3xl font-bold mb-4 text-white">Pick A Theme</h1>
+        <p class="mb-6 text-gray-400">Choose a color scheme for your adventure.</p>
+        <div class="grid grid-cols-2 sm:grid-cols-3 gap-4">
+            <button data-theme="default" class="theme-btn bg-slate-700 text-white p-4 rounded-lg font-semibold transition-transform hover:scale-105">Default</button>
+            <button data-theme="green" class="theme-btn bg-green-600 text-white p-4 rounded-lg font-semibold transition-transform hover:scale-105">Green</button>
+            <button data-theme="blue" class="theme-btn bg-sky-600 text-white p-4 rounded-lg font-semibold transition-transform hover:scale-105">Blue</button>
+            <button data-theme="purple" class="theme-btn bg-purple-600 text-white p-4 rounded-lg font-semibold transition-transform hover:scale-105">Purple</button>
+            <button data-theme="pink" class="theme-btn bg-pink-500 text-white p-4 rounded-lg font-semibold transition-transform hover:scale-105">Pink</button>
+            <button data-theme="gray" class="theme-btn bg-gray-500 text-white p-4 rounded-lg font-semibold transition-transform hover:scale-105">Gray</button>
+        </div>
+    </div>
 
     <!-- Welcome screen for username input -->
-    <div id="welcome-screen" class="w-full max-w-md bg-slate-800 rounded-xl shadow-2xl p-6 md:p-8 text-center fade-in">
-        <h1 class="text-3xl font-bold mb-4 text-white">Choose Your Name</h1>
-        <p class="mb-6 text-slate-400">Enter your name to begin or continue your journey.</p>
-        <input type="text" id="username-input" placeholder="Your Name" class="w-full bg-slate-700 text-white rounded-lg px-4 py-3 mb-4 focus:outline-none focus:ring-2 focus:ring-indigo-500 transition-shadow">
-        <button id="start-button" class="w-full bg-indigo-600 hover:bg-indigo-700 text-white font-bold py-3 px-4 rounded-lg shadow-md transition-all duration-300 transform hover:scale-105">Start Adventure</button>
-    
+    <div id="welcome-screen" class="w-full max-w-md rounded-xl shadow-2xl p-6 md:p-8 text-center hidden themed-container">
+        <h1 class="text-3xl font-bold mb-4 themed-text">Choose Your Name</h1>
+        <p class="mb-6 themed-subtle-text">Enter your name to begin or continue your journey.</p>
+        <input type="text" id="username-input" placeholder="Your Name" class="w-full text-white rounded-lg px-4 py-3 mb-4 focus:outline-none focus:ring-2 focus:ring-indigo-500 transition-shadow themed-input">
+        <button id="start-button" class="w-full text-white font-bold py-3 px-4 rounded-lg shadow-md transition-all duration-300 transform hover:scale-105 themed-primary-btn">Start Adventure</button>
+        
+        <!-- Gender selection appears after name is entered for a new game -->
         <div id="gender-selection" class="hidden mt-4">
-            <p class="mb-4 text-slate-400">Select your gender.</p>
+            <p class="mb-4 themed-subtle-text">Select your character.</p>
             <div class="flex gap-4">
                 <button id="male-button" class="w-full bg-sky-600 hover:bg-sky-700 text-white font-bold py-3 px-4 rounded-lg shadow-md transition-all duration-300">Male</button>
-                <button id="female-button" class="w-full bg-pink-600 hover:bg-pink-700 text-white font-bold py-3 px-4 rounded-lg shadow-md transition-all duration-300">Female</button>
+                <button id="female-button" class="w-full bg-pink-500 hover:bg-pink-600 text-white font-bold py-3 px-4 rounded-lg shadow-md transition-all duration-300">Female</button>
             </div>
         </div>
     </div>
 
-    <!-- Main game container, hidden initially -->
-    <div id="game-container" class="w-full max-w-2xl bg-slate-800 rounded-xl shadow-2xl p-6 md:p-8 hidden">
-        <div class="flex justify-between items-center mb-6 border-b border-slate-700 pb-4">
-            <p class="text-slate-400">Player: <span id="player-name" class="font-bold text-slate-200"></span></p>
+    <!-- Main game container -->
+    <div id="game-container" class="w-full max-w-2xl rounded-xl shadow-2xl p-6 md:p-8 hidden themed-container">
+        <div class="flex justify-between items-center mb-2 pb-4 border-b themed-border">
+            <p class="themed-subtle-text">Player: <span id="player-name" class="font-bold themed-text"></span></p>
             <button id="reset-button" class="text-sm bg-red-600 hover:bg-red-700 text-white font-semibold py-1 px-3 rounded-lg transition-colors duration-300">Reset Progress</button>
         </div>
-        <!-- Story text will be displayed here -->
-        <div id="story-text" class="text-lg md:text-xl leading-relaxed mb-6"></div>
         
-        <!-- Choices will be displayed here -->
+        <!-- Inventory will be displayed here when items are collected -->
+        <div id="inventory-container" class="mb-4 p-3 rounded-lg hidden themed-input">
+            <h3 class="font-bold mb-2 themed-text text-sm">Inventory</h3>
+            <ul id="inventory-list" class="text-sm space-y-1 themed-subtle-text list-disc list-inside">
+                <!-- Items dynamically added by JavaScript -->
+            </ul>
+        </div>
+
+        <!-- Story text is displayed here -->
+        <div id="story-text" class="text-lg md:text-xl leading-relaxed mb-6 themed-text"></div>
+        
+        <!-- Choices are displayed here -->
         <div id="choices-container" class="grid grid-cols-1 gap-4"></div>
     </div>
 
     <script>
-        // --- STORY DATA ---
-        const story = [
-            // Morning Routine
-            { id: 1, text: 'You open your eyes. The dream is already gone, just a vague feeling of unease remains. The alarm blares.', choices: [{ text: "Hit snooze", nextId: 11 }, { text: "Get up and stretch", nextId: 12 }, { text: "Grab your phone first", nextId: 13 }, { text: "Take a wake and bake dab", nextId: 60 }] },
-            { id: 11, text: "You drift off again. Suddenly it’s 7:30. You’re late.", choices: [{ text: "Rush out of bed, forget shower/breakfast", nextId: 21 }, { text: "Say screw it, call in sick", nextId: 22 }] },
-            { id: 12, text: "Your muscles pop. You feel awake. Time for the bathroom.", choices: [{ text: "Hot shower", nextId: 23 }, { text: "Cold shower", nextId: 24 }, { text: "Skip shower, brush teeth only", nextId: 25 }] },
-            { id: 13, text: 'You scroll through your phone. A weirdly targeted ad appears: "Tired of your boring life? Try Tactical Soap. Washes away the grime AND the regret."', choices: [{ text: "Click the ad", nextId: 26 }, { text: "Ignore it, head to bathroom", nextId: 27 }] },
+        document.addEventListener('DOMContentLoaded', () => {
             
-            // Late / Sick Path
-            { id: 21, text: "You scramble around, a whirlwind of panicked energy.", choices: [{ text: "Throw on random clothes quickly", nextId: 31 }, { text: "Leave house in pajamas", nextId: 32 }] },
-            { id: 22, text: "You grab your phone and call in sick, putting on your best 'dying frog' voice. The day is yours.", choices: [{ text: "Actually stay home all day", nextId: 33 }, { text: "Decide to explore the city instead", nextId: 34 }, { text: "Smoke weed and see where the day goes", nextId: 70 }, { text: "Check your texts", nextId: 300 }] },
+            // --- DOM ELEMENTS ---
+            const elements = {
+                colorSelectionScreen: document.getElementById('color-selection-screen'),
+                welcomeScreen: document.getElementById('welcome-screen'),
+                gameContainer: document.getElementById('game-container'),
+                usernameInput: document.getElementById('username-input'),
+                startButton: document.getElementById('start-button'),
+                resetButton: document.getElementById('reset-button'),
+                storyTextElement: document.getElementById('story-text'),
+                choicesContainerElement: document.getElementById('choices-container'),
+                playerNameElement: document.getElementById('player-name'),
+                genderSelectionContainer: document.getElementById('gender-selection'),
+                maleButton: document.getElementById('male-button'),
+                femaleButton: document.getElementById('female-button'),
+                inventoryContainer: document.getElementById('inventory-container'),
+                inventoryList: document.getElementById('inventory-list')
+            };
 
-            // Shower Path
-            { id: 23, text: "The hot water is a blessing, melting away the last of your sleepiness. You feel refreshed and relaxed.", choices: [{ text: "Get dressed", nextId: 89 }] },
-            { id: 24, text: "The cold water is a shock to the system. You gasp, but emerge feeling electric and wide awake, if a little cranky.", choices: [{ text: "Get dressed", nextId: 89 }] },
-            { id: 25, text: "You give your teeth a thorough brushing, but decide a shower is a luxury you don't have time for. You smell a little, but oh well.", choices: [{ text: "Get dressed", nextId: 89 }] },
-
-            // Ad Path
-            { id: 26, text: 'The ad takes you to a GeoCities-looking website for "Tactical Soap." It\'s full of testimonials from guys named Chad and Brad. At the bottom, a tiny link says: "For TRUE believers ONLY."', choices: [{ text: "Click the 'TRUE believers' link", nextId: 261 }, { text: "Close the tab, this is stupid", nextId: 27 }] },
-            { id: 261, text: "The link takes you to a forum about cryptid sightings in your area. Apparently, someone saw a 'Wobble-Gonk' near the old mill. You've wasted five minutes you'll never get back.", choices: [{ text: "Head to the bathroom", nextId: 27 }] },
-            { id: 27, text: "It's just an ad. You toss your phone on the bed and head to the bathroom.", choices: [{ text: "Hot shower", nextId: 23 }, { text: "Cold shower", nextId: 24 }, { text: "Skip shower", nextId: 25 }] },
-
-            // Outfit/Breakfast Path
-            { id: 31, text: "You grab a shirt and pants from the floor. They might be clean. They might not. No time to check.", choices: [{ text: "Breakfast (Eggs/Toast)", nextId: 41 }, { text: "Breakfast (Cereal)", nextId: 42 }, { text: "Coffee Only", nextId: 43 }, { text: "Skip Breakfast", nextId: 44 }] },
-            { id: 32, text: "You're already late, what's a dress code violation on top of it? You walk out the door in your flannel pajama pants.", choices: [{ text: "Breakfast (Eggs/Toast)", nextId: 41 }, { text: "Breakfast (Cereal)", nextId: 42 }, { text: "Coffee Only", nextId: 43 }, { text: "Skip Breakfast", nextId: 44 }] },
-            { id: 35, text: "You pull on a comfortable pair of jeans and a hoodie. Casual Friday, here you come.", setState: { wearsHawaiianShirt: false }, choices: [{ text: "Finish getting ready", nextId: 90 }] },
-            { id: 36, text: "You dress in your work uniform: slacks and a button-up. Professional, if a bit boring.", setState: { wearsHawaiianShirt: false }, choices: [{ text: "Finish getting ready", nextId: 90 }] },
-            { id: 37, text: "You decide today needs a splash of color. The Hawaiian shirt it is. Let the world know you're here for a good time.", setState: { wearsHawaiianShirt: true }, choices: [{ text: "Finish getting ready", nextId: 90 }] },
-            { id: 38, text: "Why bother changing? You're already comfortable. You decide to embrace the pajama lifestyle.", setState: { wearsHawaiianShirt: false }, choices: [{ text: "Finish getting ready", nextId: 90 }] },
+            // --- THEME DATA ---
+            const themes = {
+                default: { bg: 'bg-slate-900', container: 'bg-slate-800', text: 'text-slate-200', subtleText: 'text-slate-400', primaryBtn: 'bg-indigo-600 hover:bg-indigo-700', secondaryBtn: 'bg-slate-700 hover:bg-indigo-600', input: 'bg-slate-700', border: 'border-slate-700' },
+                green: { bg: 'bg-green-900', container: 'bg-green-800', text: 'text-white', subtleText: 'text-green-200', primaryBtn: 'bg-lime-500 hover:bg-lime-600', secondaryBtn: 'bg-green-700 hover:bg-lime-500', input: 'bg-green-700', border: 'border-green-700' },
+                blue: { bg: 'bg-blue-900', container: 'bg-blue-800', text: 'text-white', subtleText: 'text-blue-200', primaryBtn: 'bg-sky-500 hover:bg-sky-600', secondaryBtn: 'bg-blue-700 hover:bg-sky-500', input: 'bg-blue-700', border: 'border-blue-700' },
+                purple: { bg: 'bg-purple-900', container: 'bg-purple-800', text: 'text-white', subtleText: 'text-purple-200', primaryBtn: 'bg-fuchsia-500 hover:bg-fuchsia-600', secondaryBtn: 'bg-purple-700 hover:bg-fuchsia-500', input: 'bg-purple-700', border: 'border-purple-700' },
+                pink: { bg: 'bg-pink-100', container: 'bg-white', text: 'text-pink-800', subtleText: 'text-pink-500', primaryBtn: 'bg-pink-500 hover:bg-pink-600', secondaryBtn: 'bg-pink-100 hover:bg-pink-200 text-pink-700', input: 'bg-pink-50 text-pink-900', border: 'border-pink-300' },
+                gray: { bg: 'bg-gray-200', container: 'bg-white', text: 'text-gray-900', subtleText: 'text-gray-600', primaryBtn: 'bg-gray-800 hover:bg-gray-900', secondaryBtn: 'bg-gray-100 hover:bg-gray-300 text-gray-800', input: 'bg-gray-100 text-gray-800', border: 'border-gray-300' }
+            };
             
-            // Homebody / City Paths
-            { id: 33, text: "You spend the day on the couch, binging shows and ordering delivery. You feel a bit like a slob, but a comfortable, happy slob. THE END.", choices: [{ text: "Play Again", nextId: 1 }] },
-            { id: 34, text: "You wander the city, a tourist in your own town. You visit a cafe, a park, and a mall, feeling a sense of freedom you haven't felt in years. The day is yours and yours alone. THE END.", choices: [{ text: "Play Again", nextId: 1 }] },
-            
-            // Commute Path
-            { id: 41, text: "You quickly whip up some eggs and toast. A solid breakfast.", choices: [{ text: "Commute (Drive)", nextId: 51 }, { text: "Commute (Bus)", nextId: 52 }, { text: "Smoke a bowl before you go", nextId: 80 }, { text: "Skip Work Last Minute", nextId: 54 }] },
-            { id: 42, text: "You pour a bowl of cereal. It's fast and easy.", choices: [{ text: "Commute (Drive)", nextId: 51 }, { text: "Commute (Bus)", nextId: 52 }, { text: "Smoke a bowl before you go", nextId: 80 }, { text: "Skip Work Last Minute", nextId: 54 }] },
-            { id: 43, text: "No time for food. You brew a strong cup of coffee and drink it black.", choices: [{ text: "Commute (Drive)", nextId: 51 }, { text: "Commute (Bus)", nextId: 52 }, { text: "Smoke a bowl before you go", nextId: 80 }, { text: "Skip Work Last Minute", nextId: 54 }] },
-            { id: 44, text: "Your stomach rumbles, but you ignore it. Time is money.", choices: [{ text: "Commute (Drive)", nextId: 51 }, { text: "Commute (Bus)", nextId: 52 }, { text: "Smoke a bowl before you go", nextId: 80 }, { text: "Skip Work Last Minute", nextId: 54 }] },
-
-            // Branching to Main Storylines
-            { id: 51, text: "You get in your old, trusty truck and head to your job at the bank. The gas gauge has been broken for weeks, but you have a pretty good feel for it. Usually. Halfway there, the engine sputters, coughs, and then goes silent. You coast to the shoulder. You're out of gas.", choices: [{ text: "Call for help", nextId: 401 }, { text: "Start walking to the nearest gas station", nextId: 402 }, { text: "Call an Uber to work and deal with this later", nextId: 403 }, { text: "Just wait and see what happens", nextId: 405 }] },
-            { id: 52, text: "You catch the bus to work. As you ride, you see someone drop a folded piece of paper. You pick it up. It's a crude drawing of a UFO abducting a cow. You chuckle and put it in your pocket.", choices: [{ text: "Arrive at the bank", nextId: 101 }] },
-            { id: 53, text: "You decide to bike to work. The fresh air is nice, but a car cuts you off and you narrowly avoid a nasty accident. Your heart is pounding as you arrive at the bank.", choices: [{ text: "Continue to work", nextId: 101 }] },
-            { id: 54, text: "You know what? Screw it. You're not going to work. The city awaits.", choices: [{ text: "Begin your adventure", nextId: 34 }] },
-
-            // --- Weed Paths ---
-            { id: 60, text: "You grab your rig from the nightstand. The torch roars to life. You take a fat dab and hold it in, coughing until you see stars. The world slows down. Everything is hazy and kinda funny now.", choices: [{ text: "Get up and stretch (slowly)", nextId: 61 }, { text: "Grab your phone and zone out", nextId: 13 }] },
-            { id: 61, text: "You slowly rise, your body feeling both heavy and light. A good stretch feels incredible. Time to get ready, maybe.", choices: [{ text: "Hot shower", nextId: 62 }, { text: "Cold shower", nextId: 63 }, { text: "Just brush teeth", nextId: 64 }] },
-            { id: 62, text: "The hot water feels amazing. You space out for what feels like an hour, just enjoying the steam.", choices: [{ text: "Pick outfit (Jeans/Hoodie)", nextId: 65 }, { text: "Pick outfit (Slacks/Business)", nextId: 36 }] },
-            { id: 63, text: "The cold water is a sensory explosion. Your brain short-circuits for a second, then reboots with crystal clarity. A bold choice.", choices: [{ text: "Pick outfit (Jeans/Hoodie)", nextId: 65 }, { text: "Pick outfit (Slacks/Business)", nextId: 36 }] },
-            { id: 64, text: "Showering seems like a lot of work. You brush your teeth meticulously instead, focusing intensely on each tooth.", choices: [{ text: "Pick outfit (Jeans/Hoodie)", nextId: 65 }, { text: "Pick outfit (Slacks/Business)", nextId: 36 }] },
-            { id: 65, text: "You pull on a comfortable pair of jeans and a hoodie. As you put your hands in the pockets, you feel something cold and metallic. It's a small, ornate key you've never seen before. Weird. You shrug and pocket it, feeling a strange sense of destiny.", setState: { hasKey: true }, choices: [{ text: "Get some breakfast", nextId: 95 }] },
-
-            { id: 70, text: "You pack a fat bowl. The sweet smoke fills your lungs. An hour later, you're staring at the ceiling, contemplating the mysteries of the universe and whether you have any chips in the house.", choices: [{ text: "Watch TV", nextId: 71 }, { text: "Go on a snack quest to the kitchen", nextId: 72 }, { text: "Mindlessly scroll Facebook Marketplace", nextId: 73 }] },
-            { id: 71, text: "You flip on the TV. What's the plan?", choices: [{ text: "See what's on Adult Swim", nextId: 711 }, { text: "Watch daytime court shows and feel superior", nextId: 712 }] },
-            { id: 711, text: "Jackpot! A marathon of 'Delocated' is on. Jon is trying to get a new 'krime' photo taken. You grab your snacks, sink into the couch, and forget the outside world exists. A perfect day. THE END.", choices: [{ text: "Play Again", nextId: 1 }] },
-            { id: 712, text: "You get sucked into hours of petty disputes and questionable rulings. You yell at the TV a lot. It's surprisingly cathartic. THE END.", choices: [{ text: "Play Again", nextId: 1 }] },
-            { id: 72, text: "You embark on a perilous journey to the kitchen. You construct a magnificent sandwich out of leftovers and eat it over the sink like an animal. It's the best thing you've ever tasted. THE END.", choices: [{ text: "Play Again", nextId: 1 }] },
-            { id: 73, text: "You open Facebook Marketplace. Amidst the broken furniture and MLM scams, something beautiful catches your eye: a 1995 Z28 Camaro, T-tops, cherry red. The price is... suspiciously low.", choices: [{ text: "Message the seller: 'is this still available?'", nextId: 201 }, { text: "Assume it's a scam and look for weird taxidermy instead", nextId: 70 }] },
-            { id: 80, text: "You take a quick rip from your bong to 'prepare' for the day. You feel calm, maybe too calm. Time to head to work, hopefully no one notices your eyes are as red as the devil's... well, you know.", choices: [{ text: "Commute (Drive, probably a bad idea)", nextId: 511 }, { text: "Commute (Bus, the safer choice)", nextId: 52 }] },
-            
-            { id: 89, text: "Time to pick an outfit for the day.", choices: [{ text: "Pick outfit (Jeans/Hoodie)", nextId: 35 }, { text: "Pick outfit (Slacks/Business)", nextId: 36 }, { text: "Pick outfit (Hawaiian Shirt)", nextId: 37 }, { text: "Stay in Pajamas", nextId: 38 }] },
-            // Glock Path
-            { id: 90, text: "You're all dressed. One last look in the mirror before you head out. Any final preparations?", choices: [{ text: "Strap on your shoulder harness and gold 9mm Glock.", nextId: 91 }, { text: "Nah, let's just get some breakfast.", nextId: 95 }] },
-            { id: 91, text: "You open a hidden compartment in your closet and pull out your custom gold 9mm Glock. You strap on the leather shoulder harness. It feels heavy and familiar under your jacket. You're ready for anything.", setState: { hasGlock: true }, choices: [{ text: "Now for some breakfast.", nextId: 95 }] },
-            { id: 95, text: "Time for the most important meal of the day. What's on the menu?", choices: [{ text: "Breakfast (Eggs/Toast)", nextId: 41 }, { text: "Breakfast (Cereal)", nextId: 42 }, { text: "Coffee Only", nextId: 43 }, { text: "Skip Breakfast", nextId: 44 }] },
-
-
-            // High Commute Path
-            { id: 511, text: "You get in your car. The music sounds incredible. You're driving 15 mph under the speed limit and are intensely focused on the lines on the road. You make it to the bank, but you're mentally exhausted from the effort.", choices: [{ text: "Stumble into work (feeling fuzzy)", nextId: 1011 }] },
-            { id: 1011, text: "You stumble into the bank, your senses heightened. The Lysol smell is overpowering. Maya waves at you. 'Whoa, sunshine, you look... relaxed.' Mr. Johns just squints at you from his office. 'Are you high on my clock? Get out. You're fired.' Well, that was fast. THE END.", choices: [{ text: "Play Again", nextId: 1 }] },
-
-            // Bank Teller Path
-            { id: 101, text: "Centerville Savings Bank stands tall in its beige blandness. The lobby smells faintly of stale coffee and Lysol. You swipe in and step behind the counter. Maya, your coworker, waves at you. 'Morning sunshine!' Mr. Johns, your boss, shuffles past. 'Clock in already. And no slacking.'", choices: [{ text: "Chat with Maya", nextId: 102 }, { text: "Go straight to work", nextId: 103 }, { text: "Sneak to breakroom for a donut first", nextId: 104 }] },
-            { id: 102, text: "You and Maya gossip for a minute about the latest office drama. She says, 'Hey, if we get a lunch break today, we should try that new taco place. I hear it's great.'", choices: [{ text: "Agree to go with Maya later", nextId: 105 }, { text: "Politely decline — stay focused on work", nextId: 106 }] },
-            { id: 103, text: "You take your place at the teller window. The line starts forming.", choices: [{ text: "Serve first customer: Flirty", nextId: 107 }, { text: "Serve first customer: Suspicious Check", nextId: 108 }, { text: "Serve first customer: Confused Teen", nextId: 109 }] },
-            { id: 104, text: "You sneak a powdered donut. Sweet victory — but Mr. Johns catches you. 'You’re already late and now you’re eating on my time?'", choices: [{ text: "Apologize sincerely", nextId: 110 }, { text: "Sass him back", nextId: 111 }, { text: "Pretend to choke dramatically to distract him", nextId: 112 }] },
-            { id: 105, text: "Maya smiles. 'Awesome! Hopefully Mr. Johns doesn't chain us to our desks.' You both share a laugh about your grumpy boss.", choices: [{ text: "Continue your work day...", nextId: 103 }] },
-            { id: 106, text: "She shrugs. 'Suit yourself. Maybe next time.'", choices: [{ text: "Continue your work day...", nextId: 103 }] },
-            { id: 107, text: "A sharply dressed customer slides up. 'Well hello. You look too good to be stuck in this bank. How about dinner instead of counting bills tonight?'", choices: [{ text: "Flirt back", nextId: 113 }, { text: "Stay professional", nextId: 114 }] },
-            { id: 108, text: "A sweaty man hands you a check that looks… off. The signature doesn’t match. The amount is huge.", choices: [{ text: "Report it immediately", nextId: 116 }, { text: "Cash it anyway — play dumb", nextId: 117 }, { text: "Stall and ask questions", nextId: 118 }] },
-            { id: 109, text: "A teenager who looks like they've never been in a bank before comes up. 'Uh, yeah, can I get like... a loan? For V-Bucks?'", choices: [{ text: "Explain how loans work patiently", nextId: 119 }, { text: "Laugh in their face", nextId: 120 }] },
-            { id: 110, text: "Mr. Johns sighs. 'Just don’t let it happen again.'", choices: [{ text: "Get to work", nextId: 103 }] },
-            { id: 111, text: "'Maybe if you bought better donuts I’d be faster,' you joke. Mr. Johns glares. 'Last warning.'", choices: [{ text: "Get to work", nextId: 103 }] },
-            { id: 112, text: "You clutch your throat dramatically. Maya rushes in pretending to save you. Mr. Johns rolls his eyes. 'Idiots.'", choices: [{ text: "Get to work", nextId: 103 }] },
-            { id: 113, text: "The customer smiles and leaves you their number. You politely set it aside, uninterested. You're in a happy relationship.", choices: [{ text: "Continue working...", nextId: 122 }] },
-            { id: 114, text: "You process the transaction with perfect efficiency. The customer looks disappointed but leaves.", choices: [{ text: "Continue working...", nextId: 122 }] },
-            { id: 116, text: "You discreetly signal for security. They quietly escort the man away. Mr. Johns actually nods approvingly. 'Good work.'", choices: [{ text: "Continue working...", nextId: 122 }] },
-            { id: 117, text: "You slide him the cash. His grin is unsettling. Later, Mr. Johns calls you into his office. 'We need to talk.' You've been fired for negligence. THE END.", choices: [{ text: "Play Again", nextId: 1 }] },
-            { id: 118, text: "You start asking questions. The man sweats more, then bolts out the door. Chaos erupts.", choices: [{ text: "Continue working...", nextId: 122 }] },
-            { id: 119, text: "You patiently explain what a loan is for. They seem confused but thank you. You feel like you've done a good deed.", choices: [{ text: "Continue working...", nextId: 122 }] },
-            { id: 120, text: "You can't help but laugh. The kid gets embarrassed and runs out. Mr. Johns glares at you for scaring off a customer.", choices: [{ text: "Continue working...", nextId: 122 }] },
-            { id: 122, text: "The line moves. Suddenly, the front doors burst open and a flood of masked henchmen pour in. There must be fifty of them, all armed and shouting. It's not a robbery; it's an invasion. People scream. Mr. Johns immediately hides under his desk.", choices: [{ text: "Play Hero: Unleash hell", nextId: 500 }, { text: "Hide and Pray", nextId: 124 }, { text: "Cooperate and secretly help robbers", nextId: 125 }, { text: "Slip a note to Maya with escape plan", nextId: 126 }, { text: "Just get up and walk out.", nextId: 127 }] },
-            { id: 123, text: "You tackle the closest robber. You manage to knock them off balance, but their partner hits you with the butt of their gun. You wake up in a hospital, a local hero with a massive headache. THE END.", choices: [{ text: "Play Again", nextId: 1 }] },
-            { id: 124, text: "You dive under your desk, heart pounding. When you emerge, the robbers are gone. You're safe, but you feel the sting of shame. THE END.", choices: [{ text: "Play Again", nextId: 1 }] },
-            { id: 125, text: "You slide an extra stack of bills to the robbers while no one is looking. The leader gives you a subtle nod. A few days later, you get a mysterious package with your cut, and instructions for your next job. Your life of crime has begun. THE END.", choices: [{ text: "Play Again", nextId: 1 }] },
-            { id: 126, text: "You scribble 'Back exit now!' and pass it to Maya. She nods, pointing to herself and then the door. You both take the opportunity to slip out during the chaos, going your separate ways once you're safely down the street. You escaped, but you probably can't go back to that job. THE END.", choices: [{ text: "Play Again", nextId: 1 }] },
-            { id: 127, text: "You stand up slowly. You don't run, you don't panic. You just... walk. You walk past the henchmen, towards the door. They are so taken aback by your sheer, inexplicable confidence that they just stare, mouths agape, as you push the door open and leave. You get halfway down the block before you hear the sirens. Not your problem. THE END.", choices: [{ text: "Play Again", nextId: 1 }] },
-            { id: 128, text: "You walk calmly towards the man who seems to be in charge. He's yelling at a hostage when he sees you. He's also wearing a vibrant shirt with parrots and palm trees. 'Hey man,' you say, pointing from your chest to his. 'We got the same shirt on. And I know I wouldn't rob a bank, ya know what I'm sayin'?'", choices: [{ text: "Wait for his reaction.", nextId: 129 }] },
-            { id: 129, text: "The robber leader looks down at his shirt, then at yours. A slow grin spreads across his face. 'Yeah... you know what? You're right.' He lowers his weapon and addresses his crew. 'Alright boys, pack it up, we're leaving! This one's got style.' He gives you a nod. 'You're a heroic individual,' he says as they file out of the bank, leaving everyone stunned. You single-handedly stopped a robbery with fashion. THE END.", choices: [{ text: "Play Again", nextId: 1 }] },
-            
-            // Camaro Quest
-            { id: 201, text: "A reply comes back almost instantly: 'yo it is. cash only no test drives i know what i got. u want it or not? address is 123 sketchy lane out by the old factory.'", choices: [{ text: "Agree to go check it out", nextId: 202 }, { text: "'No test drive? No thanks.'", nextId: 203 }] },
-            { id: 202, text: "You decide to risk it. You end up in a tense cash exchange and drive off in a rumbling beast that smells like cigarettes and freedom. It breaks down two miles later. But for a moment, you were king. THE END.", choices: [{ text: "Play Again", nextId: 1 }] },
-            { id: 203, text: "You're not an idiot. You block the seller and go back to watching TV. You may not have a Camaro, but you also didn't get robbed. Win-win. THE END.", choices: [{ text: "Play Again", nextId: 1 }] },
-
-            // Out of Gas Path
-            { 
-                id: 401, 
-                text: "You call your girlfriend, feeling a bit embarrassed. 'Hey... so, funny story...' She laughs but agrees to bring you a can of gas. You wait 45 minutes, but she arrives like a queen, saving the day. You get the truck running again, but you are now extremely late for work.",
-                textFemale: "You call your boyfriend, feeling a bit embarrassed. 'Hey... so, funny story...' He laughs but agrees to bring you a can of gas. You wait 45 minutes, but he arrives like a king, saving the day. You get the truck running again, but you are now extremely late for work.",
-                choices: [{ text: "Finally arrive at the bank", nextId: 404 }] 
-            },
-            { id: 402, text: "You check your map. There's a gas station about a mile up the road. You lock up the truck and start hoofing it. It's hot, and by the time you buy a gas can, fill it, and walk back, you're sweaty, exhausted, and over an hour late.", choices: [{ text: "Finally arrive at the bank, looking disheveled", nextId: 404 }] },
-            { id: 403, text: "You decide the truck is a problem for 'Future You'. You call an Uber and get to the bank only about 20 minutes late. You'll have to figure out the truck situation after your shift, which is a stressful thought looming over you all day.", choices: [{ text: "Clock in at the bank, slightly late", nextId: 101 }] },
-            { id: 404, text: "You walk into the bank, trying to look composed. Mr. Johns is standing by the door with his arms crossed, tapping his foot. 'Glad you could join us,' he says, his voice dripping with sarcasm. 'My office. Now.' You sit down, and he doesn't mince words. You're fired. THE END.", choices: [{ text: "Play Again", nextId: 1 }] },
-            { id: 405, text: "You put your flashers on, lean your seat back, and wait. Maybe someone will stop. It's a long shot, but it's better than walking.", choices: [{ text: "Wait for an hour", nextId: 406 }, { text: "Smoke a joint while you wait", nextId: 700 }] },
-            { id: 406, text: "An hour passes. Cars have been whizzing by without a second glance. You're starting to lose hope. Your phone battery is draining. What now?", choices: [{ text: "Keep waiting. Patience is a virtue.", nextId: 407 }, { text: "Give up and call for help", nextId: 401 }] },
-            { id: 407, text: "Just as you're about to give up, a beat-up van painted with flames pulls over. A man in a purple satin jacket that says 'GAS GUYS' on the back gets out. 'Look like you're in a pickle, friend!' he says with a grin. 'First time's free!' He fills your tank with a couple of gallons, gives you a wink, and drives off. You make it to work just in the nick of time. What a weirdo. THE END.", choices: [{ text: "Play Again", nextId: 1 }] },
-            
-            // Bank Robbery Action Scene
-            { id: 500, text: "Something inside you clicks. The noise of the screaming fades into a low hum. Your training, from a life you'd rather forget, takes over. Time seems to slow down. The first henchman, overconfident, charges at you. What's your opening move?", choices: [{ text: "Disarm him and use his own weapon", nextId: 501 }, { text: "Use the velvet rope stand as a makeshift staff", nextId: 502 }, { text: "Grab the 'Next Teller Please' sign as an improvised shield", nextId: 503 }] },
-            { id: 501, text: "You sidestep his clumsy charge, grabbing his wrist and twisting with brutal efficiency. The gun clatters to the floor. With a swift elbow to his temple, he crumples. You now have a pistol. You shoot another henchman who is turning towards you. He clutches his stomach and falls to the ground.", choices: [{ text: "Deal with the wounded man", nextId: 525 }] },
-            { id: 502, text: "You rip the heavy brass stand from its base. It's perfectly balanced. You spin it, deflecting a wild swing from one goon and cracking another across the jaw. They both go down hard. A wave of five more is now rushing you from the entrance.", choices: [{ text: "Sweep their legs out from under them in a wide arc", nextId: 506 }, { text: "Use the stand like a javelin and throw it into the group", nextId: 507 }] },
-            { id: 503, text: "You snatch the heavy sign just as a goon throws a punch. His knuckles crunch against solid metal. He howls in pain. You ram the edge of the sign into his gut, then spin and slam it into the face of another attacker. The lobby is descending into chaos.", choices: [{ text: "Jump over the counter to get some space", nextId: 509 }] },
-            { id: 504, text: "You raise the pistol. Pop. Pop. Two clean headshots. They drop before they even know what's happening. You've fought through the first wave.", choices: [{ text: "Continue the fight", nextId: 510 }] },
-            { id: 505, text: "You aim low. Two shots, two shattered kneecaps. Their screams of agony are a powerful deterrent to the others. You've fought through the first wave.", choices: [{ text: "Continue the fight", nextId: 510 }] },
-            { id: 506, text: "You swing the heavy stand low and hard. All five henchmen are upended, a comical tangle of limbs on the polished floor. Before they can recover, you bring the stand down on each of them, methodically and efficiently.", choices: [{ text: "Continue the fight", nextId: 510 }] },
-            { id: 507, text: "With a mighty heave, you launch the brass pole into the charging group. It hits one in the chest, sending him flying backwards into two others. A perfect strike. You've fought through the first wave.", choices: [{ text: "Continue the fight", nextId: 510 }] },
-            { id: 509, text: "You vault over the teller counter in a single, fluid motion. The henchmen trying to follow you are bottlenecked, creating a perfect opportunity.", choices: [{ text: "Kick them back as they try to climb over", nextId: 510 }] },
-            { id: 510, text: "You've taken down at least twenty of them. The floor is littered with unconscious bodies. The remaining thirty look hesitant, fear creeping into their eyes. You are a blur of motion, a ballet of violence. They regroup for a coordinated attack.", choices: [{ text: "Grab a fallen robber's assault rifle and go full Rambo", nextId: 511 }, { text: "Use the chaos to slide a heavy marble-topped table, creating a barrier", nextId: 512 }, { text: "Shoot the giant fish tank in the lobby", nextId: 513 }, { text: "Cut the ropes on the giant chandelier", nextId: 515 }] },
-            { id: 511, text: "You scoop up a fully automatic rifle. 'Come get some,' you mutter under your breath. You hold down the trigger, an unstoppable force of nature mowing down henchmen as they charge. The sound is deafening.", choices: [{ text: "Finish this", nextId: 520 }] },
-            { id: 512, text: "You kick the legs out from under a heavy table, sending it sliding across the floor. It crashes into the advancing group, taking out a half-dozen men and creating a chokepoint. They are disorganized and vulnerable.", choices: [{ text: "Leap over the table and attack while they're confused", nextId: 520 }] },
-            { id: 513, text: "You spot the massive, decorative fish tank against the far wall. Without hesitating, you fire a single, well-placed shot into the glass.", choices: [{ text: "Watch the chaos unfold", nextId: 514 }] },
-            { id: 514, text: "The glass spiderswebs for a second before exploding outwards in a torrent of water, exotic fish, and gravel. The floor is instantly flooded. The charging henchmen slip and slide, crashing into each other like bowling pins. Their coordinated attack is a complete failure.", choices: [{ text: "Mop up the slippery survivors", nextId: 520 }] },
-            { id: 515, text: "Your eyes drift upwards to the enormous, ornate chandelier hanging over the center of the lobby. A thick rope holds it in place. You throw a captured knife with pinpoint accuracy, severing the rope.", choices: [{ text: "Timber!", nextId: 516 }] },
-            { id: 516, text: "The massive fixture doesn't fall straight down. It swings like a wrecking ball, scything through the ranks of the henchmen. The sound of crunching bones and shattering crystal is almost musical. It takes out a dozen men in one glorious pass.", choices: [{ text: "Deal with the terrified remainder", nextId: 520 }] },
-            { id: 520, text: "One by one, you dismantle the remaining henchmen with a flurry of punches, kicks, and throws. It's a whirlwind of controlled chaos. Finally, it's down to the last two. They look at each other, then at the mountain of their fallen comrades, then at you. They drop their weapons and run screaming out the door.", choices: [{ text: "Brush the dust off your shoulders", nextId: 521 }] },
-            { id: 521, text: "You stand calmly amidst the wreckage. Not a single scratch on you. Sirens wail in the distance. A young bystander, recording on his phone, whispers to the person next to him: 'Dude... what the fuck was that.' Mr. Johns peeks out from under his desk, his jaw on the floor.", choices: [{ text: "Walk out before the cops arrive", nextId: 522 }, { text: "Wait for the police and give a statement", nextId: 523 }] },
-            { id: 522, text: "You calmly walk out the front door, past the fleeing henchmen, and disappear into the crowd just as the first police cars screech to a halt. You're a ghost, a legend. Your work here is done. THE END.", choices: [{ text: "Play Again", nextId: 1 }] },
-            { id: 523, text: "The police are stunned. They try to take your statement, but you just give them a cool one-liner before heading home. You go home, chill with your cat and eat a PBJ. THE END.", choices: [{ text: "Play Again", nextId: 1 }] },
-            { id: 525, text: "The henchman you shot is crawling on the floor. 'Oh god, I need a doctor,' he groans, clutching his side.", choices: [{ text: "Shoot him again. 'Now you need two doctors.'", nextId: 526 }, { text: "Ignore him and focus on the next threat.", nextId: 510 }] },
-            { id: 526, text: "You deliver the ice-cold line as you fire another shot, ending his complaints. The other henchmen who witnessed it are visibly terrified. Your reputation is being forged in real-time.", choices: [{ text: "Continue the fight", nextId: 510 }] },
-
-            // Girlfriend Dinner Path
-            { 
-                id: 300, 
-                text: "Your phone buzzes. It's your girlfriend. The text reads: 'Hey! Since you have the day off, wanna do dinner tonight? I'm craving Maggiano's, Cheesecake Factory, or that new gluten-free hot pot place.'", 
-                textFemale: "Your phone buzzes. It's your boyfriend. The text reads: 'Hey! Since you have the day off, wanna do dinner tonight? I'm craving Maggiano's, Cheesecake Factory, or that new gluten-free hot pot place.'", 
-                choices: [
-                    { text: "Maggiano's sounds great.", nextId: 301 }, 
-                    { text: "Let's do The Cheesecake Factory.", nextId: 321 }, 
-                    { text: "I'm down for gluten-free hot pot.", nextId: 311 },
-                    { text: "Maggiano's, but let's smoke first.", nextId: 601 },
-                    { text: "Cheesecake Factory, but let's smoke first.", nextId: 602 },
-                    { text: "Hot Pot, but let's smoke first.", nextId: 603 }
-                ] 
-            },
-            { 
-                id: 301, 
-                text: "You text back: 'Maggiano's for sure.' She replies instantly: 'Yesss! Can we go to the mall first? I wanna look for a new outfit'", 
-                textFemale: "You text back: 'Maggiano's for sure.' He replies instantly: 'Awesome! Can we go to the mall first? I wanna check out the electronics store.'", 
-                choices: [{ text: "Sure, let's go to the mall.", nextId: 302 }, { text: "'I'd rather just meet for dinner.'", nextId: 306 }] 
-            },
-            { 
-                id: 302, 
-                text: "You arrive at the mall. It's a sensory overload of Cinnabon smells and pop music. Your girlfriend immediately hits a clothing store.", 
-                textFemale: "You arrive at the mall. It's a sensory overload of Cinnabon smells and pop music. Your boyfriend immediately makes a beeline for the electronics store.", 
-                choices: [{ text: "Patiently wait while they shop", nextId: 303 }] 
-            },
-            { 
-                id: 303, 
-                text: "You're both having a great time shopping, and she finds the perfect outfit. On the way out of the store, you pass a jewelry kiosk.", 
-                textFemale: "You're both having a great time shopping, and he finds a new gadget he's been wanting. On the way out of the store, you pass a watch kiosk.", 
-                choices: [{ text: "Buy her the earrings she's admiring", textFemale: "Buy him the watch he's admiring", nextId: 304 }, { text: "Pretend you don't see her looking", textFemale: "Pretend you don't see him looking", nextId: 305 }] 
-            },
-            { 
-                id: 304, 
-                text: "You surprise her by buying the tanzanite earrings she was looking at. She's thrilled and gives you a big kiss. You feel like a boss.", 
-                textFemale: "You surprise him by buying the cool watch he was looking at. He's thrilled and gives you a big kiss. You feel like a boss.", 
-                choices: [{ text: "Now, get a cinnamon bun.", nextId: 305 }] 
-            },
-            { id: 305, text: "The warm, sweet smell of Cinnabon is too powerful to resist. You buy a massive, gooey cinnamon bun. It's like 21 dollars, which is crazy, but what isn't expensive these days. Finally, you head to Maggiano's for dinner.", choices: [{ text: "Head inside for your reservation.", nextId: 900 }] },
-            { 
-                id: 306, 
-                text: "You meet your partner at Maggiano's. The food smells great, and they seem happy to see you, though maybe a little disappointed about skipping the mall. You're led to your table.", 
-                textFemale: "You meet your partner at Maggiano's. The food smells great, and they seem happy to see you, though maybe a little disappointed about skipping the mall. You're led to your table.", 
-                choices: [{ text: "Settle in for dinner.", nextId: 900 }] 
-            },
-            { id: 307, text: "You excuse yourself and walk over. It's two folded twenty-dollar bills. Forty bucks, just lying there. The previous occupants of the table are long gone. What do you do?", choices: [{ text: "Pocket the cash. Finders keepers.", nextId: 308 }, { text: "Give the money to the server.", nextId: 309 }] },
-            { id: 308, text: "You slip the money into your pocket. Later that night, you try to use it to buy gas and the clerk holds it up to the light. 'Sorry pal, this is fake.' The forty dollars was counterfeit. You feel like an idiot. You can do better than this, what is wrong with you. THE END.", choices: [{ text: "Play Again", nextId: 1 }] },
-            { id: 309, text: "You flag down your server and hand them the money, explaining where you found it. Ten minutes later, a man comes to your table. 'My server said you found my money? I can't believe it, thank you!' He peels off a hundred-dollar bill from his money clip. 'Please, take this for your honesty.' You're stunned. The date ends on an amazing high note. THE END.", choices: [{ text: "Play Again", nextId: 1 }] },
-
-            // Hot Pot Branch
-            { 
-                id: 311, 
-                text: "You text back: 'Let's try the hot pot place!' She replies: 'Yay! I'm so excited! I'll meet you there!'", 
-                textFemale: "You text back: 'Let's try the hot pot place!' He replies: 'Heck yeah! I'm so excited! I'll meet you there!'", 
-                choices: [{ text: "Head to the restaurant", nextId: 3115 }] 
-            },
-            { id: 3115, text: "You pull up to the restaurant and find a parking spot. As you're getting out, you notice a small, weathered wooden box tucked into a bush near the entrance.", choices: [{ text: "Ignore it and go inside", nextId: 312 }] },
-            { id: 3116, text: "On a whim, you pull out the strange key. It slides into the lock perfectly. With a soft *click*, the box opens. Inside, nestled on a bed of velvet, are eight heavy, solid gold coins. They look like the gold sovereigns James Bond keeps in his briefcase for emergencies in 'From Russia with Love'. You can't believe your eyes. You quickly pocket them and head inside, your heart racing. This is a game-changer.", setState: { hasKey: false, hasCoins: true }, choices: [{ text: "Go inside, feeling rich", nextId: 312 }] },
-            { id: 312, text: "You arrive at 'The Mala Hot Pot,' the hot pot restaurant. It's very modern and sleek. A robot waiter with a single, glowing red eye glides over to your table. 'BEEP BOOP. GREETINGS. ARE YOU READY TO CONSUME HOT POT?'", choices: [{ text: "Order your food", nextId: 313 }] },
-            { id: 313, text: "The robot returns with the simmering pot of broth and a platter of ingredients. As you grab the items, its optical sensor flashes. 'BEEP. SLOW. DOWN. FATTY.' it whirs mechanically.", choices: [{ text: "Stare at the robot, shocked", nextId: 314 }] },
-            { 
-                id: 314, 
-                text: "A human manager, sweating profusely, rushes over to your table. 'Oh my god, I am so, so sorry. We're still working out the kinks in his personality matrix. Please, your entire meal is on us.' You and your girlfriend try not to laugh as you enjoy a delicious and completely free meal. THE END.", 
-                textFemale: "A human manager, sweating profusely, rushes over to your table. 'Oh my god, I am so, so sorry. We're still working out the kinks in his personality matrix. Please, your entire meal is on us.' You and your boyfriend try not to laugh as you enjoy a delicious and completely free meal. THE END.", 
-                choices: [{ text: "Play Again", nextId: 1 }] 
-            },
-            
-            // Cheesecake Factory Branch
-            { 
-                id: 321, 
-                text: "You suggest The Cheesecake Factory. A classic choice. She texts back: 'Okay! The wait will be insane but I need that brown bread. See you there!'", 
-                textFemale: "You suggest The Cheesecake Factory. A classic choice. He texts back: 'Okay! The wait will be insane but I need that brown bread. See you there!'", 
-                choices: [{ text: "Go to The Cheesecake Factory", nextId: 322 }] 
-            },
-            { id: 322, text: "You arrive and the lobby is, as predicted, a sea of hungry people. You put your name in and wait. An hour later, your buzzer finally goes off. As you approach the host stand, confetti cannons explode and a siren wails.", choices: [{ text: "What is happening?!", nextId: 323 }] },
-            { id: 323, text: "The manager, wearing a party hat, runs up to you holding a giant, novelty-sized slice of cheesecake. 'CONGRATULATIONS! YOU'RE OUR 8,430,227TH CUSTOMER! YOU'VE OFFICIALLY WON A LIFETIME SUPPLY OF CHEESECAKE!'", choices: [{ text: "Accept your destiny", nextId: 325 }] },
-            { id: 324, text: "You are completely stunned. You are escorted to your table like royalty. You eat your meal, but all you can think about is the logistics of receiving a cheesecake, every single week, for the rest of your mortal life. It is both a magnificent blessing and a terrible, dairy-filled curse. THE END.", choices: [{ text: "Play Again", nextId: 1 }] },
-            { id: 325, text: "You are escorted to your table like royalty. As you're looking over the ridiculously large menu, you hear a commotion from a nearby table. A man is gasping for air, clutching his throat, his face turning purple. He's choking!", choices: [{ text: "Spring into action. You know the Heimlich.", nextId: 326 }, { text: "Do nothing. Someone else will probably help.", nextId: 330 }] },
-            { id: 326, text: "You rush over and perform the Heimlich maneuver. After a few forceful thrusts, a piece of calamari shoots out and lands in a nearby potted plant. The man gasps for air, eternally grateful. 'You saved my life!' he says. 'I'm the mayor of Celebration, Florida! How can I ever repay you?'", choices: [{ text: "'No need, I was just glad I could help.'", nextId: 327 }] },
-            { id: 327, text: "'Nonsense!' he insists. He hands you a business card. 'Here's the key to the town, an all-expenses-paid trip for two, and...' he pulls out a wad of cash, '...$2500 for your troubles.' You are floored. Your partner's jaw is on the ground.", choices: [{ text: "Use the cash to go shopping right now.", nextId: 328 }, { text: "Thank him profusely and just enjoy the free cheesecake.", nextId: 329 }] },
-            { id: 328, text: "You and your partner are buzzing with excitement. You decide to hit the mall's high-end watch store. You use the cash to buy your partner a stunning watch they've always wanted. This day has been absolutely surreal, ending with a free dinner, a lifetime of cheesecake, a vacation, and a new piece of luxury jewelry. THE END.", choices: [{ text: "Play Again", nextId: 1 }] },
-            { id: 329, text: "You thank the mayor again. The rest of your meal is punctuated by congratulations from other diners and staff. It's a surreal and wonderful end to an already insane day. THE END.", choices: [{ text: "Play Again", nextId: 1 }] },
-            { id: 330, text: "You hesitate, and a moment later a doctor from another table rushes over and saves the man. The crisis is averted, but your partner gives you a weird look. The rest of the dinner is a little awkward. At least you have the cheesecake. THE END.", choices: [{ text: "Play Again", nextId: 1 }] },
-            
-            // --- Pre-Date Smoking Paths ---
-            { 
-                id: 601, 
-                text: "You text back: 'Maggiano's, but let's hotbox the truck first.' She replies: 'Hell yeah, on my way.' You two meet up and get comfortably hazy. The vibes are good. You look over at her.",
-                textFemale: "You text back: 'Maggiano's, but let's hotbox the truck first.' He replies: 'Hell yeah, on my way.' You two meet up and get comfortably hazy. The vibes are good. You look over at him.",
-                choices: [{ text: "Compliment their outfit", nextId: 611 }, { text: "Just enjoy the music and head out", nextId: 301 }]
-            },
-            { 
-                id: 611, 
-                text: "You tell her how amazing her outfit looks. She blushes and thanks you, the compliment landing perfectly in the hazy atmosphere. You feel a closer connection as you head to the restaurant.",
-                textFemale: "You tell him how amazing his outfit looks. He grins and thanks you, the compliment landing perfectly in the hazy atmosphere. You feel a closer connection as you head to the restaurant.",
-                choices: [{ text: "Head to Maggiano's", nextId: 301 }]
-            },
-            { 
-                id: 602, 
-                text: "You text back: 'Cheesecake Factory, but let's hotbox the truck first.' She replies: 'Hell yeah, on my way.' You two meet up and get comfortably hazy. The vibes are good. You look over at her.",
-                textFemale: "You text back: 'Cheesecake Factory, but let's hotbox the truck first.' He replies: 'Hell yeah, on my way.' You two meet up and get comfortably hazy. The vibes are good. You look over at him.",
-                choices: [{ text: "Compliment their clothes", nextId: 612 }, { text: "Just enjoy the music and head out", nextId: 321 }]
-            },
-            { 
-                id: 612, 
-                text: "You tell her how great her clothes look. She lights up and thanks you, the compliment landing perfectly in the hazy atmosphere. You feel a closer connection as you head to the restaurant.",
-                textFemale: "You tell him how great his clothes look. He lights up and thanks you, the compliment landing perfectly in the hazy atmosphere. You feel a closer connection as you head to the restaurant.",
-                choices: [{ text: "Head to The Cheesecake Factory", nextId: 321 }]
-            },
-            { 
-                id: 603, 
-                text: "You text back: 'Hot Pot, but let's hotbox the truck first.' She replies: 'Hell yeah, on my way.' You two meet up and get comfortably hazy. The vibes are good. You look over at her.",
-                textFemale: "You text back: 'Hot Pot, but let's hotbox the truck first.' He replies: 'Hell yeah, on my way.' You two meet up and get comfortably hazy. The vibes are good. You look over at him.",
-                choices: [{ text: "Compliment their hair", nextId: 613 }, { text: "Just enjoy the music and head out", nextId: 3115 }]
-            },
-            { 
-                id: 613, 
-                text: "You tell her how awesome her hair looks today. She beams and thanks you, the compliment landing perfectly in the hazy atmosphere. You feel a closer connection as you head to the restaurant.",
-                textFemale: "You tell him how awesome his hair looks today. He beams and thanks you, the compliment landing perfectly in the hazy atmosphere. You feel a closer connection as you head to the restaurant.",
-                choices: [{ text: "Head to the Hot Pot place", nextId: 3115 }]
-            },
-
-            // --- Squirrel Encounter Path ---
-            { id: 700, text: "You figure you might as well pass the time. You spark up a joint. As you're taking a puff, a small squirrel scurries down a nearby tree and sits on the guardrail, twitching its nose and staring right at the joint.", choices: [{ text: "Offer the squirrel a hit.", nextId: 701 }, { text: "Ignore it and keep smoking.", nextId: 702 }] },
-            { id: 701, text: "You hold the joint out. 'Want some, little guy?' The squirrel, with no fear, scampers over, takes the joint in its tiny paws, and actually takes a drag. Its eyes go wide. Before you can react, it snatches the rest of the joint and darts back up the tree, leaving you completely stunned.", choices: [{ text: "Well... that happened. Keep waiting.", nextId: 406 }] },
-            { id: 702, text: "You're not sharing your weed with a rodent. You turn away from it. The squirrel chitters in annoyance for a moment before giving up and running off into the woods.", choices: [{ text: "Finish your joint and keep waiting.", nextId: 406 }] },
-
-            // --- Bank Robbery Sneak Attack ---
-            { id: 800, text: "Before the henchmen can fully establish control, you reach under your jacket. The cool, gold-plated slide of your Glock feels like an old friend. You draw the weapon in one smooth motion. The element of surprise is yours.", choices: [{ text: "Take out the leader first.", nextId: 801 }, { text: "Fire a warning shot into the ceiling to create chaos.", nextId: 802 }] },
-            { id: 801, text: "You identify the one giving orders. Pop. Pop. Two shots to the chest. He goes down, and the rest of the henchmen freeze in shock and confusion. Their command structure is broken. Your attack was devastatingly effective.", choices: [{ text: "Mop up the rest", nextId: 520 }] },
-            { id: 802, text: "You fire a shot into the ornate ceiling. Plaster explodes downwards. The deafening blast echoes through the lobby, and the henchmen flinch, momentarily distracted. You've created an opening.", choices: [{ text: "Press the attack", nextId: 500 }] },
-            
-            // Maggiano's Wine Path
-            { id: 900, text: "You're seated at your table at Maggiano's. The atmosphere is cozy and romantic. As you look over the menu, a couple of things catch your attention.", choices: [{ text: "Your partner points out an expensive bottle of wine.", nextId: 901 }, { text: "You spot something on the floor by a vacant table.", nextId: 307 }] },
-            { id: 901, text: "Your partner points to a bottle of Barolo on the wine list. 'I've always wanted to try this one,' they say, their eyes sparkling. You see the price and gulp... it's definitely a special occasion wine.", choices: [{ text: "Order it. 'You only live once.'", nextId: 902 }, { text: "'Maybe we can find a nice Chianti instead?'", nextId: 903 }] },
-            { id: 902, text: "You wave the waiter over and order the Barolo. It's incredible - rich, complex, and absolutely delicious. You both savor every sip, getting a pleasant, warm buzz. The conversation flows effortlessly. It's a perfect meal. 'Wow, I am definitely too buzzed to drive right now,' you say with a happy sigh.", choices: [{ text: "Suggest a walk to Cold Stone for milkshakes.", nextId: 904 }] },
-            { id: 903, text: "You gently steer them towards a more reasonably priced Chianti. It's fine, but you can't help but notice a flicker of disappointment in their eyes. The rest of the dinner is nice, but not quite the magical night it could have been. THE END.", choices: [{ text: "Play Again", nextId: 1 }] },
-            { id: 904, text: "The walk in the cool air is refreshing. You find the Cold Stone Creamery and order two thick, decadent milkshakes. You sit outside, laughing and enjoying the cool treat as the wine buzz fades into a perfect, happy memory. It's the best date night you've had in a long time. THE END.", choices: [{ text: "Play Again", nextId: 1 }] }
-        ];
-
-        const welcomeScreen = document.getElementById('welcome-screen');
-        const gameContainer = document.getElementById('game-container');
-        const usernameInput = document.getElementById('username-input');
-        const startButton = document.getElementById('start-button');
-        const resetButton = document.getElementById('reset-button');
-        const storyTextElement = document.getElementById('story-text');
-        const choicesContainerElement = document.getElementById('choices-container');
-        const playerNameElement = document.getElementById('player-name');
-        const genderSelectionContainer = document.getElementById('gender-selection');
-        const maleButton = document.getElementById('male-button');
-        const femaleButton = document.getElementById('female-button');
-
-        let currentUser = '';
-        let playerGender = '';
-        let playerState = {};
-
-        function initializeGame() {
-            const username = usernameInput.value.trim();
-            if (username === '') {
-                usernameInput.placeholder = "Please enter a name!";
-                usernameInput.classList.add('placeholder-red-400', 'ring-2', 'ring-red-500');
-                return;
-            }
-            currentUser = username;
-            playerNameElement.innerText = currentUser;
-
-            const savedData = loadProgress();
-            if (savedData && savedData.nodeId) {
-                playerGender = savedData.gender;
-                playerState = savedData.state || { hasKey: false, hasCoins: false, hasGlock: false, wearsHawaiianShirt: false };
-                welcomeScreen.classList.add('hidden');
-                gameContainer.classList.remove('hidden');
-                gameContainer.classList.add('fade-in');
-                showStoryNode(savedData.nodeId);
-            } else {
-                usernameInput.classList.add('hidden');
-                startButton.classList.add('hidden');
-                document.querySelector('#welcome-screen p').innerText = `Welcome, ${currentUser}. Select your gender.`;
-                genderSelectionContainer.classList.remove('hidden');
-            }
-        }
-
-        function setGenderAndStart(gender) {
-            playerGender = gender;
-            playerState = { hasKey: false, hasCoins: false, hasGlock: false, wearsHawaiianShirt: false };
-            welcomeScreen.classList.add('hidden');
-            gameContainer.classList.remove('hidden');
-            gameContainer.classList.add('fade-in');
-            saveProgress(1); 
-            showStoryNode(1);
-        }
-        
-        startButton.addEventListener('click', initializeGame);
-        usernameInput.addEventListener('keyup', (event) => {
-            if (event.key === 'Enter') {
-                initializeGame();
-            }
-        });
-        maleButton.addEventListener('click', () => setGenderAndStart('male'));
-        femaleButton.addEventListener('click', () => setGenderAndStart('female'));
-
-        resetButton.addEventListener('click', () => {
-            playerState = { hasKey: false, hasCoins: false, hasGlock: false, wearsHawaiianShirt: false };
-            saveProgress(1); 
-            showStoryNode(1);
-        });
-
-        function showStoryNode(storyNodeId) {
-            const storyNode = story.find(node => node.i === storyNodeId);
-
-            if (!storyNode) {
-                console.error(`Story node with id ${storyNodeId} not found!`);
-                showStoryNode(1);
-                return;
-            }
-
-            if (storyNode.s) {
-                Object.assign(playerState, storyNode.s);
-                saveProgress(storyNodeId);
-            }
-
-            let textToDisplay = storyNode.t;
-            if (playerGender === 'female' && storyNode.f) {
-                textToDisplay = storyNode.f;
-            }
-
-            storyTextElement.classList.remove('fade-in');
-            void storyTextElement.offsetWidth; 
-            storyTextElement.classList.add('fade-in');
-            storyTextElement.innerText = textToDisplay;
-
-            choicesContainerElement.innerHTML = '';
-            
-            let choices = [...storyNode.c];
-
-            // Conditional choices are added here
-            if (storyNode.i === 3115 && playerState.hasKey) {
-                choices.push({ t: "Use the key from your pocket on the box", n: 3116 });
-            }
-            if (storyNode.i === 122 && playerState.hasGlock) {
-                choices.unshift({ t: "Draw your concealed Glock for a sneak attack", n: 800 });
-            }
-            if (storyNode.i === 122 && playerState.wearsHawaiianShirt) {
-                choices.push({ t: "Use your fashion sense to de-escalate the situation.", n: 128 });
-            }
-
-
-            choices.forEach(choice => {
-                const button = document.createElement('button');
+            // --- STORY DATA (COMPLETE) ---
+            const story = [
+                // Morning Routine
+                { id: 1, text: 'You open your eyes. The dream is already gone, just a vague feeling of unease remains. The alarm blares.', choices: [{ text: "Hit snooze", nextId: 11 }, { text: "Get up and stretch", nextId: 12 }, { text: "Grab your phone first", nextId: 13 }, { text: "Take a wake and bake dab", nextId: 60 }] },
+                { id: 11, text: "You drift off again. Suddenly it’s 7:30. You’re late.", choices: [{ text: "Rush out of bed, forget shower/breakfast", nextId: 21 }, { text: "Say screw it, call in sick", nextId: 22 }] },
+                { id: 12, text: "Your muscles pop. You feel awake. Time for the bathroom.", choices: [{ text: "Hot shower", nextId: 23 }, { text: "Cold shower", nextId: 24 }, { text: "Skip shower, brush teeth only", nextId: 25 }] },
+                { id: 13, text: 'You scroll through your phone. A weirdly targeted ad appears: "Tired of your boring life? Try Tactical Soap. Washes away the grime AND the regret."', choices: [{ text: "Click the ad", nextId: 26 }, { text: "Ignore it, head to bathroom", nextId: 27 }] },
                 
-                let choiceText = choice.t;
-                if (playerGender === 'female' && choice.f) {
-                    choiceText = choice.f;
+                // Late / Sick Path
+                { id: 21, text: "You scramble around, a whirlwind of panicked energy.", choices: [{ text: "Throw on random clothes quickly", nextId: 31 }, { text: "Leave house in pajamas", nextId: 32 }] },
+                { id: 22, text: "You grab your phone and call in sick, putting on your best 'dying frog' voice. The day is yours.", choices: [{ text: "Actually stay home all day", nextId: 33 }, { text: "Decide to explore the city instead", nextId: 34 }, { text: "Smoke weed and see where the day goes", nextId: 70 }, { text: "Go get a proper diner breakfast.", nextId: 10000 }, { text: "Finally fix that wobbly bookshelf.", nextId: 10010 }, { text: "Finally return that overdue library book.", nextId: 9000 }] },
+
+                // Shower Path
+                { id: 23, text: "The hot water is a blessing, melting away the last of your sleepiness. You feel refreshed and relaxed.", choices: [{ text: "Get dressed", nextId: 88 }] },
+                { id: 24, text: "The cold water is a shock to the system. You gasp, but emerge feeling electric and wide awake, if a little cranky.", choices: [{ text: "Get dressed", nextId: 88 }] },
+                { id: 25, text: "You give your teeth a thorough brushing, but decide a shower is a luxury you don't have time for. You smell a little, but oh well.", choices: [{ text: "Get dressed", nextId: 88 }] },
+
+                // Ad Path
+                { id: 26, text: 'The ad takes you to a GeoCities-looking website for "Tactical Soap." It\'s full of testimonials from guys named Chad and Brad. At the bottom, a tiny link says: "For TRUE believers ONLY."', choices: [{ text: "Click the 'TRUE believers' link", nextId: 261 }, { text: "Close the tab, this is stupid", nextId: 27 }] },
+                { id: 261, text: "The link takes you to a forum about cryptid sightings in your area. Apparently, someone saw a 'Wobble-Gonk' near the old mill. You've wasted five minutes you'll never get back.", choices: [{ text: "Head to the bathroom", nextId: 27 }] },
+                { id: 27, text: "It's just an ad. You toss your phone on the bed and head to the bathroom.", choices: [{ text: "Hot shower", nextId: 23 }, { text: "Cold shower", nextId: 24 }, { text: "Skip shower", nextId: 25 }] },
+
+                // Breakfast / Commute Path
+                { id: 31, text: "You grab a shirt and pants from the floor. They might be clean. They might not. No time to check.", choices: [{ text: "Breakfast (Eggs/Toast)", nextId: 41 }, { text: "Breakfast (Cereal)", nextId: 42 }, { text: "Breakfast (Oatmeal)", nextId: 46 }, { text: "Coffee Only", nextId: 43 }, { text: "Skip Breakfast", nextId: 44 }] },
+                { id: 32, text: "You're already late, what's a dress code violation on top of it? You walk out the door in your flannel pajama pants.", choices: [{ text: "Breakfast (Eggs/Toast)", nextId: 41 }, { text: "Breakfast (Cereal)", nextId: 42 }, { text: "Breakfast (Oatmeal)", nextId: 46 }, { text: "Coffee Only", nextId: 43 }, { text: "Skip Breakfast", nextId: 44 }] },
+                { id: 41, text: "You quickly whip up some eggs and toast. A solid breakfast.", choices: [{ text: "Commute (Drive)", nextId: 51 }, { text: "Commute (Bus)", nextId: 52 }, { text: "Smoke a bowl before you go", nextId: 80 }, { text: "Skip Work Last Minute", nextId: 54 }] },
+                { id: 42, text: "You pour a bowl of cereal. It's fast and easy.", choices: [{ text: "Commute (Drive)", nextId: 51 }, { text: "Commute (Bus)", nextId: 52 }, { text: "Smoke a bowl before you go", nextId: 80 }, { text: "Skip Work Last Minute", nextId: 54 }] },
+                { id: 43, text: "No time for food. You brew a strong cup of coffee and drink it black.", choices: [{ text: "Drink a second cup", nextId: 431 }, { text: "One is enough. Time to go.", nextId: 45 }] },
+                { id: 44, text: "Your stomach rumbles, but you ignore it. Time is money.", choices: [{ text: "Commute (Drive)", nextId: 51 }, { text: "Commute (Bus)", nextId: 52 }, { text: "Smoke a bowl before you go", nextId: 80 }, { text: "Skip Work Last Minute", nextId: 54 }] },
+                { id: 45, text: "Caffeine coursing through your veins, you head for the door.", choices: [{ text: "Commute (Drive)", nextId: 51 }, { text: "Commute (Bus)", nextId: 52 }, { text: "Smoke a bowl before you go", nextId: 80 }, { text: "Skip Work Last Minute", nextId: 54 }] },
+                { id: 46, text: "You make a quick bowl of oatmeal. It's warm and filling.", choices: [{ text: "Commute (Drive)", nextId: 51 }, { text: "Commute (Bus)", nextId: 52 }, { text: "Smoke a bowl before you go", nextId: 80 }, { text: "Skip Work Last Minute", nextId: 54 }] },
+                { id: 431, text: "The second cup makes your heart pound. You feel wired, a bit jittery, but immensely focused.", choices: [{ text: "Drink a third cup. Embrace the chaos.", nextId: 432 }, { text: "Okay, that's enough. Time to go.", nextId: 45 }] },
+                { id: 432, text: "You down the third cup. Your hands are shaking. You are a being of pure caffeine, ready to face the day at 1000 mph.", choices: [{ text: "Commute (Drive, VERY fast)", nextId: 512 }, { text: "Commute (Bus, try not to vibrate out of your seat)", nextId: 52 }] },
+
+                // Branching to Main Storylines
+                { id: 51, text: "You get in your old, trusty truck and head to your job at the bank. The gas gauge is broken, but you have a pretty good feel for it. Usually. Halfway there, the engine sputters and dies. You're out of gas.", choices: [{ text: "Call for help", nextId: 401 }, { text: "Start walking to the nearest gas station", nextId: 402 }, { text: "Call an Uber to work and deal with this later", nextId: 403 }, { text: "Just wait and see what happens", nextId: 405 }] },
+                { id: 52, text: "You catch the bus to work. As you ride, you see someone drop a folded piece of paper. You pick it up. It looks like a lottery ticket.", choices: [{ text: "Check the numbers.", nextId: 55 }, { text: "Put it in your pocket for later.", nextId: 101 }] },
+                { id: 54, text: "You know what? Screw it. You're not going to work. The city awaits.", choices: [{ text: "Begin your adventure", nextId: 34 }] },
+                { id: 55, text: "You pull up the lottery results on your phone. You scan the ticket. Holy cow. It's a $100 winner! You carefully fold it and put it in your pocket, a grin spreading across your face.", setState: { lotteryTicket: true }, choices: [{ text: "Arrive at the bank, feeling lucky.", nextId: 101 }] },
+
+                // Weed Paths
+                { id: 60, text: "You grab your rig from the nightstand. The torch roars to life. You take a fat dab and hold it in, coughing until you see stars. The world slows down. Everything is hazy and kinda funny now.", choices: [{ text: "Get up and stretch (slowly)", nextId: 61 }, { text: "Grab your phone and zone out", nextId: 13 }] },
+                { id: 61, text: "You slowly rise, your body feeling both heavy and light. A good stretch feels incredible. Time to get ready, maybe.", choices: [{ text: "Hot shower", nextId: 62 }, { text: "Cold shower", nextId: 63 }, { text: "Just brush teeth", nextId: 64 }] },
+                { id: 62, text: "The hot water feels amazing. You space out for what feels like an hour, just enjoying the steam.", choices: [{ text: "Get dressed.", nextId: 88 }] },
+                { id: 63, text: "The cold water is a sensory explosion. Your brain short-circuits for a second, then reboots with crystal clarity. A bold choice.", choices: [{ text: "Get dressed.", nextId: 88 }] },
+                { id: 64, text: "Showering seems like a lot of work. You brush your teeth meticulously instead, focusing intensely on each tooth.", choices: [{ text: "Get dressed.", nextId: 88 }] },
+                { id: 70, text: "You pack a fat bowl. The sweet smoke fills your lungs. An hour later, you're staring at the ceiling, contemplating the mysteries of the universe and whether you have any chips in the house.", choices: [{ text: "Watch TV", nextId: 71 }, { text: "Go on a snack quest to the kitchen", nextId: 72 }, { text: "Mindlessly scroll Facebook Marketplace", nextId: 73 }] },
+                { id: 71, text: "You flip on the TV. What's the plan?", choices: [{ text: "See what's on Adult Swim", nextId: 711 }, { text: "Watch daytime court shows and feel superior", nextId: 712 }] },
+                { id: 72, text: "You embark on a perilous journey to the kitchen. You construct a magnificent sandwich out of leftovers and eat it over the sink like an animal. It's the best thing you've ever tasted.", choices: [{ text: "A truly magnificent sandwich.", nextId: 79 }] },
+                { id: 73, text: "You open Facebook Marketplace. Amidst the broken furniture and MLM scams, something beautiful catches your eye: a 1995 Z28 Camaro, T-tops, cherry red. The price is... suspiciously low.", choices: [{ text: "Message the seller: 'is this still available?'", nextId: 201 }, { text: "Assume it's a scam and look for weird taxidermy instead", nextId: 70 }] },
+                { id: 79, text: "You spend the rest of the day in a blissful haze. As evening sets in, your phone buzzes, pulling you back to reality.", choices: [{ text: "See who it is.", nextId: 299 }] },
+                { id: 80, text: "You take a quick rip from your bong to 'prepare' for the day. You feel calm, maybe too calm. Time to head to work, hopefully no one notices your eyes are as red as the devil's... well, you know.", choices: [{ text: "Commute (Drive, probably a bad idea)", nextId: 511 }, { text: "Commute (Bus, the safer choice)", nextId: 52 }] },
+                
+                // Getting Dressed (Morning)
+                { id: 88, text: "You quickly throw on some clothes suitable for the day ahead.", choices: [{ text: "Any final preparations?", nextId: 89 }] },
+                { id: 89, routeBy: 'gender', routes: { male: 90, female: 95 } },
+                { id: 90, text: "You're all dressed. One last look in the mirror. Any final preparations before breakfast?", choices: [{ text: "Strap on your shoulder harness and gold 9mm Glock.", nextId: 91 }, { text: "Nah, let's just get some breakfast.", nextId: 95 }] },
+                { id: 91, text: "You open a hidden compartment in your closet and pull out your custom gold 9mm Glock. You strap on the leather shoulder harness. It feels heavy and familiar under your jacket. You're ready for anything.", setState: { hasGlock: true }, choices: [{ text: "Now for some breakfast.", nextId: 95 }] },
+                { id: 95, text: "You head to the kitchen, ready for the most important meal of the day.", choices: [{ text: "Breakfast (Eggs/Toast)", nextId: 41 }, { text: "Breakfast (Cereal)", nextId: 42 }, { text: "Breakfast (Oatmeal)", nextId: 46 }, { text: "Coffee Only", nextId: 43 }, { text: "Skip Breakfast", nextId: 44 }] },
+
+                // Bank Teller Path
+                { id: 101, text: "Centerville Savings Bank stands tall in its beige blandness. The lobby smells faintly of stale coffee and Lysol. You swipe in and step behind the counter. Matt, your coworker, waves at you. 'Hey, they finally restocked the Nutter Butters.' Mr. Johns, your boss, shuffles past. 'Clock in already. And no slacking.'", textFemale: "Centerville Savings Bank stands tall in its beige blandness. The lobby smells faintly of stale coffee and Lysol. You swipe in and step behind the counter. Karen, your coworker, waves at you. 'Hey, they finally restocked the Nutter Butters.' Mr. Johns, your boss, shuffles past. 'Clock in already. And no slacking.'", choices: [{ text: "Talk about Nutter Butters.", nextId: 102 }, { text: "Go straight to work", nextId: 130 }, { text: "Sneak to breakroom for a donut first", nextId: 104 }] },
+                { id: 130, text: "As you wait for the first customer, you think of your partner. You miss them. You pull out your phone under the counter.", choices: [{ text: "Send them a ❤️ and 😘 emoji.", nextId: 131 }, { text: "Send them an 'i miss you bb' text.", nextId: 132 }, { text: "Just think about them. Don't want to seem clingy.", nextId: 133 }] },
+                { id: 140, text: "The rest of the workday is surprisingly calm. As you're packing up to leave, your phone buzzes.", choices: [{ text: "Check the text.", nextId: 299 }] },
+                
+                // End of Day / Date Decision
+                { id: 299, text: "As evening approaches, your phone buzzes with a text from your partner.", choices: [{ text: "Read it.", nextId: 300 }] },
+                { id: 300, text: "'Hey! Date night tonight :) Where do you want to go?'", textFemale: "'Hey! Date night tonight :) Where do you want to go?'", choices: [{ text: "Maggiano's", nextId: 301 }, { text: "The Cheesecake Factory", nextId: 321 }, { text: "The Mala Hot Pot", nextId: 311 }] },
+                { id: 301, text: "You text back: 'Maggiano's for sure.' They reply instantly: 'Yesss! Perfect. See you in a bit!'", textFemale: "You text back: 'Maggiano's for sure.' He replies instantly: 'Yesss! Perfect. See you in a bit!'", setState: { dateLocation: 'maggianos' }, choices: [{ text: "Time to get ready.", nextId: 7000 }] },
+                { id: 311, text: "You text back: 'Let's try the hot pot place!' They reply: 'Yay! I'm so excited! I'll meet you there!'", textFemale: "You text back: 'Let's try the hot pot place!' He replies: 'Yay! I'm so excited! I'll meet you there!'", setState: { dateLocation: 'hotpot' }, choices: [{ text: "Time to get ready.", nextId: 7000 }] },
+                { id: 321, text: "You suggest The Cheesecake Factory. A classic choice. They text back: 'Okay! The wait will be insane but I need that brown bread. See you there!'", textFemale: "You suggest The Cheesecake Factory. A classic choice. He texts back: 'Okay! The wait will be insane but I need that brown bread. See you there!'", setState: { dateLocation: 'cheesecake' }, choices: [{ text: "Time to get ready.", nextId: 7000 }] },
+                
+                // Arrival at Date
+                { id: 312, text: "You arrive at the Hot Pot restaurant. The smell of sichuan peppercorns is in the air as you're seated.", choices: [{ text: "So, about your day...", nextId: 2000 }] },
+                { id: 322, text: "You arrive at The Cheesecake Factory. It's bustling, as expected, but you get a table.", choices: [{ text: "So, about your day...", nextId: 2000 }] },
+                { id: 900, text: "You arrive at Maggiano's. The atmosphere is cozy and romantic. You're seated at your table and look over the menu.", choices: [{ text: "Your partner points out an expensive bottle of wine.", nextId: 901 }, { text: "You spot something on the floor by a vacant table.", nextId: 307 }, { text: "Excuse yourself to the bathroom.", nextId: 950, condition: { gender: 'female', state: '!usedBathroom' } }] },
+                
+                // Date Scenarios
+                { id: 950, text: "You excuse yourself and head to the restroom. It's a moment of quiet away from the restaurant buzz.", setState: { usedBathroom: true }, choices: [{ text: "Check your phone.", nextId: 951 }, { text: "Just freshen up and head back.", nextId: 900 }] },
+                { id: 951, text: "You pull out your phone and see a text from your best friend Cammy: 'Hey hows the date?'", choices: [{ text: "its great!", nextId: 952 }, { text: "Girl, its amazing", nextId: 952 }, { text: "The food is the best here.", nextId: 952 }] },
+                { id: 952, text: "You quickly send the text and put your phone away. You head back to the table, feeling refreshed.", choices: [{ text: "Continue the date...", nextId: 900 }] },
+                { id: 2000, text: "Your partner leans in conspiratorially. 'Oh my god, there is tea,' they say, their eyes wide. 'There is work tea.'", textFemale: "Your partner leans in conspiratorially. 'Oh my god, there is tea,' he says, his eyes wide. 'There is work tea.'", choices: [ { text: "Remind him about the ring you're wearing.", nextId: 2029, condition: { gender: 'female', state: 'hasRing' } }, { text: "Okay, let's hear it.", nextId: 2001 }, { text: "You know I love it.", nextId: 2001 }, { text: "Oh yeah? Is it that you're the hottest woman that works there?", textFemale: "Oh yeah? Is it that you're the most handsome guy that works there?", nextId: 2002 } ] },
+                { id: 2001, text: "Your partner launches into a long, dramatic story about office politics involving a birthday cake and a shared blouse. It's petty, hilarious, and you're completely engrossed.", choices: [{ text: "What a night.", nextId: 2011 }] },
+                { id: 2002, text: "Your partner playfully rolls their eyes and laughs. 'Shut up. Okay, but for real, listen to this.'", textFemale: "Your boyfriend laughs. 'I wish. Nah, listen to this.'", choices: [{ text: "I'm listening...", nextId: 2001 }] },
+                { id: 2011, text: "After the story, the conversation flows easily. The date is going perfectly.", choices: [{ text: "Time to head home.", nextId: 3000 }] },
+                { id: 2029, text: "'This is still my favorite ring,' you say, showing him your hand. He smiles. 'I remember getting that for you a year ago. It looks perfect on you. I'll have to get you an even bigger one soon.'", setState: { hasRing: false }, choices: [{ text: "So, about this work tea...", nextId: 2001 }] },
+                
+                // Post-Date
+                { id: 3000, text: "You walk out to their car, but as you approach, you both see it: the rear passenger-side tire is completely, hopelessly flat. 'You've got to be kidding me,' they groan.", choices: [{ text: "Well, looks like you're riding with me.", nextId: 3001 }] },
+                { id: 3001, text: "The mood is set as you drive. The city lights blur past...", choices: [{ text: "Let's go inside.", nextId: 4000 }] }, // Simplified for brevity
+
+                // Getting Ready for Date
+                { id: 7000, text: "Time to get ready for your date.", routeBy: 'gender', routes: { male: 7001, female: 7010 } },
+                { id: 7001, text: "You get home with plenty of time to get ready. First things first, time to clean up.", choices: [{ text: "Take a quick shower.", nextId: 7002 }, { text: "Nah, a little deodorant will do.", nextId: 7002 }] },
+                { id: 7002, text: "You look in the mirror. Your facial hair is a little scruffy.", choices: [{ text: "Shave it clean.", nextId: 7003 }, { text: "Leave the whiskers. It's a look.", nextId: 7003 }] },
+                { id: 7003, text: "Time for cologne. What's the vibe tonight?", choices: [{ text: "A heavy, musky cologne.", nextId: 7004 }, { text: "A light, fresh cologne.", nextId: 7004 }] },
+                { id: 7004, text: "Now for the outfit. You want to look good tonight.", choices: [{ text: "Wear a black polo shirt and grey pants.", nextId: 7100 }, { text: "Wear a long sleeve light grey sweater and tan pants.", nextId: 7100 }, { text: "Wear a black t-shirt with a nice jacket and grey pants.", nextId: 7100 }] },
+                { id: 7010, text: "You get home with plenty of time. A little pampering is in order before your date.", choices: [{ text: "Take a long, relaxing shower.", nextId: 7011 }, { text: "Just a quick touch-up is fine.", nextId: 7011 }] },
+                { id: 7011, text: "You stand in front of your huge perfume collection. What's the scent for tonight?", choices: [{ text: "A light and balanced perfume.", nextId: 7012 }, { text: "A deep floral scent.", nextId: 7012 }, { text: "A spicy and sweet perfume.", nextId: 7012 }] },
+                { id: 7012, text: "Perfect. Now for the killer outfit.", choices: [{ text: "The silk slip dress in deep emerald.", nextId: 7110 }, { text: "The bright pink mini dress.", nextId: 7110 }, { text: "The high-waisted leather skirt with a satin blouse.", nextId: 7110 }] },
+                { id: 7050, text: "You head out for your date, feeling excited.", routeBy: 'dateLocation', routes: { maggianos: 900, cheesecake: 322, hotpot: 312 } },
+                { id: 7100, text: "You're dressed and about to head out when your phone buzzes. It's a text from your friend Aaron in the group chat: 'Boys, me and Ian just shot -4 and -5 at the outing today. We're basically pros.'", choices: [{ text: "Damn boys that's legit", nextId: 7200 }, { text: "Send a GIF of Tim Robinson squinting.", nextId: 7200 }, { text: "I figured you boys would be in the sub 6's like me in no time.", nextId: 7200 }] },
+                { id: 7110, text: "You're dressed and look amazing. As you're about to grab your purse, your phone buzzes. It's a text from your friend Tammy in the group chat: 'omg you will never beleive what tyler got me, a great dane puppy!'", choices: [{ text: "oh wow how cute, whats the name?", nextId: 7111 }, { text: "those dogs get huge, you live in a studio", nextId: 7111 }, { text: "thats great haha", nextId: 7111 }] },
+                { id: 7111, text: "You reply to the text, a smile on your face. One last check. Any accessories?", choices: [{ text: "Put on the ring your boyfriend gave you.", nextId: 7112 }, { text: "No, this is perfect.", nextId: 7200 }] },
+                { id: 7112, text: "You slip on the beautiful ring. It sparkles on your finger.", setState: { hasRing: true }, choices: [{ text: "Okay, now you're ready.", nextId: 7200 }] },
+                { id: 7200, text: "You're all ready to go. You grab your keys and wallet and head out the door.", choices: [{ text: "Head to the date.", nextId: 7050 }] },
+                
+                // Endings and other paths
+                { id: 4000, text: "You unlock the door and step inside. As the door clicks shut, you turn to each other...", choices: [{ text: "The night fades away...", nextId: 6000 }] },
+                { id: 6000, text: "You wake up late the next morning, the sun streaming through the blinds. Last night was amazing. You feel a deep sense of peace and happiness.", choices: [{ text: "A perfect end to a wild day.", nextId: 1205 }] },
+                { id: 1205, text: "This single day has changed your life forever. THE END.", choices: [{ text: "Play Again", nextId: 1 }] }
+            ];
+            
+            // --- GAME STATE ---
+            let gameState = {
+                currentUser: '',
+                playerGender: '',
+                playerState: {},
+            };
+
+            const defaultPlayerState = { 
+                hasKey: false, hasCoins: false, wearsHawaiianShirt: false, hasGlock: false, hasCarInfo: false,
+                giftCard: false, tirePlugs: false, gum: false, cones: false, bluntWrap: false, candy: false,
+                lotteryTicket: false, bossMug: false, stevesCard: false, embarrassingPhoto: false, heardGossip: false,
+                fiveDollars: false, silverDollar: false, oldCasinoChip: false, guitarPick: false, silverLocket: false, pocketKnife: false,
+                hasRing: false, usedBathroom: false, dateLocation: null
+             };
+             
+             // --- CORE GAME LOGIC ---
+
+            /**
+             * Applies a color theme to the entire UI.
+             * @param {string} themeName - The name of the theme to apply.
+             */
+            function applyTheme(themeName) {
+                const theme = themes[themeName] || themes.default;
+                const allThemeClasses = [...new Set(Object.values(themes).flatMap(t => Object.values(t)).join(' ').split(' '))];
+
+                const applyClasses = (element, classList) => {
+                    if (!element) return;
+                    element.classList.remove(...allThemeClasses);
+                    element.classList.add(...classList.split(' '));
+                };
+
+                applyClasses(document.body, `${theme.bg} ${theme.text}`);
+                document.querySelectorAll('.themed-container').forEach(el => applyClasses(el, theme.container));
+                document.querySelectorAll('.themed-text').forEach(el => applyClasses(el, theme.text));
+                document.querySelectorAll('.themed-subtle-text').forEach(el => applyClasses(el, theme.subtleText));
+                document.querySelectorAll('.themed-primary-btn').forEach(el => applyClasses(el, theme.primaryBtn));
+                document.querySelectorAll('.themed-input').forEach(el => applyClasses(el, theme.input));
+                document.querySelectorAll('.themed-border').forEach(el => applyClasses(el, theme.border));
+                
+                if (elements.choicesContainerElement) {
+                    elements.choicesContainerElement.dataset.secondaryBtnClass = theme.secondaryBtn;
+                }
+            }
+
+            /**
+             * Updates the inventory display based on the current player state.
+             */
+            function updateInventoryDisplay() {
+                if (!elements.inventoryList) return;
+                elements.inventoryList.innerHTML = '';
+                const itemsMap = {
+                    hasKey: "Small Ornate Key", hasCoins: "8 Gold Coins", lotteryTicket: "Winning Lottery Ticket ($100)",
+                    bossMug: "Chipped 'World's Best Boss' Mug", stevesCard: "Steve's Business Card", hasCarInfo: "Note with Phone # (Corvette)",
+                    hasGlock: "Gold 9mm Glock", giftCard: "Starbucks Gift Card", tirePlugs: "Tire Plug Kit", gum: "Pack of Gum",
+                    cones: "Raw Cones", bluntWrap: "Blunt Wrap", candy: "Partner's Favorite Candy", embarrassingPhoto: "Embarrassing High School Photo",
+                    fiveDollars: "$5 Bill", silverDollar: "Old Silver Dollar", oldCasinoChip: "Old Casino Chip",
+                    guitarPick: "Worn Guitar Pick", silverLocket: "Silver Locket", pocketKnife: "Classic Pocket Knife", hasRing: "Boyfriend's Ring"
+                };
+
+                const items = Object.keys(gameState.playerState)
+                    .filter(key => gameState.playerState[key] && itemsMap[key])
+                    .map(key => itemsMap[key]);
+
+                if (items.length > 0) {
+                    elements.inventoryContainer.classList.remove('hidden');
+                    items.forEach(itemText => {
+                        const li = document.createElement('li');
+                        li.textContent = itemText;
+                        elements.inventoryList.appendChild(li);
+                    });
+                } else {
+                    elements.inventoryContainer.classList.add('hidden');
+                }
+            }
+            
+            /**
+             * Main function to display a story node and its choices.
+             * @param {number} nodeId - The ID of the story node to display.
+             */
+            function showStoryNode(nodeId) {
+                let currentNode = story.find(node => node.id === nodeId);
+
+                if (!currentNode) {
+                    console.error(`Story node with id ${nodeId} not found! Resetting.`);
+                    return showStoryNode(1);
                 }
 
-                button.innerText = choiceText;
-                button.className = 'w-full bg-slate-700 hover:bg-indigo-600 text-white font-semibold py-3 px-4 rounded-lg shadow-md transition-all duration-300 ease-in-out transform hover:scale-105 fade-in';
-                button.addEventListener('click', () => selectChoice(choice));
-                choicesContainerElement.appendChild(button);
+                if (currentNode.routeBy) {
+                    const routeValue = gameState.playerState[currentNode.routeBy] || gameState[currentNode.routeBy];
+                    const nextNodeId = currentNode.routes[routeValue];
+                    if (nextNodeId !== undefined) {
+                        return showStoryNode(nextNodeId);
+                    } else {
+                         console.error(`Invalid route for node ${nodeId} with value ${routeValue}`);
+                         return showStoryNode(1);
+                    }
+                }
+
+                if (currentNode.setState) {
+                    Object.assign(gameState.playerState, currentNode.setState);
+                }
+                
+                const textToDisplay = (gameState.playerGender === 'female' && currentNode.textFemale)
+                    ? currentNode.textFemale
+                    : currentNode.text;
+
+                elements.storyTextElement.classList.remove('fade-in');
+                void elements.storyTextElement.offsetWidth;
+                elements.storyTextElement.innerText = textToDisplay;
+                elements.storyTextElement.classList.add('fade-in');
+                
+                elements.choicesContainerElement.innerHTML = '';
+                
+                const availableChoices = currentNode.choices.filter(choice => {
+                    if (!choice.condition) return true;
+                    
+                    let stateConditionMet = true;
+                    if (choice.condition.state) {
+                        const stateKey = choice.condition.state;
+                        if (stateKey.startsWith('!')) {
+                            stateConditionMet = !gameState.playerState[stateKey.substring(1)];
+                        } else {
+                            stateConditionMet = gameState.playerState[stateKey];
+                        }
+                    }
+
+                    const genderConditionMet = !choice.condition.gender || gameState.playerGender === choice.condition.gender;
+
+                    return stateConditionMet && genderConditionMet;
+                });
+
+                availableChoices.forEach(choice => {
+                    const button = document.createElement('button');
+                    const choiceText = (gameState.playerGender === 'female' && choice.textFemale) ? choice.textFemale : choice.text;
+                    
+                    button.innerText = choiceText;
+                    const secondaryBtnClasses = elements.choicesContainerElement.dataset.secondaryBtnClass || themes.default.secondaryBtn;
+                    button.className = `w-full text-white font-semibold py-3 px-4 rounded-lg shadow-md transition-all duration-300 ease-in-out transform hover:scale-105 fade-in ${secondaryBtnClasses}`;
+                    
+                    button.addEventListener('click', () => {
+                        saveProgress(choice.nextId);
+                        showStoryNode(choice.nextId);
+                    });
+                    elements.choicesContainerElement.appendChild(button);
+                });
+                
+                updateInventoryDisplay();
+            }
+
+            /**
+             * Handles starting the game after a user provides their name.
+             */
+            function startGame() {
+                const username = elements.usernameInput.value.trim();
+                if (!username) {
+                    elements.usernameInput.placeholder = "Please enter a name!";
+                    elements.usernameInput.classList.add('placeholder-red-400', 'ring-2', 'ring-red-500');
+                    return;
+                }
+                gameState.currentUser = username;
+                elements.playerNameElement.innerText = gameState.currentUser;
+
+                const savedData = loadProgress();
+                if (savedData && savedData.nodeId) {
+                    gameState.playerGender = savedData.gender;
+                    gameState.playerState = { ...defaultPlayerState, ...savedData.state };
+                    elements.welcomeScreen.classList.add('hidden');
+                    elements.gameContainer.classList.remove('hidden', 'fade-in');
+                    void elements.gameContainer.offsetWidth;
+                    elements.gameContainer.classList.add('fade-in');
+                    showStoryNode(savedData.nodeId);
+                } else {
+                    elements.usernameInput.classList.add('hidden');
+                    elements.startButton.classList.add('hidden');
+                    elements.welcomeScreen.querySelector('.themed-subtle-text').innerText = `Welcome, ${gameState.currentUser}. Select your character.`;
+                    elements.genderSelectionContainer.classList.remove('hidden');
+                }
+            }
+
+            /**
+             * Sets the player's gender and begins a new adventure.
+             * @param {string} gender - 'male' or 'female'.
+             */
+            function setGenderAndStart(gender) {
+                gameState.playerGender = gender;
+                gameState.playerState = { ...defaultPlayerState };
+                elements.welcomeScreen.classList.add('hidden');
+                elements.gameContainer.classList.remove('hidden', 'fade-in');
+                void elements.gameContainer.offsetWidth;
+                elements.gameContainer.classList.add('fade-in');
+                saveProgress(1);
+                showStoryNode(1);
+            }
+
+            // --- LOCAL STORAGE ---
+            function saveProgress(nodeId) {
+                try {
+                    const allProgress = JSON.parse(localStorage.getItem('adventureGameProgress')) || {};
+                    allProgress[gameState.currentUser] = { nodeId, gender: gameState.playerGender, state: gameState.playerState };
+                    localStorage.setItem('adventureGameProgress', JSON.stringify(allProgress));
+                } catch (e) {
+                    console.error("Could not save progress:", e);
+                }
+            }
+
+            function loadProgress() {
+                try {
+                    const allProgress = JSON.parse(localStorage.getItem('adventureGameProgress')) || {};
+                    return allProgress[gameState.currentUser];
+                } catch (e) {
+                    console.error("Could not load progress:", e);
+                    return null;
+                }
+            }
+            
+            // --- INITIALIZATION & EVENT LISTENERS ---
+            
+            const savedTheme = localStorage.getItem('adventureGameTheme');
+            if (savedTheme) {
+                applyTheme(savedTheme);
+                elements.welcomeScreen.classList.remove('hidden');
+            } else {
+                elements.colorSelectionScreen.classList.remove('hidden');
+            }
+
+            document.querySelectorAll('.theme-btn').forEach(button => {
+                button.addEventListener('click', () => {
+                    const themeName = button.dataset.theme;
+                    localStorage.setItem('adventureGameTheme', themeName);
+                    applyTheme(themeName);
+                    elements.colorSelectionScreen.classList.add('hidden');
+                    elements.welcomeScreen.classList.remove('hidden', 'fade-in');
+                    void elements.welcomeScreen.offsetWidth;
+                    elements.welcomeScreen.classList.add('fade-in');
+                });
             });
-        }
 
-        function selectChoice(choice) {
-            saveProgress(choice.n);
-            showStoryNode(choice.n);
-        }
+            elements.startButton.addEventListener('click', startGame);
+            elements.usernameInput.addEventListener('keyup', e => e.key === 'Enter' && startGame());
+            elements.maleButton.addEventListener('click', () => setGenderAndStart('male'));
+            elements.femaleButton.addEventListener('click', () => setGenderAndStart('female'));
 
-        function saveProgress(nodeId) {
-            try {
-                const allProgress = JSON.parse(localStorage.getItem('adventureGameProgress')) || {};
-                allProgress[currentUser] = { nodeId: nodeId, gender: playerGender, state: playerState };
-                localStorage.setItem('adventureGameProgress', JSON.stringify(allProgress));
-            } catch (e) {
-                console.error("Could not save progress:", e);
-            }
-        }
-
-        function loadProgress() {
-            try {
-                const allProgress = JSON.parse(localStorage.getItem('adventureGameProgress')) || {};
-                return allProgress[currentUser];
-            } catch (e) {
-                console.error("Could not load progress:", e);
-                return null;
-            }
-        }
+            elements.resetButton.addEventListener('click', () => {
+                localStorage.removeItem('adventureGameProgress');
+                localStorage.removeItem('adventureGameTheme');
+                window.location.reload();
+            });
+        });
     </script>
 </body>
 </html>

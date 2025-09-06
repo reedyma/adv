@@ -339,7 +339,7 @@
             
             // Maggiano's Wine Path
             { id: 900, text: "You arrive at Maggiano's. The atmosphere is cozy and romantic. You're seated at your table and look over the menu.", choices: [{ text: "Your partner points out an expensive bottle of wine.", nextId: 901 }, { text: "You spot something on the floor by a vacant table.", nextId: 307 }] },
-            { id: 901, text: "Your partner points to a bottle of Barolo on the wine list. 'I've always wanted to try this one,' they say, their eyes sparkling." choices: [{ text: "Order it. 'You only live once.'", nextId: 902 }, { text: "'Maybe we can find a nice Chianti instead?'", nextId: 903 }] },
+            { id: 901, text: "Your partner points to a bottle of Barolo on the wine list. 'I've always wanted to try this one,' they say, their eyes sparkling. You see the price and gulp... it's definitely a special occasion wine.", choices: [{ text: "Order it. 'You only live once.'", nextId: 902 }, { text: "'Maybe we can find a nice Chianti instead?'", nextId: 903 }] },
             { id: 902, text: "You wave the waiter over and order the Barolo. It's incredible - rich, complex, and absolutely delicious. You both savor every sip, getting a pleasant, warm buzz. The conversation flows effortlessly. It's a perfect meal. 'Wow, I am definitely too buzzed to drive right now,' you say with a happy sigh.", choices: [{ text: "Suggest a walk to Cold Stone for milkshakes.", nextId: 904 }] },
             { id: 903, text: "You gently steer them towards a more reasonably priced Chianti. It's fine, but you can't help but notice a flicker of disappointment in their eyes. The rest of the dinner is nice, but not quite the magical night it could have been.", choices: [{ text: "Continue the date...", nextId: 2000 }] },
             { id: 904, text: "The walk in the cool air is refreshing. You find the Cold Stone Creamery and order two thick, decadent milkshakes. You sit outside, laughing and enjoying the cool treat as the wine buzz fades into a perfect, happy memory. It's been the best date night you've had in a long time.", choices: [{ text: "Continue the date...", nextId: 2000 }] },
@@ -414,7 +414,7 @@
                 text: "'Okay babe, you are not ready for this. Like, I am actually screaming inside. So you remember Heather’s birthday last month, right? She made this huge deal out of it, sent a calendar invite for her own cake cutting, and she got that big Costco sheet cake?'",
                 textFemale: "'Okay babe, you're not gonna believe this. Remember Heather’s birthday last month? How she made a huge deal about it and got that giant Costco sheet cake?'",
                 choices: [
-                    { text: "The one with the little pink roses? That cake was ballin.", nextId: 2003 },
+                    { text: "The one with the little pink roses? That cake was fire.", nextId: 2003 },
                     { text: "Vaguely. What about it?", nextId: 2003 }
                 ]
             },
@@ -423,7 +423,7 @@
                 text: "'Right? I had two slices, no shame. ANYWAY. Fast forward to THIS week. It’s Danielle’s birthday. Guess what she brings?'",
                 textFemale: "'Yeah, that one. So, it was Danielle's birthday this week. Guess what cake she brought in?'",
                 choices: [
-                    { text: "Hard to say...", nextId: 2004 },
+                    { text: "No...", nextId: 2004 },
                     { text: "The same cake?", nextId: 2004 }
                 ]
             },
@@ -433,7 +433,7 @@
                 textFemale: "'Yup. The exact same one. Roses and everything. Heather was losing her mind.'",
                 choices: [
                     { text: "What did she do?", nextId: 2005 },
-                    { text: "Huh, thats a bit wild.", nextId: 2005 }
+                    { text: "That's a bold move by Danielle.", nextId: 2005 }
                 ]
             },
             {
@@ -441,8 +441,8 @@
                 text: "'She goes in the break room, sees the cake, and she goes, ‘Wow… how original.’ Out loud. And she refused a slice! Said she didn't even like Costco cake!'",
                 textFemale: "'She walked into the breakroom, saw it, and just said 'Wow, original' loud enough for everyone to hear. Then she refused to have a slice, said she doesn't even like it.'",
                 choices: [
-                    { text: "Didnt she just buy that cake??", nextId: 2006 },
-                    { text: "Raise eyebrows and say hmmmm", nextId: 2006 }
+                    { text: "But... she just bought one for herself?", nextId: 2006 },
+                    { text: "The drama!", nextId: 2006 }
                 ]
             },
             {
@@ -458,13 +458,13 @@
                 text: "'THREE times they’ve shown up in the exact same top. Not like, ‘oh that’s similar,’ I mean the same black-and-white striped Target blouse. The third time it happened? Heather spilt coffee on herself on purpose and went home to change.'",
                 textFemale: "'Three times now, they've worn the exact same striped shirt from Target on the same day. The last time it happened, Heather 'accidentally' spilled coffee on herself so she could go home and change.'",
                 choices: [
-                    { text: "What a wild woman.", nextId: 2008 },
+                    { text: "She's unhinged. I love it.", nextId: 2008 },
                     { text: "So what's the deal? Does Danielle have a secret shrine to Heather?", nextId: 2008 }
                 ]
             },
             {
                 id: 2008,
-                text: "'That's what Heather thinks! She told Kelly that Danielle is ‘obsessed’ with her, which is insane. Like… obsessed with what? Buying normal clothes and sheet cakes from Costco? Congratulations, you’re a basic bitch.'",
+                text: "'That's what Heather thinks! She told Kelly that Danielle is ‘obsessed’ with her, which is insane. Like… obsessed with what? Buying normal clothes and sheet cakes from Costco? Congratulations, you’re middle America.'",
                 textFemale: "'Heather is convinced Danielle is obsessed with her. It's ridiculous. They both just shop at Target.'",
                 choices: [
                     { text: "So what did Danielle do?", nextId: 2009 }
@@ -475,15 +475,15 @@
                 text: "'Danielle knows Heather’s spiraling, so she goes all fake sweet, like, ‘Oh, I didn’t realize you got your cake from Costco too, small world!’ and Heather almost combusted. Danielle serving for real.'",
                 textFemale: "'Danielle knows it gets under Heather's skin, so she's super sweet about it. She was like 'Oh, small world!' when Heather mentioned the cake. Heather looked like she was gonna explode.'",
                 choices: [
-                    { text: "This is rediculous, poeople at your job are never bored I guess", nextId: 2010 },
-                    { text: "you ought to post this on the internet", nextId: 2010 }
+                    { text: "This is the best story I've ever heard.", nextId: 2010 },
+                    { text: "I am living for this.", nextId: 2010 }
                 ]
             },
             {
                 id: 2010,
                 text: "'Now the whole office is joking about it and I hope someone wears the blouse again next week.' Your partner sits back, a satisfied grin on their face.",
                 textFemale: "'The whole office is making jokes about it now. It's hilarious.' Your partner sits back, a satisfied grin on his face.",
-                choices: [{ text: "I hear you on that.", nextId: 2011 }]
+                choices: [{ text: "What a night.", nextId: 2011 }]
             },
             {
                 id: 2011,
@@ -1233,4 +1233,3 @@
     </script>
 </body>
 </html>
-

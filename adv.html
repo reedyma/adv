@@ -230,7 +230,18 @@
                 // Endings and other paths
                 { id: 4000, text: "You unlock the door and step inside. As the door clicks shut, you turn to each other...", choices: [{ text: "The night fades away...", nextId: 6000 }] },
                 { id: 6000, text: "You wake up late the next morning, the sun streaming through the blinds. Last night was amazing. You feel a deep sense of peace and happiness.", choices: [{ text: "A perfect end to a wild day.", nextId: 1205 }] },
-                { id: 1205, text: "This single day has changed your life forever. THE END.", choices: [{ text: "Play Again", nextId: 1 }] }
+                { id: 1205, text: "This single day has changed your life forever. THE END.", choices: [{ text: "Play Again", nextId: 1 }] },
+
+                // --- MISSING NODES (NOW RESTORED) ---
+                { id: 511, text: "You get in your car. The music sounds incredible. You're driving 15 mph under the speed limit and are intensely focused on the lines on the road. You make it to the bank, but you're mentally exhausted from the effort.", choices: [{ text: "Stumble into work.", nextId: 1011 }] },
+                { id: 1011, text: "You stumble into the bank. Your coworker gives you a weird look. Mr. Johns squints at you. 'Are you high on my clock? Go home. Now.' You're sent home in disgrace. A few hours later, your phone buzzes.", choices: [{ text: "Check your phone.", nextId: 299 }] },
+                { id: 512, text: "You get in your car, vibrating with energy. You weave through traffic until a cop pulls you over. 'Just coffee, officer!' you say, vibrating. He gives you a hefty speeding ticket. You arrive at work late and angry.", choices: [{ text: "Well, today sucks.", nextId: 140 }] },
+                { id: 901, text: "Your partner points to a bottle of Barolo on the wine list. 'I've always wanted to try this one,' they say, their eyes sparkling. You see the price and gulp... it's definitely a special occasion wine.", choices: [{ text: "Order it. 'You only live once.'", nextId: 902 }, { text: "'Maybe we can find a nice Chianti instead?'", nextId: 903 }] },
+                { id: 902, text: "You wave the waiter over and order the Barolo. It's incredible - rich, complex, and absolutely delicious. You both savor every sip. The conversation flows effortlessly. It's a perfect meal.", choices: [{ text: "Continue the date...", nextId: 2011 }] },
+                { id: 903, text: "You gently steer them towards a more reasonably priced Chianti. It's fine, but you can't help but notice a flicker of disappointment in their eyes. The rest of the dinner is nice, but not quite the magical night it could have been.", choices: [{ text: "Continue the date...", nextId: 2011 }] },
+                { id: 307, text: "You excuse yourself and walk over. It's two folded twenty-dollar bills. Forty bucks, just lying there. The previous occupants of the table are long gone. What do you do?", choices: [{ text: "Pocket the cash. Finders keepers.", nextId: 308 }, { text: "Give the money to the server.", nextId: 309 }] },
+                { id: 308, text: "You slip the money into your pocket. It feels a little weird, but hey, finders keepers. You return to your table, ready to enjoy the rest of your night.", choices: [{ text: "So, about your day...", nextId: 2000 }] },
+                { id: 309, text: "You flag down your server and hand them the money, explaining where you found it. The server is incredibly grateful. 'Wow, thank you so much for your honesty!' they say. You return to your table, feeling good about yourself.", choices: [{ text: "So, about your day...", nextId: 2000 }] }
             ];
             
             // --- GAME STATE ---

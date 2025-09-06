@@ -106,7 +106,7 @@
                 gray: { bg: 'bg-gray-200', container: 'bg-white', text: 'text-gray-900', subtleText: 'text-gray-600', primaryBtn: 'bg-gray-800 hover:bg-gray-900', secondaryBtn: 'bg-gray-100 hover:bg-gray-300 text-gray-800', input: 'bg-gray-100 text-gray-800', border: 'border-gray-300' }
             };
             
-            // --- STORY DATA (COMPLETE) ---
+            // --- STORY DATA (COMPLETE & CORRECTED) ---
             const story = [
                 // Morning Routine
                 { id: 1, text: 'You open your eyes. The dream is already gone, just a vague feeling of unease remains. The alarm blares.', choices: [{ text: "Hit snooze", nextId: 11 }, { text: "Get up and stretch", nextId: 12 }, { text: "Grab your phone first", nextId: 13 }, { text: "Take a wake and bake dab", nextId: 60 }] },
@@ -119,9 +119,9 @@
                 { id: 22, text: "You grab your phone and call in sick, putting on your best 'dying frog' voice. The day is yours.", choices: [{ text: "Actually stay home all day", nextId: 33 }, { text: "Decide to explore the city instead", nextId: 34 }, { text: "Smoke weed and see where the day goes", nextId: 70 }, { text: "Go get a proper diner breakfast.", nextId: 10000 }, { text: "Finally fix that wobbly bookshelf.", nextId: 10010 }, { text: "Finally return that overdue library book.", nextId: 9000 }] },
 
                 // Shower Path
-                { id: 23, text: "The hot water is a blessing, melting away the last of your sleepiness. You feel refreshed and relaxed.", choices: [{ text: "Get dressed", nextId: 88 }] },
-                { id: 24, text: "The cold water is a shock to the system. You gasp, but emerge feeling electric and wide awake, if a little cranky.", choices: [{ text: "Get dressed", nextId: 88 }] },
-                { id: 25, text: "You give your teeth a thorough brushing, but decide a shower is a luxury you don't have time for. You smell a little, but oh well.", choices: [{ text: "Get dressed", nextId: 88 }] },
+                { id: 23, text: "The hot water is a blessing, melting away the last of your sleepiness. You feel refreshed and relaxed.", choices: [{ text: "Get dressed", nextId: 89 }] },
+                { id: 24, text: "The cold water is a shock to the system. You gasp, but emerge feeling electric and wide awake, if a little cranky.", choices: [{ text: "Get dressed", nextId: 89 }] },
+                { id: 25, text: "You give your teeth a thorough brushing, but decide a shower is a luxury you don't have time for. You smell a little, but oh well.", choices: [{ text: "Get dressed", nextId: 89 }] },
 
                 // Ad Path
                 { id: 26, text: 'The ad takes you to a GeoCities-looking website for "Tactical Soap." It\'s full of testimonials from guys named Chad and Brad. At the bottom, a tiny link says: "For TRUE believers ONLY."', choices: [{ text: "Click the 'TRUE believers' link", nextId: 261 }, { text: "Close the tab, this is stupid", nextId: 27 }] },
@@ -131,6 +131,11 @@
                 // Breakfast / Commute Path
                 { id: 31, text: "You grab a shirt and pants from the floor. They might be clean. They might not. No time to check.", choices: [{ text: "Breakfast (Eggs/Toast)", nextId: 41 }, { text: "Breakfast (Cereal)", nextId: 42 }, { text: "Breakfast (Oatmeal)", nextId: 46 }, { text: "Coffee Only", nextId: 43 }, { text: "Skip Breakfast", nextId: 44 }] },
                 { id: 32, text: "You're already late, what's a dress code violation on top of it? You walk out the door in your flannel pajama pants.", choices: [{ text: "Breakfast (Eggs/Toast)", nextId: 41 }, { text: "Breakfast (Cereal)", nextId: 42 }, { text: "Breakfast (Oatmeal)", nextId: 46 }, { text: "Coffee Only", nextId: 43 }, { text: "Skip Breakfast", nextId: 44 }] },
+                { id: 33, text: "You spend the day on the couch, binging shows and ordering delivery. You feel a bit like a slob, but a comfortable, happy slob. As evening approaches, your phone buzzes.", choices: [{ text: "Check your phone.", nextId: 299 }] },
+                { id: 34, text: "You wander the city, a tourist in your own town. What should you do?", choices: [{ text: "Visit a cafe.", nextId: 341 }, { text: "Go to the park.", nextId: 342 }, { text: "Go to the mall.", nextId: 341 }] },
+                { id: 341, text: "You spend a few hours at a cafe/mall, just people watching and enjoying the freedom. As the sun begins to set, your phone buzzes.", choices: [{ text: "Check your phone.", nextId: 299 }] },
+                { id: 342, text: "You head to the local park. It's peaceful. You see a friendly-looking orange tabby cat sitting on a bench.", choices: [{ text: "Try to pet the cat.", nextId: 343 }, { text: "Leave it be and enjoy the quiet.", nextId: 341 }] },
+                { id: 343, text: "You approach slowly and offer your hand. The cat purrs loudly and rubs against you before hopping off the bench. As it leaves, it nudges something shiny on the ground with its nose, looks back at you, and darts away. It's an old, heavy silver dollar.", setState: { silverDollar: true }, choices: [{ text: "What a strange cat. What a cool coin.", nextId: 341 }] },
                 { id: 41, text: "You quickly whip up some eggs and toast. A solid breakfast.", choices: [{ text: "Commute (Drive)", nextId: 51 }, { text: "Commute (Bus)", nextId: 52 }, { text: "Smoke a bowl before you go", nextId: 80 }, { text: "Skip Work Last Minute", nextId: 54 }] },
                 { id: 42, text: "You pour a bowl of cereal. It's fast and easy.", choices: [{ text: "Commute (Drive)", nextId: 51 }, { text: "Commute (Bus)", nextId: 52 }, { text: "Smoke a bowl before you go", nextId: 80 }, { text: "Skip Work Last Minute", nextId: 54 }] },
                 { id: 43, text: "No time for food. You brew a strong cup of coffee and drink it black.", choices: [{ text: "Drink a second cup", nextId: 431 }, { text: "One is enough. Time to go.", nextId: 45 }] },
@@ -149,9 +154,9 @@
                 // Weed Paths
                 { id: 60, text: "You grab your rig from the nightstand. The torch roars to life. You take a fat dab and hold it in, coughing until you see stars. The world slows down. Everything is hazy and kinda funny now.", choices: [{ text: "Get up and stretch (slowly)", nextId: 61 }, { text: "Grab your phone and zone out", nextId: 13 }] },
                 { id: 61, text: "You slowly rise, your body feeling both heavy and light. A good stretch feels incredible. Time to get ready, maybe.", choices: [{ text: "Hot shower", nextId: 62 }, { text: "Cold shower", nextId: 63 }, { text: "Just brush teeth", nextId: 64 }] },
-                { id: 62, text: "The hot water feels amazing. You space out for what feels like an hour, just enjoying the steam.", choices: [{ text: "Get dressed.", nextId: 88 }] },
-                { id: 63, text: "The cold water is a sensory explosion. Your brain short-circuits for a second, then reboots with crystal clarity. A bold choice.", choices: [{ text: "Get dressed.", nextId: 88 }] },
-                { id: 64, text: "Showering seems like a lot of work. You brush your teeth meticulously instead, focusing intensely on each tooth.", choices: [{ text: "Get dressed.", nextId: 88 }] },
+                { id: 62, text: "The hot water feels amazing. You space out for what feels like an hour, just enjoying the steam.", choices: [{ text: "Get dressed.", nextId: 89 }] },
+                { id: 63, text: "The cold water is a sensory explosion. Your brain short-circuits for a second, then reboots with crystal clarity. A bold choice.", choices: [{ text: "Get dressed.", nextId: 89 }] },
+                { id: 64, text: "Showering seems like a lot of work. You brush your teeth meticulously instead, focusing intensely on each tooth.", choices: [{ text: "Get dressed.", nextId: 89 }] },
                 { id: 70, text: "You pack a fat bowl. The sweet smoke fills your lungs. An hour later, you're staring at the ceiling, contemplating the mysteries of the universe and whether you have any chips in the house.", choices: [{ text: "Watch TV", nextId: 71 }, { text: "Go on a snack quest to the kitchen", nextId: 72 }, { text: "Mindlessly scroll Facebook Marketplace", nextId: 73 }] },
                 { id: 71, text: "You flip on the TV. What's the plan?", choices: [{ text: "See what's on Adult Swim", nextId: 711 }, { text: "Watch daytime court shows and feel superior", nextId: 712 }] },
                 { id: 72, text: "You embark on a perilous journey to the kitchen. You construct a magnificent sandwich out of leftovers and eat it over the sink like an animal. It's the best thing you've ever tasted.", choices: [{ text: "A truly magnificent sandwich.", nextId: 79 }] },
@@ -160,8 +165,17 @@
                 { id: 80, text: "You take a quick rip from your bong to 'prepare' for the day. You feel calm, maybe too calm. Time to head to work, hopefully no one notices your eyes are as red as the devil's... well, you know.", choices: [{ text: "Commute (Drive, probably a bad idea)", nextId: 511 }, { text: "Commute (Bus, the safer choice)", nextId: 52 }] },
                 
                 // Getting Dressed (Morning)
-                { id: 88, text: "You quickly throw on some clothes suitable for the day ahead.", choices: [{ text: "Any final preparations?", nextId: 89 }] },
-                { id: 89, routeBy: 'gender', routes: { male: 90, female: 95 } },
+                { id: 89, text: "Time to pick an outfit for the day.", routeBy: 'gender', routes: { male: 891, female: 892 } },
+                { id: 891, text: "Time to pick an outfit for the day.", choices: [{ text: "Pick outfit (Jeans/Hoodie)", nextId: 35 }, { text: "Pick outfit (Slacks/Business)", nextId: 36 }, { text: "Pick outfit (Hawaiian Shirt)", nextId: 37 }, { text: "Stay in Pajamas", nextId: 38 }] },
+                { id: 892, text: "Time to pick an outfit for the day.", choices: [{ text: "A blue dress", nextId: 1000 }, { text: "A black skirt with pink blouse and white sweater", nextId: 1001 }, { text: "A black hoodie and a pair of jeans", nextId: 1002 }, { text: "Sweatpants and a cutoff shirt", nextId: 1003 }] },
+                { id: 35, text: "You pull on a comfortable pair of jeans and a hoodie. Casual Friday, here you come.", setState: { wearsHawaiianShirt: false }, choices: [{ text: "Finish getting ready", nextId: 90 }] },
+                { id: 36, text: "You dress in your work uniform: slacks and a button-up. Professional, if a bit boring.", setState: { wearsHawaiianShirt: false }, choices: [{ text: "Finish getting ready", nextId: 90 }] },
+                { id: 37, text: "You decide today needs a splash of color. The Hawaiian shirt it is. Let the world know you're here for a good time.", setState: { wearsHawaiianShirt: true }, choices: [{ text: "Finish getting ready", nextId: 90 }] },
+                { id: 38, text: "Why bother changing? You're already comfortable. You decide to embrace the pajama lifestyle.", setState: { wearsHawaiianShirt: false }, choices: [{ text: "Finish getting ready", nextId: 90 }] },
+                { id: 1000, text: "You slip on a simple but elegant blue dress. It's comfortable and makes you feel confident.", setState: { wearsHawaiianShirt: false }, choices: [{ text: "Finish getting ready", nextId: 95 }] },
+                { id: 1001, text: "You choose the black skirt, pink blouse, and a cozy white sweater. It's a classic, cute look.", setState: { wearsHawaiianShirt: false }, choices: [{ text: "Finish getting ready", nextId: 95 }] },
+                { id: 1002, text: "You go for comfort and style with a black hoodie and your favorite pair of jeans. You're ready for anything.", setState: { wearsHawaiianShirt: false }, choices: [{ text: "Finish getting ready", nextId: 95 }] },
+                { id: 1003, text: "Maximum comfort is the goal. You pull on a pair of soft sweatpants and a cutoff shirt. It's a lazy day, after all.", setState: { wearsHawaiianShirt: false }, choices: [{ text: "Finish getting ready", nextId: 95 }] },
                 { id: 90, text: "You're all dressed. One last look in the mirror. Any final preparations before breakfast?", choices: [{ text: "Strap on your shoulder harness and gold 9mm Glock.", nextId: 91 }, { text: "Nah, let's just get some breakfast.", nextId: 95 }] },
                 { id: 91, text: "You open a hidden compartment in your closet and pull out your custom gold 9mm Glock. You strap on the leather shoulder harness. It feels heavy and familiar under your jacket. You're ready for anything.", setState: { hasGlock: true }, choices: [{ text: "Now for some breakfast.", nextId: 95 }] },
                 { id: 95, text: "You head to the kitchen, ready for the most important meal of the day.", choices: [{ text: "Breakfast (Eggs/Toast)", nextId: 41 }, { text: "Breakfast (Cereal)", nextId: 42 }, { text: "Breakfast (Oatmeal)", nextId: 46 }, { text: "Coffee Only", nextId: 43 }, { text: "Skip Breakfast", nextId: 44 }] },
@@ -195,7 +209,7 @@
                 
                 // Post-Date
                 { id: 3000, text: "You walk out to their car, but as you approach, you both see it: the rear passenger-side tire is completely, hopelessly flat. 'You've got to be kidding me,' they groan.", choices: [{ text: "Well, looks like you're riding with me.", nextId: 3001 }] },
-                { id: 3001, text: "The mood is set as you drive. The city lights blur past...", choices: [{ text: "Let's go inside.", nextId: 4000 }] }, // Simplified for brevity
+                { id: 3001, text: "The mood is set as you drive. The city lights blur past...", choices: [{ text: "Let's go inside.", nextId: 4000 }] },
 
                 // Getting Ready for Date
                 { id: 7000, text: "Time to get ready for your date.", routeBy: 'gender', routes: { male: 7001, female: 7010 } },

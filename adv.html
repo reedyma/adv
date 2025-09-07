@@ -25,18 +25,18 @@
         <h1 class="text-3xl font-bold mb-4 text-white">Pick A Theme</h1>
         <p class="mb-6 text-gray-400">any theme</p>
         <div class="grid grid-cols-2 sm:grid-cols-3 gap-4">
-            <button data-theme="default" class="theme-btn bg-slate-700 text-white p-4 rounded-lg font-semibold">Regular</button>
-            <button data-theme="green" class="theme-btn bg-green-600 text-white p-4 rounded-lg font-semibold">Green</button>
-            <button data-theme="blue" class="theme-btn bg-sky-600 text-white p-4 rounded-lg font-semibold">Blue</button>
-            <button data-theme="purple" class="theme-btn bg-purple-600 text-white p-4 rounded-lg font-semibold">Purple</button>
-            <button data-theme="pink" class="theme-btn bg-pink-500 text-white p-4 rounded-lg font-semibold">Pink</button>
-            <button data-theme="gray" class="theme-btn bg-gray-500 text-white p-4 rounded-lg font-semibold">Gray</button>
+            <button data-theme="default" class="theme-btn bg-slate-700 text-white p-4 rounded-lg font-semibold">Regular Flavor</button>
+            <button data-theme="green" class="theme-btn bg-green-600 text-white p-4 rounded-lg font-semibold">Grass Flavor</button>
+            <button data-theme="blue" class="theme-btn bg-sky-600 text-white p-4 rounded-lg font-semibold">Sky Flavor</button>
+            <button data-theme="purple" class="theme-btn bg-purple-600 text-white p-4 rounded-lg font-semibold">Grape Flavor</button>
+            <button data-theme="pink" class="theme-btn bg-pink-500 text-white p-4 rounded-lg font-semibold">Barbie Flavor</button>
+            <button data-theme="gray" class="theme-btn bg-gray-500 text-white p-4 rounded-lg font-semibold">No Flavor</button>
         </div>
     </div>
 
     <div id="welcome-screen" class="w-full max-w-md rounded-xl shadow-2xl p-6 md:p-8 text-center hidden themed-container">
         <h1 class="text-3xl font-bold mb-4 themed-text">Choose Your Name</h1>
-        <p class="mb-6 themed-subtle-text">Enter your name to begin or continue your journey.</p>
+        <p class="mb-6 themed-subtle-text">Enter your name to begin or get back to it.</p>
         <input type="text" id="username-input" placeholder="Your Name" class="w-full text-white rounded-lg px-4 py-3 mb-4 focus:outline-none focus:ring-2 focus:ring-indigo-500 transition-shadow themed-input">
         <button id="start-button" class="w-full text-white font-bold py-3 px-4 rounded-lg shadow-md transition-all duration-300 transform hover:scale-105 themed-primary-btn">Start Adventure</button>
     
@@ -71,18 +71,18 @@
         const story = [
             // Morning Routine
             { id: 1, text: 'You open your eyes. The dream is already gone, just a vague feeling of unease remains. The alarm blares.', choices: [{ text: "Hit snooze", nextId: 11 }, { text: "Get up and stretch", nextId: 12 }, { text: "Grab your phone first", nextId: 13 }, { text: "Take a wake and bake dab", nextId: 60 }] },
-            { id: 11, text: "You drift off again. Suddenly it’s 7:30. You’re late.", choices: [{ text: "Rush out of bed, forget shower/breakfast", nextId: 21 }, { text: "Say screw it, call in sick", nextId: 22 }] },
+            { id: 11, text: "You drift off again. Suddenly it’s 7:30. Smooooooth, you’re late.", choices: [{ text: "Rush out of bed, forget shower/breakfast", nextId: 21 }, { text: "Say fuck it, call in sick, you don't want to do shit anyways", nextId: 22 }] },
             { id: 12, text: "Your muscles pop. You feel awake. Time for the bathroom.", choices: [{ text: "Hot shower", nextId: 23 }, { text: "Cold shower", nextId: 24 }, { text: "Skip shower, brush teeth only", nextId: 25 }] },
             { id: 13, text: 'You scroll through your phone. A weirdly targeted ad appears: "Tired of your boring life? Try Tactical Soap. Washes away the grime AND the regret."', choices: [{ text: "Click the ad", nextId: 26 }, { text: "Ignore it, head to bathroom", nextId: 27 }] },
             
             // Late / Sick Path
             { id: 21, text: "You scramble around, a whirlwind of panicked energy.", choices: [{ text: "Throw on random clothes quickly", nextId: 31 }, { text: "Leave house in pajamas", nextId: 32 }] },
-            { id: 22, text: "You grab your phone and call in sick, putting on your best 'dying frog' voice. The day is yours.", choices: [{ text: "Actually stay home all day", nextId: 33 }, { text: "Decide to explore the city instead", nextId: 34 }, { text: "Smoke weed and see where the day goes", nextId: 70 }, { text: "Go get a proper diner breakfast.", nextId: 10000 }, { text: "Finally fix that wobbly bookshelf.", nextId: 10010 }, { text: "Finally return that overdue library book.", nextId: 9000 }] },
+            { id: 22, text: "You grab your phone and call in sick, putting on your best 'I'm dyin' voice. The day is yours.", choices: [{ text: "Actually stay home all day", nextId: 33 }, { text: "Decide to explore the city instead", nextId: 34 }, { text: "Smoke weed and see where the day goes", nextId: 70 }, { text: "Go get a proper diner breakfast.", nextId: 10000 }, { text: "Finally fix that wobbly bookshelf.", nextId: 10010 }, { text: "Finally return that overdue library book.", nextId: 9000 }] },
 
             // Shower Path
-            { id: 23, text: "The hot water is a blessing, melting away the last of your sleepiness. You feel refreshed and relaxed.", choices: [{ text: "Get dressed", nextId: 89 }] },
-            { id: 24, text: "The cold water is a shock to the system. You gasp, but emerge feeling electric and wide awake, if a little cranky.", choices: [{ text: "Get dressed", nextId: 89 }] },
-            { id: 25, text: "You give your teeth a thorough brushing, but decide a shower is a luxury you don't have time for. You smell a little, but oh well.", choices: [{ text: "Get dressed", nextId: 89 }] },
+            { id: 23, text: "The hot water is a blessing, melting away the last of your sleepiness. You feel refreshed and ready.", choices: [{ text: "Get dressed", nextId: 89 }] },
+            { id: 24, text: "The cold water is a shock to the system. Feels good though, but emerge feeling electric and wide awake.", choices: [{ text: "Get dressed", nextId: 89 }] },
+            { id: 25, text: "You give your teeth a thorough brushing, but decide a shower is a luxury you don't have time for, you showered before bed anyway.", choices: [{ text: "Get dressed", nextId: 89 }] },
 
             // Ad Path
             { id: 26, text: 'The ad takes you to a GeoCities-looking website for "Tactical Soap." It\'s full of testimonials from guys named Chad and Brad. At the bottom, a tiny link says: "For TRUE believers ONLY."', choices: [{ text: "Click the 'TRUE believers' link", nextId: 261 }, { text: "Close the tab, this is stupid", nextId: 27 }] },
@@ -94,15 +94,15 @@
             { id: 32, text: "You're already late, what's a dress code violation on top of it? You walk out the door in your flannel pajama pants.", choices: [{ text: "Breakfast (Eggs/Toast)", nextId: 41 }, { text: "Breakfast (Cereal)", nextId: 42 }, { text: "Breakfast (Oatmeal)", nextId: 46 }, { text: "Coffee Only", nextId: 43 }, { text: "Skip Breakfast", nextId: 44 }] },
             { id: 35, text: "You pull on a comfortable pair of jeans and a hoodie. Casual Friday, here you come.", setState: { wearsHawaiianShirt: false }, choices: [{ text: "Finish getting ready", nextId: 90 }] },
             { id: 36, text: "You dress in your work uniform: slacks and a button-up. Professional, if a bit boring.", setState: { wearsHawaiianShirt: false }, choices: [{ text: "Finish getting ready", nextId: 90 }] },
-            { id: 37, text: "You decide today needs a splash of color. The Hawaiian shirt it is. Let the world know you're here for a good time.", setState: { wearsHawaiianShirt: true }, choices: [{ text: "Finish getting ready", nextId: 90 }] },
+            { id: 37, text: "You decide today needs a lil something extra. The Hawaiian shirt it is. You bring the vacation to you.", setState: { wearsHawaiianShirt: true }, choices: [{ text: "Finish getting ready", nextId: 90 }] },
             { id: 38, text: "Why bother changing? You're already comfortable. You decide to embrace the pajama lifestyle.", setState: { wearsHawaiianShirt: false }, choices: [{ text: "Finish getting ready", nextId: 90 }] },
             
             // Homebody / City Paths
-            { id: 33, text: "You spend the day on the couch, binging shows and ordering delivery. You feel a bit like a slob, but a comfortable, happy slob. As evening approaches, your phone buzzes.", choices: [{ text: "Check your phone.", nextId: 299 }] },
+            { id: 33, text: "You spend the day on the couch, binging shows and ordering delivery. As evening approaches, your phone buzzes.", choices: [{ text: "Check your phone.", nextId: 299 }] },
             { id: 34, text: "You wander the city, a tourist in your own town. What should you do?", choices: [{ text: "Visit a cafe.", nextId: 341 }, { text: "Go to the park.", nextId: 342 }, { text: "Go to the mall.", nextId: 341 }] },
             { id: 341, text: "You spend a few hours at a cafe/mall, just people watching and enjoying the freedom. As the sun begins to set, your phone buzzes.", choices: [{ text: "Check your phone.", nextId: 299 }] },
             { id: 342, text: "You head to the local park. It's peaceful. You see a friendly-looking orange tabby cat sitting on a bench.", choices: [{ text: "Try to pet the cat.", nextId: 343 }, { text: "Leave it be and enjoy the quiet.", nextId: 341 }] },
-            { id: 343, text: "You approach slowly and offer your hand. The cat purrs loudly and rubs against you before hopping off the bench. As it leaves, it nudges something shiny on the ground with its nose, looks back at you, and darts away. It's an old, heavy silver dollar.", setState: { silverDollar: true }, choices: [{ text: "What a strange cat. What a cool coin.", nextId: 341 }] },
+            { id: 343, text: "You approach slowly and offer your hand. The cat purrs loudly and rubs against you before hopping off the bench. As it leaves, it nudges something shiny on the ground with its nose, looks back at you, and darts away. It's an old, heavy silver dollar.", setState: { silverDollar: true }, choices: [{ text: "Thanks boss, you say to the cat. What a cool coin.", nextId: 341 }] },
             
             // Commute Path
             { id: 41, text: "You quickly whip up some eggs and toast. A solid breakfast.", choices: [{ text: "Commute (Drive)", nextId: 51 }, { text: "Commute (Bus)", nextId: 52 }, { text: "Smoke a bowl before you go", nextId: 80 }, { text: "Skip Work Last Minute", nextId: 54 }] },
@@ -111,51 +111,51 @@
             { id: 44, text: "Your stomach rumbles, but you ignore it. Time is money.", choices: [{ text: "Commute (Drive)", nextId: 51 }, { text: "Commute (Bus)", nextId: 52 }, { text: "Smoke a bowl before you go", nextId: 80 }, { text: "Skip Work Last Minute", nextId: 54 }] },
             { id: 45, text: "Caffeine coursing through your veins, you head for the door.", choices: [{ text: "Commute (Drive)", nextId: 51 }, { text: "Commute (Bus)", nextId: 52 }, { text: "Smoke a bowl before you go", nextId: 80 }, { text: "Skip Work Last Minute", nextId: 54 }] },
             { id: 46, text: "You make a quick bowl of oatmeal. It's warm and filling.", choices: [{ text: "Commute (Drive)", nextId: 51 }, { text: "Commute (Bus)", nextId: 52 }, { text: "Smoke a bowl before you go", nextId: 80 }, { text: "Skip Work Last Minute", nextId: 54 }] },
-            { id: 431, text: "The second cup makes your heart pound. You feel wired, a bit jittery, but immensely focused. The world seems to be moving in slow motion.", choices: [{ text: "Drink a third cup. Embrace the chaos.", nextId: 432 }, { text: "Okay, that's enough. Time to go.", nextId: 45 }] },
-            { id: 432, text: "You down the third cup. Your hands are shaking, and you can hear your own heartbeat. You are a being of pure caffeine, ready to face the day at 1000 mph.", choices: [{ text: "Commute (Drive, VERY fast)", nextId: 512 }, { text: "Commute (Bus, try not to vibrate out of your seat)", nextId: 52 }] },
+            { id: 431, text: "The second cup makes your feel nothing. You feel zero, a bit tired. The world seems to be moving in slow motion.", choices: [{ text: "Drink a third cup, why not?", nextId: 432 }, { text: "Okay, whatever. Time to go.", nextId: 45 }] },
+            { id: 432, text: "You down the third cup. Your hands are steady, but you can hear your own heartbeat. You are a starting to wake up, soon ready to face the day.", choices: [{ text: "Commute (Drive, fast)", nextId: 512 }, { text: "Commute (Bus, chill a lil bit)", nextId: 52 }] },
 
             // Branching to Main Storylines
             { id: 51, text: "You get in your old, trusty truck and head to your job at the bank. The gas gauge has been broken for weeks, but you have a pretty good feel for it. Usually. Halfway there, the engine sputters, coughs, and then goes silent. You coast to the shoulder. You're out of gas.", choices: [{ text: "Call for help", nextId: 401 }, { text: "Start walking to the nearest gas station", nextId: 402 }, { text: "Call an Uber to work and deal with this later", nextId: 403 }, { text: "Just wait and see what happens", nextId: 405 }] },
-            { id: 52, text: "You catch the bus to work. As you ride, you see someone drop a folded piece of paper. You pick it up. It looks like a lottery ticket.", choices: [{ text: "Check the numbers.", nextId: 55 }, { text: "Put it in your pocket for later.", nextId: 101 }] },
+            { id: 52, text: "You catch the bus to work. As you ride, you see a folded piece of paper on the ground. You pick it up. It looks like a lottery ticket.", choices: [{ text: "Check the numbers.", nextId: 55 }, { text: "Put it in your pocket for later.", nextId: 101 }] },
             { id: 55, text: "You pull up the lottery results on your phone. You scan the ticket. Holy cow. It's a $100 winner! You carefully fold it and put it in your pocket, a grin spreading across your face.", setState: { lotteryTicket: true }, choices: [{ text: "Arrive at the bank, feeling lucky.", nextId: 101 }] },
-            { id: 53, text: "You decide to bike to work. The fresh air is nice, but a car cuts you off and you narrowly avoid a nasty accident. Your heart is pounding as you arrive at the bank.", choices: [{ text: "Continue to work", nextId: 101 }] },
+            { id: 53, text: "Unfortunatley you have to bike to work, it saves gas but you lose a lot of respect. A car cuts you off and calls you a vulgar slur, you narrowly avoid a nasty accident. Your heart is pounding as you arrive at the bank. Is my jacket really that bad you wonder?", choices: [{ text: "Continue to work", nextId: 101 }] },
             { id: 54, text: "You know what? Screw it. You're not going to work. The city awaits.", choices: [{ text: "Begin your adventure", nextId: 34 }] },
 
             // --- Weed Paths ---
-            { id: 60, text: "You grab your rig from the nightstand. The torch roars to life. You take a fat dab and hold it in, coughing until you see stars. The world slows down. Everything is hazy and kinda funny now.", choices: [{ text: "Get up and stretch (slowly)", nextId: 61 }, { text: "Grab your phone and zone out", nextId: 13 }] },
+            { id: 60, text: "You grab your rig from the nightstand. The torch roars to life. You take a fat dab and hold it in, coughing until you see stars. The world slows down.", choices: [{ text: "Get up and stretch (slowly)", nextId: 61 }, { text: "Grab your phone and zone out", nextId: 13 }] },
             { id: 61, text: "You slowly rise, your body feeling both heavy and light. A good stretch feels incredible. Time to get ready, maybe.", choices: [{ text: "Hot shower", nextId: 62 }, { text: "Cold shower", nextId: 63 }, { text: "Just brush teeth", nextId: 64 }] },
-            { id: 62, text: "The hot water feels amazing. You space out for what feels like an hour, just enjoying the steam.", choices: [{ text: "Pick outfit (Jeans/Hoodie)", nextId: 65 }, { text: "Pick outfit (Slacks/Business)", nextId: 36 }] },
-            { id: 63, text: "The cold water is a sensory explosion. Your brain short-circuits for a second, then reboots with crystal clarity. A bold choice.", choices: [{ text: "Pick outfit (Jeans/Hoodie)", nextId: 65 }, { text: "Pick outfit (Slacks/Business)", nextId: 36 }] },
-            { id: 64, text: "Showering seems like a lot of work. You brush your teeth meticulously instead, focusing intensely on each tooth.", choices: [{ text: "Pick outfit (Jeans/Hoodie)", nextId: 65 }, { text: "Pick outfit (Slacks/Business)", nextId: 36 }] },
+            { id: 62, text: "The hot water feels amazing. You space out for what feels like an hour but it was only 4 mins, you were just enjoying the steam.", choices: [{ text: "Pick outfit (Jeans/Hoodie)", nextId: 65 }, { text: "Pick outfit (Slacks/Business)", nextId: 36 }] },
+            { id: 63, text: "The cold water is a sharp slap in the face. Your brain short-circuits for a second, then reboots with crystal clarity, ya kinda blew the high.", choices: [{ text: "Pick outfit (Jeans/Hoodie)", nextId: 65 }, { text: "Pick outfit (Slacks/Business)", nextId: 36 }] },
+            { id: 64, text: "Showering seems like a lot a waste. You brush your teeth meticulously instead, focusing intensely on each tooth.", choices: [{ text: "Pick outfit (Jeans/Hoodie)", nextId: 65 }, { text: "Pick outfit (Slacks/Business)", nextId: 36 }] },
             { id: 65, text: "You pull on a comfortable pair of jeans and a hoodie. As you put your hands in the pockets, you feel something cold and metallic. It's a small, ornate key you've never seen before. Weird. You shrug and pocket it, feeling a strange sense of destiny.", setState: { hasKey: true }, choices: [{ text: "Get some breakfast", nextId: 95 }] },
-            { id: 70, text: "You pack a fat bowl. The sweet smoke fills your lungs. An hour later, you're staring at the ceiling, contemplating the mysteries of the universe and whether you have any chips in the house.", choices: [{ text: "Watch TV", nextId: 71 }, { text: "Go on a snack quest to the kitchen", nextId: 72 }, { text: "Mindlessly scroll Facebook Marketplace", nextId: 73 }] },
+            { id: 70, text: "You pack a fat bowl. The sweet smoke fills your lungs. An hour later, you're staring at the ceiling, contemplating the mysteries of the universe and whether you have any chips in the house. Doritos? Remember the Taco Bell Doritos? Do they still have them you wonder.", choices: [{ text: "Watch TV", nextId: 71 }, { text: "Go on a snack quest to the kitchen", nextId: 72 }, { text: "Mindlessly scroll Facebook Marketplace", nextId: 73 }] },
             { id: 71, text: "You flip on the TV. What's the plan?", choices: [{ text: "See what's on Adult Swim", nextId: 711 }, { text: "Watch daytime court shows and feel superior", nextId: 712 }] },
             { id: 711, text: "You get sucked into a marathon of 'Delocated'. Jon is trying to get a new 'krime' photo taken. You grab your snacks and forget the outside world exists.", choices: [{ text: "The perfect day.", nextId: 79 }] },
             { id: 712, text: "You get sucked into hours of petty disputes and questionable rulings. You yell at the TV a lot. It's surprisingly cathartic.", choices: [{ text: "A surprisingly cathartic day.", nextId: 79 }] },
-            { id: 72, text: "You embark on a perilous journey to the kitchen. You construct a magnificent sandwich out of leftovers and eat it over the sink like an animal. It's the best thing you've ever tasted.", choices: [{ text: "A truly magnificent sandwich.", nextId: 79 }] },
-            { id: 73, text: "You open Facebook Marketplace. Amidst the broken furniture and MLM scams, something beautiful catches your eye: a 1995 Z28 Camaro, T-tops, cherry red. The price is... suspiciously low.", choices: [{ text: "Message the seller: 'is this still available?'", nextId: 201 }, { text: "Assume it's a scam and look for weird taxidermy instead", nextId: 70 }] },
-            { id: 79, text: "You spend the rest of the day in a blissful haze. As evening sets in, your phone buzzes, pulling you back to reality.", choices: [{ text: "See who it is.", nextId: 299 }] },
-            { id: 80, text: "You take a quick rip from your bong to 'prepare' for the day. You feel calm, maybe too calm. Time to head to work, hopefully no one notices your eyes are as red as the devil's... well, you know.", choices: [{ text: "Commute (Drive, probably a bad idea)", nextId: 511 }, { text: "Commute (Bus, the safer choice)", nextId: 52 }] },
-            { id: 89, text: "Time to pick an outfit for the day.", choices: [{ text: "Pick outfit (Jeans/Hoodie)", nextId: 35 }, { text: "Pick outfit (Slacks/Business)", nextId: 36 }, { text: "Pick outfit (Hawaiian Shirt)", nextId: 37 }, { text: "Stay in Pajamas", nextId: 38 }] },
+            { id: 72, text: "You embark on a perilous journey to the kitchen. You construct a magnificent sandwich out of leftovers and eat it over the sink. It's the best thing you've ever tasted today.", choices: [{ text: "A truly magnificent sandwich, your friend Aaron comes to mind, he has a real sub sandwich addiction, it is a sad situation. You wish him well.", nextId: 79 }] },
+            { id: 73, text: "You open Facebook Marketplace. Amidst the broken furniture and MLM scams, something beautiful catches your eye: a 1996 Z28 Camaro, T-tops, white. The price is 3800, not bad.", choices: [{ text: "Message the seller: 'is this still available?'", nextId: 201 }, { text: "Assume it's a scam and look for weird stuff instead", nextId: 70 }] },
+            { id: 79, text: "You spend the rest of the day pretty high. As evening sets in, your phone buzzes, pulling you back to reality.", choices: [{ text: "See who it is.", nextId: 299 }] },
+            { id: 80, text: "You take a quick rip from your bong to 'prepare' for the day. You feel calm, maybe too calm or maybe not calm enough, it is hard to say sometimes, chill or be chilled for real. Time to head to work, hopefully no one notices your eyes are as red as the devil's... well, you know.", choices: [{ text: "Commute (Drive, probably a bad idea)", nextId: 511 }, { text: "Commute (Bus, the safer choice)", nextId: 52 }] },
+            { id: 89, text: "Time to Dress to Impress.", choices: [{ text: "Pick outfit (Jeans/Hoodie)", nextId: 35 }, { text: "Pick outfit (Slacks/Business)", nextId: 36 }, { text: "Pick outfit (Hawaiian Shirt)", nextId: 37 }, { text: "Stay in Pajamas", nextId: 38 }] },
             // Glock Path
-            { id: 90, text: "You're all dressed. One last look in the mirror before you head out. Any final preparations?", choices: [{ text: "Strap on your shoulder harness and gold 9mm Glock.", nextId: 91 }, { text: "Nah, let's just get some breakfast.", nextId: 95 }] },
-            { id: 91, text: "You open a hidden compartment in your closet and pull out your custom gold 9mm Glock. You strap on the leather shoulder harness. It feels heavy and familiar under your jacket. You're ready for anything.", setState: { hasGlock: true }, choices: [{ text: "Now for some breakfast.", nextId: 95 }] },
-            { id: 95, text: "Time for the most important meal of the day. What's on the menu?", choices: [{ text: "Breakfast (Eggs/Toast)", nextId: 41 }, { text: "Breakfast (Cereal)", nextId: 42 }, { text: "Breakfast (Oatmeal)", nextId: 46 }, { text: "Coffee Only", nextId: 43 }, { text: "Skip Breakfast", nextId: 44 }] },
+            { id: 90, text: "You're all dressed. One last look in the mirror before you head out. Any final preparations?", choices: [{ text: "Conceal the gold 9mm Glock.", nextId: 91 }, { text: "Nah, let's just get some breakfast.", nextId: 95 }] },
+            { id: 91, text: "You open a hidden compartment in your closet and pull out your custom gold 9mm Glock. You strap on the leather shoulder harness. It feels heavy and familiar. You're ready for anything.", setState: { hasGlock: true }, choices: [{ text: "Now for some breakfast.", nextId: 95 }] },
+            { id: 95, text: "What ya gonna eat?", choices: [{ text: "Breakfast (Eggs/Toast)", nextId: 41 }, { text: "Breakfast (Cereal)", nextId: 42 }, { text: "Breakfast (Oatmeal)", nextId: 46 }, { text: "Coffee Only", nextId: 43 }, { text: "Skip Breakfast", nextId: 44 }] },
 
             // High Commute Path
-            { id: 511, text: "You get in your car. The music sounds incredible. You're driving 15 mph under the speed limit and are intensely focused on the lines on the road. You make it to the bank, but you're mentally exhausted from the effort.", choices: [{ text: "Stumble into work (feeling fuzzy)", nextId: 1011 }] },
-            { id: 512, text: "You get in your car, vibrating with energy. You're driving 15 mph OVER the speed limit, weaving through traffic. In your mind, you're a pro race car driver. In reality, you're a menace. A cop pulls you over. 'Just coffee, officer!' you say, vibrating. He gives you a hefty speeding ticket. You arrive at work late and angry.", choices: [{ text: "Today is not your day.", nextId: 140 }] },
+            { id: 511, text: "You get in your car. The music sounds incredible. You're driving 15 mph under the speed limit and are intensely focused on the lines on the road. You make it to the bank, but you're mentally exhausted from the effort.", choices: [{ text: "Stumble into work (You are fuckin cooked and you stink of weed)", nextId: 1011 }] },
+            { id: 512, text: "You get in your car, wanting a 4th cup. You're driving 28 mph OVER the speed limit, weaving through traffic. In your mind, you're a pro race car driver. In reality, you're a menace. A cop pulls you over. 'God dammit you say to yourself, what a waste of tax money. 20 mins later He gives you a hefty speeding ticket. You arrive at work late and angry.", choices: [{ text: "Today is not your day.", nextId: 140 }] },
             { 
                 id: 1011, 
-                text: "You stumble into the bank. Matt waves at you. 'Whoa, man, you look... relaxed.' Mr. Johns just squints at you from his office. 'Are you high on my clock? Go home. Now. We'll talk about this tomorrow.' You're sent home in disgrace. A few hours later, your phone buzzes.",
-                textFemale: "You stumble into the bank. Karen waves at you. 'Whoa, sunshine, you look... relaxed.' Mr. Johns just squints at you from his office. 'Are you high on my clock? Go home. Now. We'll talk about this tomorrow.' You're sent home in disgrace. A few hours later, your phone buzzes.",
+                text: "You stumble into the bank. Matt waves at you. 'Whoa, man, you look... high as fuck hahaha.' Mr. Johns just squints at you from his office. 'Are you high on my clock? Go home. Now. We'll talk about this tomorrow.' You're sent home in disgrace. A few hours later, your phone buzzes.",
+                textFemale: "You stumble into the bank. Karen waves at you. 'I think you have pink eye she says after staring at you' Mr. Johns just squints at you from his office. 'Are you high on my clock? Go home. Now. We'll talk about this tomorrow.' You're sent home in disgrace. A few hours later, your phone buzzes.",
                 choices: [{ text: "Check your phone.", nextId: 299 }]
             },
 
             // --- BANK TELLER PATH ---
             { 
                 id: 101, 
-                text: "Centerville Savings Bank stands tall in its beige blandness. The lobby smells faintly of stale coffee and Lysol. You swipe in and step behind the counter. Matt, your coworker, waves at you. 'Hey, they finally restocked the Nutter Butters.' Mr. Johns, your boss, shuffles past. 'Clock in already. And no slacking.'", 
+                text: "Centerville Savings Bank stands tall in its beige blandness. The lobby smells faintly of stale coffee and old books. You swipe in and step behind the counter. Matt, your coworker, waves at you. 'Hey, they finally restocked the Nutter Butters.' Mr. Johns, your boss, shuffles past. 'Clock in already. And no slacking.'", 
                 textFemale: "Centerville Savings Bank stands tall in its beige blandness. The lobby smells faintly of stale coffee and Lysol. You swipe in and step behind the counter. Karen, your coworker, waves at you. 'Hey, they finally restocked the Nutter Butters.' Mr. Johns, your boss, shuffles past. 'Clock in already. And no slacking.'",
                 choices: [{ text: "Talk about Nutter Butters.", nextId: 102 }, { text: "Go straight to work", nextId: 130 }, { text: "Sneak to breakroom for a donut first", nextId: 104 }] 
             },
@@ -167,7 +167,7 @@
             },
             { 
                 id: 104, 
-                text: "You sneak a powdered donut. Sweet victory — but Mr. Johns catches you. 'You’re already late and now you’re eating on my time?'", 
+                text: "You sneak a powdered donut. Sweet victory — but Mr. Johns catches you. 'You’re already late and now you’re eating upper managements doughnuts?'", 
                 choices: [{ text: "Apologize sincerely", nextId: 110 }, { text: "Sass him back", nextId: 111 }, { text: "Pretend to choke dramatically to distract him", nextId: 112 }] 
             },
             { 
@@ -178,12 +178,12 @@
             },
             { 
                 id: 106, 
-                text: "'Are you kidding?' Matt says, looking shocked. 'They're the best. You gotta check out their Instagram page, it rips. I'll show you what's up later.'",
-                textFemale: "'Are you kidding?' Karen says, looking shocked. 'They're the best. You gotta check out their Instagram page, it rips. I'll show you what's up later.'",
+                text: "'Are you kidding?' Matt says, looking shocked. 'They're the best. You gotta check out their Instagram page, it rips hard. I'll show you what's up later.'",
+                textFemale: "'Are you kidding?' Karen says, looking shocked. 'They're the best. You gotta check out their Instagram page, it tea. I'll show you what's up later.'",
                 choices: [{ text: "Alright, whatever. Time to get ready.", nextId: 130 }] 
             },
             { id: 110, text: "Mr. Johns sighs. 'Just don’t let it happen again.'", choices: [{ text: "Get to work", nextId: 130 }] },
-            { id: 111, text: "'Maybe if you bought better donuts I’d be faster,' you joke. Mr. Johns glares. 'Last warning.'", choices: [{ text: "Get to work", nextId: 130 }] },
+            { id: 111, text: "'Not enough dunkin for the dunks eh?' you joke. Mr. Johns glares. 'Whats that even mean?.'", choices: [{ text: " You don't know so you get to work", nextId: 130 }] },
             { 
                 id: 112, 
                 text: "You clutch your throat dramatically. Matt rushes in pretending to save you. Mr. Johns rolls his eyes. 'Idiots.'",
@@ -192,15 +192,15 @@
             },
             {
                 id: 117,
-                text: "You start to slide him the cash, but something feels wrong. At the last second, you pull it back. 'I need to verify this with my manager.' The man's face pales, and he bolts out the door. Mr. Johns is furious you almost fell for it, but relieved you didn't. He gives you a stern lecture on procedure.",
-                choices: [{ text: "Continue the workday, shaken.", nextId: 140 }]
+                text: "You start to slide him the cash, but you know better, you are just fuckin with him. At the last second, you pull it back. 'I think I need to verify this with my manager.' The man's face pales, and he bolts out the door. Mr. Johns is furious you seemed to almost fell for it, but relieved you didn't. He gives you a stern lecture on procedure.",
+                choices: [{ text: "Continue the workday, bored.", nextId: 140 }]
             },
             
             // --- TEXTING PARTNER PATH ---
             { 
                 id: 130, 
-                text: "As you wait for the first customer, you think of your partner. You miss their wonderful personality and the way they make you feel. You pull out your phone under the counter.",
-                textFemale: "As you wait for the first customer, you think of your partner. You miss his wonderful personality and the way he makes you feel. You pull out your phone under the counter.",
+                text: "As you wait for the first customer, you think of your girlfriend. You miss her wonderful personality and the way they make you feel. You pull out your phone under the counter. Their photo on your lock screen greets you.",
+                textFemale: "As you wait for the first customer, you think of your partner. You miss his wonderful personality and the way he makes you feel. You pull out your phone under the counter. Their photo on your lock screen greets you.",
                 choices: [
                     { text: "Send them a ❤️ and 😘 emoji.", nextId: 131 },
                     { text: "Send them an 'i miss you bb' text.", nextId: 132 },
@@ -211,21 +211,21 @@
                 id: 131, 
                 text: "A moment later, your phone buzzes. She's sent back a 😘. You smile and put your phone away, feeling a little warmer.",
                 textFemale: "A moment later, your phone buzzes. He's sent back a 😘. You smile and put your phone away, feeling a little warmer.",
-                choices: [{ text: "Time to get to work.", nextId: 134 }]
+                choices: [{ text: "Hell yea you say to yourself.", nextId: 134 }]
             },
             { 
                 id: 132, 
                 text: "Your phone buzzes almost instantly with a reply: 'ILY'. You feel a rush of affection and quickly put your phone away as the first customer approaches.",
-                choices: [{ text: "Time to get to work.", nextId: 134 }]
+                choices: [{ text: "Hell yea you think to yourself.", nextId: 134 }]
             },
             { 
                 id: 133, 
                 text: "You decide against it. Better to stay focused. Unbeknownst to you, at that very moment, you were on your partner's mind all day. You put your phone away and get ready for the day.",
                 choices: [{ text: "Time to get to work.", nextId: 134 }]
             },
-            { id: 134, text: "You put your phone away, feeling good. Barry from HR wanders over.", choices: [{ text: "Great. It's Barry.", nextId: 135 }] },
-            { id: 135, text: "'Hey,' Barry says, leaning conspiratorially. 'Did you hear about what happened in the parking lot this morning? Classic Mr. Johns.'", choices: [{ text: "No, what happened?", nextId: 136 }, { text: "Sorry Barry, I've got to get to work.", nextId: 137 }] },
-            { id: 136, text: "Barry launches into a juicy, probably exaggerated story about Mr. Johns getting into a screaming match with the parking garage gate. You try to stifle a laugh.", setState: { heardGossip: true }, choices: [{ text: "File that away for later.", nextId: 138 }] },
+            { id: 134, text: "You put your phone away, feeling good. Barry from HR wanders over.", choices: [{ text: "Fuck. It's Barry you think. Barry is always tryin to get up in some gossip but hes a dumbass.", nextId: 135 }] },
+            { id: 135, text: "'Hey,' Barry says, leaning conspiratorially. 'Did you hear about what happened in the parking lot this morning? Classic Mr. Johns.'", choices: [{ text: "Classic Johns? You say.", nextId: 136 }, { text: "Sorry Barry, I've got to get to work.", nextId: 137 }] },
+            { id: 136, text: "Barry launches into a juicy, probably exaggerated story about Mr. Johns getting into a screaming match with the parking garage gate. You stare at him blankly, you are reminded as to why Barry sucks.", setState: { heardGossip: true }, choices: [{ text: "Keep it in your back pocket anyway.", nextId: 138 }] },
             { id: 137, text: "You politely excuse yourself. Barry seems annoyed at being brushed off, but you've got work to do.", choices: [{ text: "Probably the right call.", nextId: 150 }] },
             { id: 138, text: "Later that day, you head to the breakroom for a coffee. Mr. Johns is in there, looking grumpy as usual.", choices: [{ text: "Get your coffee and leave.", nextId: 140 }] },
             { id: 139, text: "You can't resist. 'Rough morning with the parking gate, huh?' you ask casually. Mr. Johns' eyes widen, then he lets out an unexpected chuckle. 'Don't you start. It's a menace.' You might have just earned a shred of his respect.", choices: [{ text: "The day flies by after that.", nextId: 140 }] },
@@ -236,7 +236,7 @@
             { id: 151, text: "You grab the stack of deposit slips. It's tedious work, but it has to be done.", choices: [{ text: "File them and export a copy for your records.", nextId: 152 }, { text: "Just file them. No need for extra steps.", nextId: 153 }] },
             { id: 152, text: "You finish filing and start an export. Do you want to CC Mr. Johns on the confirmation email?", choices: [{ text: "Yes, keep the boss in the loop.", nextId: 154 }, { text: "No, no need to bother him.", nextId: 154 }] },
             { id: 153, text: "You efficiently file away the slips. The task takes up a good chunk of your afternoon.", choices: [{ text: "Alright, that's done.", nextId: 140 }] },
-            { id: 154, text: "You send the email. It's good to have a digital paper trail. That task takes a while, and before you know it, the day is winding down.", choices: [{ text: "Time flew by.", nextId: 140 }] },
+            { id: 154, text: "You send the email. It's good to have a digital paper trail. Managers around here are hawks on any mistake but blind to sucess. That task takes a while, and before you know it, the day is winding down.", choices: [{ text: "Time flew by.", nextId: 140 }] },
             { id: 160, text: "You decide to put off the paperwork and wander into the back offices. You pass an empty cubicle with a sad-looking plant. On the desk sits a chipped mug that reads 'World's Best Boss'.", choices: [{ text: "Take the mug as a souvenir.", nextId: 168 }, { text: "Leave it and keep walking.", nextId: 169 }] },
             { id: 168, text: "You grab the mug. It feels appropriately cynical. You tuck it under your arm and continue your stroll.", setState: { bossMug: true }, choices: [{ text: "Let's see what else is back here.", nextId: 169 }] },
             { id: 169, text: "You notice the door to the old records room is slightly ajar.", choices: [{text: "Peek inside.", nextId: 170}, {text: "Probably shouldn't. Keep walking.", nextId: 161}] },
@@ -251,9 +251,9 @@
             { id: 167, text: "You head back to your station, the brief escape over. Time to get back to it. The rest of the afternoon passes by.", choices: [{ text: "Finally, quitting time.", nextId: 140 }] },
 
             // Camaro Quest
-            { id: 201, text: "A reply comes back almost instantly: 'yo it is. cash only no test drives i know what i got. u want it or not? address is 123 sketchy lane out by the old factory.'", choices: [{ text: "Agree to go check it out", nextId: 202 }, { text: "'No test drive? No thanks.'", nextId: 203 }] },
+            { id: 201, text: "A reply comes back almost instantly: 'yo it is. cash only no test drives i know what i got. u want it or not? address is 3206 Roosevelt lane out by the Steel Mill in Middletown.'", choices: [{ text: "Agree to go check it out", nextId: 202 }, { text: "'No test drive? No thanks.'", nextId: 203 }] },
             { id: 202, text: "You decide to risk it. You end up in a tense cash exchange and drive off in a rumbling beast that smells like cigarettes and freedom. It breaks down two miles later, but what a story.", choices: [{ text: "Well, that was an adventure.", nextId: 209 }] },
-            { id: 203, text: "You're not an idiot. You block the seller and go back to watching TV. You may not have a Camaro, but you also didn't get robbed.", choices: [{ text: "A wise choice.", nextId: 209 }] },
+            { id: 203, text: "Yo take a pass. You may not have a Camaro, but you also didn't get sucked into looking at a car that isnt at all what was advertised.", choices: [{ text: "Classic Marketplace.", nextId: 209 }] },
             { id: 209, text: "Well, that was an adventure. You head home, shaking your head at the weirdness of Facebook Marketplace. Later that evening, your phone buzzes.", choices: [{ text: "Check the text.", nextId: 299 }] },
             
             // --- DATE PATH ENTRY ---
@@ -271,14 +271,14 @@
             },
             {
                 id: 300,
-                text: "Your partner texts back: 'Perfect! Get ready and let's meet up soon.'",
+                text: "Your partner texts back: 'Perfect!'",
                 choices: [{ text: "Head home to get ready.", nextId: 7000 }]
             },
 
             // Out of Gas Path
             { 
                 id: 401, 
-                text: "You call your girlfriend, feeling a bit embarrassed. 'Hey... so, funny story...' She laughs but agrees to bring you a can of gas. You wait 45 minutes, but she arrives like a queen, saving the day. You get the truck running again, but you are now extremely late for work.",
+                text: "You call your girlfriend, feeling a bit embarrassed. 'Hey... so, that gas guage definatley broken, I'm out of gas...' She laughs but agrees to bring you a can of gas. You wait 45 minutes, but she arrives like a queen, saving the day. You get the truck running again, but you are now extremely late for work.",
                 textFemale: "You call your boyfriend, feeling a bit embarrassed. 'Hey... so, funny story...' He laughs but agrees to bring you a can of gas. You wait 45 minutes, but he arrives like a king, saving the day. You get the truck running again, but you are now extremely late for work.",
                 choices: [{ text: "Finally arrive at the bank", nextId: 404 }] 
             },
@@ -297,8 +297,8 @@
             // --- Pre-Date Smoking Paths ---
             { 
                 id: 601, 
-                text: "You meet up with your partner, freshly changed and ready for the night. 'There you are,' she says with a smile, getting into the truck. You hotbox the truck and get comfortably hazy. The vibes are good. You look over at her.",
-                textFemale: "You meet up with your partner, freshly changed and ready for the night. 'There you are,' he says with a smile, getting into the truck. You hotbox the truck and get comfortably hazy. The vibes are good. You look over at him.",
+                text: "You meet up with your gf, freshly changed and ready for the night. 'There you are,' she says with a smile, getting into the truck. You hotbox the truck and get comfortably high. The vibes are good. You look over at her.",
+                textFemale: "You meet up with your partner, freshly changed and ready for the night. 'There you are,' he says with a smile, getting into the truck. You hotbox the truck and get comfortably high. The vibes are good. You look over at him.",
                 choices: [{ text: "Compliment their outfit", nextId: 611 }, { text: "Just enjoy the music and head out", nextId: 900 }]
             },
             { 
@@ -309,8 +309,8 @@
             },
             { 
                 id: 602, 
-                text: "You meet up with your partner, freshly changed and ready for the night. 'There you are,' she says with a smile, getting into the truck. You hotbox the truck and get comfortably hazy. The vibes are good. You look over at her.",
-                textFemale: "You meet up with your partner, freshly changed and ready for the night. 'There you are,' he says with a smile, getting into the truck. You hotbox the truck and get comfortably hazy. The vibes are good. You look over at him.",
+                text: "You meet up with your gf, freshly changed and ready for the night. 'There you are,' she says with a smile, getting into the truck. You hotbox the truck and get comfortably hazy. The vibes are good. You look over at her.",
+                textFemale: "You meet up with your boyfriend, freshly changed and ready for the night. 'There you are,' he says with a smile, getting into the truck. You hotbox the truck and get comfortably hazy. The vibes are good. You look over at him.",
                 choices: [{ text: "Compliment their clothes", nextId: 612 }, { text: "Just enjoy the music and head out", nextId: 322 }]
             },
             { 
@@ -334,12 +334,12 @@
 
             // --- Squirrel Encounter Path ---
             { id: 700, text: "You figure you might as well pass the time. You spark up a joint. As you're taking a puff, a small squirrel scurries down a nearby tree and sits on the guardrail, twitching its nose and staring right at the joint.", choices: [{ text: "Offer the squirrel a hit.", nextId: 701 }, { text: "Ignore it and keep smoking.", nextId: 702 }] },
-            { id: 701, text: "You hold the joint out. 'Want some, little guy?' The squirrel, with no fear, scampers over, takes the joint in its tiny paws, and actually takes a drag. Its eyes go wide. Before you can react, it snatches the rest of the joint and darts back up the tree, leaving you completely stunned.", choices: [{ text: "Well... that happened. Keep waiting.", nextId: 406 }] },
+            { id: 701, text: "You hold the joint out. 'Want some, little guy?' The squirrel, with no fear, scampers over, takes the joint in its tiny paws, and actually takes a drag. Its eyes go wide. Before you can react, it snatches the rest of the joint and darts back up the tree, leaving you completely stunned.", choices: [{ text: "What the fuck you say slowly to yourself.", nextId: 406 }] },
             { id: 702, text: "You're not sharing your weed with a rodent. You turn away from it. The squirrel chitters in annoyance for a moment before giving up and running off into the woods.", choices: [{ text: "Finish your joint and keep waiting.", nextId: 406 }] },
             
             // Maggiano's Wine Path
             { id: 900, text: "You arrive at Maggiano's. The atmosphere is cozy and romantic. You're seated at your table and look over the menu.", choices: [{ text: "Your partner points out an expensive bottle of wine.", nextId: 901 }, { text: "You spot something on the floor by a vacant table.", nextId: 307 }] },
-            { id: 901, text: "Your partner points to a bottle of Barolo on the wine list. 'I've always wanted to try this one,' they say, their eyes sparkling. You see the price and gulp... it's definitely a special occasion wine.", choices: [{ text: "Order it. 'You only live once.'", nextId: 902 }, { text: "'Maybe we can find a nice Chianti instead?'", nextId: 903 }] },
+            { id: 901, text: "Your partner points to a bottle of Barolo on the wine list. 'I've always wanted to try this one,' they say, their eyes sparkling. You see the price and, its of no issue. Get what you want you say", choices: [{ text: "Order it. 'You only live once.'", nextId: 902 }, { text: "'Maybe we can find a nice Chianti instead?'", nextId: 903 }] },
             { id: 902, text: "You wave the waiter over and order the Barolo. It's incredible - rich, complex, and absolutely delicious. You both savor every sip, getting a pleasant, warm buzz. The conversation flows effortlessly. It's a perfect meal. 'Wow, I am definitely too buzzed to drive right now,' you say with a happy sigh.", choices: [{ text: "Suggest a walk to Cold Stone for milkshakes.", nextId: 904 }] },
             { id: 903, text: "You gently steer them towards a more reasonably priced Chianti. It's fine, but you can't help but notice a flicker of disappointment in their eyes. The rest of the dinner is nice, but not quite the magical night it could have been.", choices: [{ text: "Continue the date...", nextId: 2000 }] },
             { id: 904, text: "The walk in the cool air is refreshing. You find the Cold Stone Creamery and order two thick, decadent milkshakes. You sit outside, laughing and enjoying the cool treat as the wine buzz fades into a perfect, happy memory. It's been the best date night you've had in a long time.", choices: [{ text: "Continue the date...", nextId: 2000 }] },
@@ -399,7 +399,7 @@
                 textFemale: "Your partner leans in conspiratorially. 'Oh my god, there is tea,' he says, his eyes wide. 'There is work tea.'",
                 choices: [
                     { text: "Okay, let's hear it.", nextId: 2001 },
-                    { text: "You know I love it.", nextId: 2001 },
+                    { text: "Love me some tea.", nextId: 2001 },
                     { text: "Oh yeah? Is it that you're the hottest woman that works there?", textFemale: "Oh yeah? Is it that you're the most handsome guy that works there?", nextId: 2002 }
                 ]
             },
@@ -411,10 +411,10 @@
             },
             {
                 id: 2001,
-                text: "'Okay babe, you are not ready for this. Like, I am actually screaming inside. So you remember Heather’s birthday last month, right? She made this huge deal out of it, sent a calendar invite for her own cake cutting, and she got that big Costco sheet cake?'",
+                text: "'Okay babe, you are not ready for this. Like, I am actually heat. So you remember Heather’s birthday last month, right? She made this huge deal out of it, sent a calendar invite for her own cake cutting, and she got that big Costco sheet cake?'",
                 textFemale: "'Okay babe, you're not gonna believe this. Remember Heather’s birthday last month? How she made a huge deal about it and got that giant Costco sheet cake?'",
                 choices: [
-                    { text: "The one with the little pink roses? That cake was fire.", nextId: 2003 },
+                    { text: "The one with the little pink roses? That cake was cool.", nextId: 2003 },
                     { text: "Vaguely. What about it?", nextId: 2003 }
                 ]
             },
@@ -433,7 +433,7 @@
                 textFemale: "'Yup. The exact same one. Roses and everything. Heather was losing her mind.'",
                 choices: [
                     { text: "What did she do?", nextId: 2005 },
-                    { text: "That's a bold move by Danielle.", nextId: 2005 }
+                    { text: "That's a weitrd move by Danielle.", nextId: 2005 }
                 ]
             },
             {
@@ -442,7 +442,7 @@
                 textFemale: "'She walked into the breakroom, saw it, and just said 'Wow, original' loud enough for everyone to hear. Then she refused to have a slice, said she doesn't even like it.'",
                 choices: [
                     { text: "But... she just bought one for herself?", nextId: 2006 },
-                    { text: "The drama!", nextId: 2006 }
+                    { text: "The bitch!", nextId: 2006 }
                 ]
             },
             {
@@ -458,13 +458,13 @@
                 text: "'THREE times they’ve shown up in the exact same top. Not like, ‘oh that’s similar,’ I mean the same black-and-white striped Target blouse. The third time it happened? Heather spilt coffee on herself on purpose and went home to change.'",
                 textFemale: "'Three times now, they've worn the exact same striped shirt from Target on the same day. The last time it happened, Heather 'accidentally' spilled coffee on herself so she could go home and change.'",
                 choices: [
-                    { text: "She's unhinged. I love it.", nextId: 2008 },
+                    { text: "Thats so wild.", nextId: 2008 },
                     { text: "So what's the deal? Does Danielle have a secret shrine to Heather?", nextId: 2008 }
                 ]
             },
             {
                 id: 2008,
-                text: "'That's what Heather thinks! She told Kelly that Danielle is ‘obsessed’ with her, which is insane. Like… obsessed with what? Buying normal clothes and sheet cakes from Costco? Congratulations, you’re middle America.'",
+                text: "'That's what Heather thinks! She told Kelly that Danielle is ‘obsessed’ with her, which is insane. Like… obsessed with what? Buying normal clothes and sheet cakes from Costco? Congratulations, you’re mid.'",
                 textFemale: "'Heather is convinced Danielle is obsessed with her. It's ridiculous. They both just shop at Target.'",
                 choices: [
                     { text: "So what did Danielle do?", nextId: 2009 }
@@ -475,14 +475,14 @@
                 text: "'Danielle knows Heather’s spiraling, so she goes all fake sweet, like, ‘Oh, I didn’t realize you got your cake from Costco too, small world!’ and Heather almost combusted. Danielle serving for real.'",
                 textFemale: "'Danielle knows it gets under Heather's skin, so she's super sweet about it. She was like 'Oh, small world!' when Heather mentioned the cake. Heather looked like she was gonna explode.'",
                 choices: [
-                    { text: "This is the best story I've ever heard.", nextId: 2010 },
-                    { text: "I am living for this.", nextId: 2010 }
+                    { text: "Your work has a real high school vibe.", nextId: 2010 },
+                    { text: "This a legit good one.", nextId: 2010 }
                 ]
             },
             {
                 id: 2010,
                 text: "'Now the whole office is joking about it and I hope someone wears the blouse again next week.' Your partner sits back, a satisfied grin on their face.",
-                textFemale: "'The whole office is making jokes about it now. It's hilarious.' Your partner sits back, a satisfied grin on his face.",
+                textFemale: "'The whole office is making jokes about it now. It's hilarious.' Your boyfriend sits back, a satisfied grin on his face.",
                 choices: [{ text: "What a night.", nextId: 2011 }]
             },
             {
@@ -510,7 +510,7 @@
             // --- FLAT TIRE & SEDUCTION PATH ---
             {
                 id: 3000,
-                text: "You walk out to her car, but as you approach, you both see it: the rear passenger-side tire is completely, hopelessly flat. 'You've got to be kidding me,' she groans.",
+                text: "You walk out to her car, but as you approach, you both see it, the rear passenger-side tire is completely, hopelessly flat. 'You've got to be kidding me,' she groans.",
                 textFemale: "You walk out to his car, but as you approach, you both see it: the rear passenger-side tire is completely, hopelessly flat. 'You've got to be kidding me,' he groans.",
                 choices: [{ text: "Well, looks like you're riding with me.", textFemale: "Well, I guess I'm riding with you.", nextId: 3001 }]
             },
@@ -540,14 +540,14 @@
             },
             {
                 id: 3004,
-                text: "She laughs, a bright, clear sound. 'You mean the balsamic vinegar?' she asks, playfully. 'You're such a dork.'",
+                text: "She laughs, a bright, clear sound. 'You mean the balsamic vinegar?' she asks. 'You're such a dork.'",
                 textFemale: "'You mean the balsamic vinegar?' he asks, laughing. 'You're such a dork.'",
                 choices: [{ text: "Continue driving...", nextId: 3006 }]
             },
             {
                 id: 3005,
-                text: "You hand her the aux cord. A moment later, a slow, moody song fills the truck. She knows exactly what she's doing.",
-                textFemale: "He hands you the aux cord. A moment later, a slow, moody song fills the truck. He knows exactly what he's doing.",
+                text: "You hand her the aux cord. Gangster rap fills the cab, you light a joint.",
+                textFemale: "He hands you the aux cord. Gangster rap fills the cab, he lights a joint.",
                 choices: [{ text: "Continue driving...", nextId: 3006 }]
             },
             {
@@ -577,8 +577,8 @@
             },
             {
                 id: 3010,
-                text: "You slide the old CD into the player. After a moment of whirring, the speakers boom with the iconic beat of a classic 2000s gangster rap song. She looks surprised, then breaks into a huge grin. 'No way! I LOVE this song!' She starts rapping along, and you both spend the rest of the drive laughing and enjoying the hits.",
-                textFemale: "He slides the old CD into the player. After a moment of whirring, the speakers boom with the iconic beat of a classic 2000s gangster rap song. You look surprised, then break into a huge grin. 'No way! I LOVE this song!' You start rapping along, and you both spend the rest of the drive laughing and enjoying the hits.",
+                text: "You slide the old CD into the player. After a moment of whirring, the speakers boom with the iconic beat of a classic 2000s gangster rap song. She looks surprised, then breaks into a huge grin. 'No way! I LOVE this song!' She starts rapping along, and you both spend the rest of the drive smoking a joint.",
+                textFemale: "He slides the old CD into the player. After a moment of whirring, the speakers boom with the iconic beat of a classic 2000s gangster rap song. You look surprised, then break into a huge grin. 'No way! I LOVE this song!' You start rapping along, and you both spend the rest of the smoking a joint.",
                 setState: { mixCD: false },
                 choices: [{ text: "Continue the drive...", nextId: 3006 }]
             },
@@ -732,7 +732,7 @@
                 choices: [
                     { text: "'I love you more than anything in this world.'", nextId: 5004 },
                     { text: "'You are perfect in every way.'", nextId: 5004 },
-                    { text: "Say nothing, just stare at her.", textFemale: "Say nothing, just stare at him.", nextId: 5004 }
+                    { text: "Say nothing, just stare at her, cause your a weirdo", textFemale: "Say nothing, just stare at him.", nextId: 5004 }
                 ]
             },
             {
@@ -809,7 +809,7 @@
             { id: 7000, text: "Routing to your getting ready sequence...", choices: [] },
             // MALE PATH
             { id: 7001, text: "You get home with plenty of time to get ready. First things first, time to clean up.", choices: [{ text: "Take a quick shower.", nextId: 7002 }, { text: "Nah, a little deodorant will do.", nextId: 7002 }] },
-            { id: 7002, text: "You look in the mirror. Your facial hair is a little scruffy.", choices: [{ text: "Shave it clean.", nextId: 7003 }, { text: "Leave the whiskers. It's a look.", nextId: 7003 }] },
+            { id: 7002, text: "You look in the mirror. Your facial hair is a little scruffy.", choices: [{ text: "Shave it clean.", nextId: 7003 }, { text: "Leave the whiskers. It's cool.", nextId: 7003 }] },
             { id: 7003, text: "Time for cologne. What's the vibe tonight?", choices: [{ text: "A heavy, musky cologne.", nextId: 7004 }, { text: "A light, fresh cologne.", nextId: 7004 }] },
             { id: 7004, text: "Now for the outfit. You want to look good tonight.", choices: [
                 { text: "Wear a black polo shirt and grey pants.", nextId: 7100 },
@@ -826,7 +826,7 @@
                 { text: "A deep floral scent.", nextId: 7012 },
                 { text: "A spicy and sweet perfume.", nextId: 7012 }
             ]},
-            { id: 7012, text: "Perfect. Now for the killer outfit.", choices: [
+            { id: 7012, text: "Perfect. Now for the sauced outfit.", choices: [
                 { text: "The silk slip dress in deep emerald.", nextId: 7110 },
                 { text: "The bright pink mini dress.", nextId: 7110 },
                 { text: "The high-waisted leather skirt with a satin blouse.", nextId: 7110 }
@@ -902,8 +902,8 @@
             // --- SHOPPING & ROUTING ---
             {
                 id: 90000,
-                text: "You meet up at the mall first. You spend an hour or so browsing the shops, enjoying the pre-date adventure. It's fun and relaxing.",
-                textFemale: "You meet up at the mall first. He wants to check out the electronics store while you look for a new top. You spend an hour or so browsing, enjoying the pre-date adventure.",
+                text: "You meet up at the mall first. You spend an hour or so browsing the shops, you get her a pair of shoes, a bag, and two pairs of pants. you spent 178 dollars, you dont give a fuck though.",
+                textFemale: "You meet up at the mall first. He wants to check out the electronics store while you look for some new clothes. You spend an hour or so browsing, he gets you a pair of shoes, a bag, and two pairs of pants. Awesome, that hes got it like that.",
                 choices: [{ text: "Now, on to the main event...", nextId: 90001 }]
             },
             { id: 90001, text: "Heading out...", choices: [] }, // New Router Hub
@@ -936,11 +936,11 @@
             
             // --- Placeholder & Ending Nodes ---
             { id: 10020, text: "You call Tammy to chat. You spend an hour on the phone laughing about the latest drama in your friend group. It's a nice, relaxing way to spend the day off. Later that evening, your phone buzzes.", choices: [{ text: "Check your phone.", nextId: 299 }] },
-            { id: 10025, text: "You hit up the Taco Bell drive-through. A Cheesy Gordita Crunch never disappoints. You eat in your car while listening to a podcast. It's a simple pleasure. Later that evening, your phone buzzes.", choices: [{ text: "Check your phone.", nextId: 299 }] },
+            { id: 10025, text: "You hit up the Taco Bell drive-through. A Cheesy Gordita Crunch never disappoints and a Baja Blast, Baha Blast is like your thing, you love it. You eat in your car while listening to a podcast. Later that evening, your phone buzzes.", choices: [{ text: "Check your phone.", nextId: 299 }] },
             { id: 10030, text: "You wander into the pet store. The puppies are adorable and you spend a solid thirty minutes just watching them play. You manage to resist the urge to take one home. Later that evening, your phone buzzes.", choices: [{ text: "Check your phone.", nextId: 299 }] },
-            { id: 10035, text: "You decide to give yourself a manicure. You pull out your nail polish and put on a show while you carefully paint a cool design. They look great! You feel put-together and ready for your date.", choices: [{ text: "Time to go.", nextId: 7110 }] },
-            { id: 11000, text: "You spend the rest of the day in a happy haze, replaying the perfect date in your mind. It's a day you won't forget anytime soon. THE END.", choices: [{ text: "Play Again", nextId: 1 }] },
-            { id: 12000, text: "After a long and eventful day, you finally meet up with your partner again. The car is fixed, the adventure is over, and you're both exhausted but happy. It was a day for the books. THE END.", choices: [{ text: "Play Again", nextId: 1 }] }
+            { id: 10035, text: "You decide to give yourself new nails. You pull out some new fake nails and they look great! You feel good and ready for your date.", choices: [{ text: "Time to go.", nextId: 7110 }] },
+            { id: 11000, text: "You spend the rest of the day in a happy haze, replaying the perfect date in your mind. It's a day you won't forget anytime soon. You go on to see another day.", choices: [{ text: "Play Again", nextId: 1 }] },
+            { id: 12000, text: "After a long and eventful day, you finally meet up with your partner again. The car is fixed, you are a boss, and you're both exhausted but happy. It was a long day but it turned out alright as most things dp. THE END.", choices: [{ text: "Play Again", nextId: 1 }] }
         ];
 
         const welcomeScreen = document.getElementById('welcome-screen');
@@ -1173,7 +1173,7 @@
                 choices.push({ text: "Visit the pet store at the mall.", nextId: 10030 });
             }
             if (storyNode.id === 7012 && playerGender === 'female') {
-                choices.push({ text: "Do a quick DIY nail art project.", nextId: 10035 });
+                choices.push({ text: "Do your nails.", nextId: 10035 });
             }
 
             updateInventoryDisplay();
@@ -1233,3 +1233,4 @@
     </script>
 </body>
 </html>
+
